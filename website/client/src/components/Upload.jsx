@@ -50,7 +50,6 @@ const Upload = () => {
         success: true,
       },
     };
-    console.log(data);
     reset(data.data);
     if (!data.success) {
       setError(data.error);
@@ -97,7 +96,6 @@ const Upload = () => {
       {success && <p>Laster opp bilde med id: {imageId}</p>}
       <FlexBox>
         <FlexStart>
-          {receiptValue && console.log(`Receipt value ${receiptValue.type}`)}
           {receiptValue && (
             <FormGroup>
               <StyledForm onSubmit={handleSubmit(onSubmit)}>
@@ -163,7 +161,6 @@ const Upload = () => {
                   name="image"
                   accept=".jpg"
                   onChange={(event) => {
-                    console.log(event);
                     const imageFile = event.target.files[0];
                     setFile(imageFile);
                   }}

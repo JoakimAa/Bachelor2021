@@ -96,75 +96,84 @@ const Upload = () => {
       {error && <p>Noe gikk galt med opplastingen</p>}
       {success && <p>Laster opp bilde med id: {imageId}</p>}
       <FlexBox>
-        {receiptValue && console.log(`Receipt value ${receiptValue.type}`)}
-        {receiptValue && (
-          <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <FlexStart>
+          {receiptValue && console.log(`Receipt value ${receiptValue.type}`)}
+          {receiptValue && (
             <FormGroup>
-              <InputLabel htmlFor="inpType">Type</InputLabel>
-              <Input
-                type="text"
-                name="type"
-                id="inpType"
-                placeholder="Type"
-                ref={register({
-                  required: true,
-                })}
-              />
+              <StyledForm onSubmit={handleSubmit(onSubmit)}>
+                <FormGroup>
+                  <InputLabel htmlFor="inpType">Type</InputLabel>
+                  <Input
+                    type="text"
+                    name="type"
+                    id="inpType"
+                    placeholder="Type"
+                    ref={register({
+                      required: true,
+                    })}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <InputLabel htmlFor="impAmount">Pris</InputLabel>
+                  <Input
+                    type="text"
+                    name="amount"
+                    id="impAmount"
+                    placeholder="Pris"
+                    ref={register({
+                      required: true,
+                    })}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <InputLabel htmlFor="inpDate">Dato</InputLabel>
+                  <Input
+                    type="text"
+                    name="date"
+                    id="inpDate"
+                    placeholder="Date"
+                    ref={register({
+                      required: true,
+                    })}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <StyledButton
+                    type="submit"
+                    isLoading={formState.isSubmitting}
+                  >
+                    Send inn
+                  </StyledButton>
+                  {error && <p>{error.message}</p>}
+                </FormGroup>
+              </StyledForm>
             </FormGroup>
+          )}
+          <StyledForm
+            encType="multipart/form-data"
+            method="post"
+            onSubmit={handleImageSubmit}
+          >
             <FormGroup>
-              <InputLabel htmlFor="impAmount">Pris</InputLabel>
-              <Input
-                type="text"
-                name="amount"
-                id="impAmount"
-                placeholder="Pris"
-                ref={register({
-                  required: true,
-                })}
-              />
-            </FormGroup>
-            <FormGroup>
-              <InputLabel htmlFor="inpDate">Dato</InputLabel>
-              <Input
-                type="text"
-                name="date"
-                id="inpDate"
-                placeholder="Date"
-                ref={register({
-                  required: true,
-                })}
-              />
-            </FormGroup>
-            <FormGroup>
-              <StyledButton type="submit" isLoading={formState.isSubmitting}>
-                Send inn
-              </StyledButton>
-              {error && <p>{error.message}</p>}
+              <FlexBoxImage>
+                <Label htmlFor="image">Last opp bilde</Label>
+                <FileInput
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept=".jpg"
+                  onChange={(event) => {
+                    console.log(event);
+                    const imageFile = event.target.files[0];
+                    setFile(imageFile);
+                  }}
+                />
+                <StyledButton type="submit">Lagre</StyledButton>
+              </FlexBoxImage>
             </FormGroup>
           </StyledForm>
-        )}
-        <StyledForm
-          encType="multipart/form-data"
-          method="post"
-          onSubmit={handleImageSubmit}
-        >
-          <FormGroup>
-            <Label htmlFor="image">Last opp bilde</Label>
-            <FileInput
-              type="file"
-              id="image"
-              name="image"
-              accept=".jpg"
-              onChange={(event) => {
-                console.log(event);
-                const imageFile = event.target.files[0];
-                setFile(imageFile);
-              }}
-            />
-            <StyledButton type="submit">Lagre</StyledButton>
-            {src && <Img alt="bilde" src={src} />}
-          </FormGroup>
-        </StyledForm>
+        </FlexStart>
+        {src && <Img alt="bilde" src={src} />}
       </FlexBox>
     </>
   );
@@ -175,7 +184,20 @@ export default Upload;
 const FlexBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: space-between;
+  align-items: center;
+`;
+
+const FlexStart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const FlexBoxImage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: auto;
 `;
 
 const Label = styled.label``;
@@ -183,10 +205,10 @@ const Label = styled.label``;
 const FileInput = styled.input``;
 
 const FormGroup = styled.div`
-  margin: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
 `;
 
 const StyledForm = styled.form`
@@ -196,6 +218,7 @@ const StyledForm = styled.form`
 const Img = styled.img`
   margin-top: 1rem;
   width: 50%;
+  margin: auto;
 `;
 
 const Input = styled.input`

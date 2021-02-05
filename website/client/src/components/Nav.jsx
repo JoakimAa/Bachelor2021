@@ -44,6 +44,15 @@ const UnorderedList = styled.ul`
 `;
 
 const ListItem = styled.li`
+  & a {
+    font-weight: bold;
+  }
+
+  & a.active,
+  a:hover {
+    color: #2c91bd;
+  }
+
   @media (min-width: 200px) and (max-width: 500) {
     background-color: white;
     border-radius: 1em;

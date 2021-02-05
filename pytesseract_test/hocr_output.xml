@@ -9,7 +9,7 @@
   <meta name='ocr-capabilities' content='ocr_page ocr_carea ocr_par ocr_line ocrx_word ocrp_wconf'/>
  </head>
  <body>
-  <div class='ocr_page' id='page_1' title='image "C:\Users\Sondre\AppData\Local\Temp\tess_h0g2daj6.JPEG"; bbox 0 0 980 551; ppageno 0'>
+  <div class='ocr_page' id='page_1' title='image "C:\Users\Sondre\AppData\Local\Temp\tess_q997i6f1.JPEG"; bbox 0 0 980 551; ppageno 0'>
    <div class='ocr_carea' id='block_1_1' title="bbox 55 11 900 42">
     <p class='ocr_par' id='par_1_1' lang='nor' title="bbox 55 11 900 42">
      <span class='ocr_line' id='line_1_1' title="bbox 55 11 900 42; baseline -0.004 -3; x_size 33.166668; x_descenders 8.291667; x_ascenders 8.291667">

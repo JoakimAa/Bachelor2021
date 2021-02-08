@@ -43,7 +43,7 @@ const Upload = () => {
     const { data } = await {
       data: {
         data: {
-          type: 'Faktura',
+          type: 'Kvittering',
           amount: '200',
           date: '20.01.2021',
         },

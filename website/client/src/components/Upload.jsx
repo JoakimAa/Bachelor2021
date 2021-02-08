@@ -96,57 +96,54 @@ const Upload = () => {
       {success && <p>Laster opp bilde med id: {imageId}</p>}
       <FlexBox>
         <FlexStart>
-          {receiptValue && (
-            <FormGroup>
-              <StyledForm onSubmit={handleSubmit(onSubmit)}>
-                <FormGroup>
-                  <InputLabel htmlFor="inpType">Type</InputLabel>
-                  <Input
-                    type="text"
-                    name="type"
-                    id="inpType"
-                    placeholder="Type"
-                    ref={register({
-                      required: true,
-                    })}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <InputLabel htmlFor="impAmount">Pris</InputLabel>
-                  <Input
-                    type="text"
-                    name="amount"
-                    id="impAmount"
-                    placeholder="Pris"
-                    ref={register({
-                      required: true,
-                    })}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <InputLabel htmlFor="inpDate">Dato</InputLabel>
-                  <Input
-                    type="text"
-                    name="date"
-                    id="inpDate"
-                    placeholder="Date"
-                    ref={register({
-                      required: true,
-                    })}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <StyledButton
-                    type="submit"
-                    isLoading={formState.isSubmitting}
-                  >
-                    Send inn
-                  </StyledButton>
-                  {error && <p>{error.message}</p>}
-                </FormGroup>
-              </StyledForm>
-            </FormGroup>
-          )}
+          {/* {receiptValue && ( */}
+          <FormGroup>
+            <StyledForm onSubmit={handleSubmit(onSubmit)}>
+              <FormGroup>
+                <InputLabel htmlFor="inpType">Type</InputLabel>
+                <Input
+                  type="text"
+                  name="type"
+                  id="inpType"
+                  placeholder="Type"
+                  ref={register({
+                    required: true,
+                  })}
+                />
+              </FormGroup>
+              <FormGroup>
+                <InputLabel htmlFor="impAmount">Pris</InputLabel>
+                <Input
+                  type="text"
+                  name="amount"
+                  id="impAmount"
+                  placeholder="Pris"
+                  ref={register({
+                    required: true,
+                  })}
+                />
+              </FormGroup>
+              <FormGroup>
+                <InputLabel htmlFor="inpDate">Dato</InputLabel>
+                <Input
+                  type="text"
+                  name="date"
+                  id="inpDate"
+                  placeholder="Date"
+                  ref={register({
+                    required: true,
+                  })}
+                />
+              </FormGroup>
+              <FormGroup>
+                <StyledButton type="submit" isLoading={formState.isSubmitting}>
+                  Send inn
+                </StyledButton>
+                {error && <p>{error.message}</p>}
+              </FormGroup>
+            </StyledForm>
+          </FormGroup>
+          {/* )} */}
           <StyledForm
             encType="multipart/form-data"
             method="post"

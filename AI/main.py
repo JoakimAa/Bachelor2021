@@ -4,13 +4,13 @@ import numpy as np
 from matplotlib import pyplot as plt
 from imutils.object_detection import non_max_suppression
 
-pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
-# image = cv2.imread('nor_kvitt2.jpg')
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Users\\Sondre\\AppData\\Local\\Programs\\Tesseract-OCR\\tesseract.exe'
+#image = cv2.imread('nor_kvitt2.jpg')
 #args = {"image":"nor_kvitt2,jpg", "east":"../input/text-detection/east_text_detection.pb", "min_confidence":0.5, "width":320, "height":320}
 #image = cv2.imread(args['image'])
 
-image = cv2.imread('vy.jpg')
-east = "frozen_east_text_detection.pb"
+image = cv2.imread('C:/Users/Sondre/Desktop/vy.jpg')
+east = "C:/Users/Sondre/Desktop/frozen_east_text_detection.pb"
 newW = 640
 newH = 480
 min_confidence = 0.5

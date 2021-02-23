@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Bachelor2021.DataAccess;
 using Bachelor2021.Model;
+using Newtonsoft.Json;
 
 namespace Bachelor2021.Api.Controllers
 {
@@ -24,7 +25,7 @@ namespace Bachelor2021.Api.Controllers
         // GET: api/Receipts
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Receipt>>> GetReceipts()
-        {
+        {   
             return await _context.Receipts.ToListAsync();
         }
 

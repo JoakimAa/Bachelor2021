@@ -13,7 +13,7 @@ namespace Bachelor2021.DataAcess.Maintenance {
             optionsBuilder.UseSqlServer(connection, x => x.MigrationsAssembly("Bachelor2021.DataAccess.Maintenance"));
 
             //PopulateDatabase(optionsBuilder);
-            //QueryData(optionsBuilder);
+            QueryData(optionsBuilder);
         }
 
         private static void QueryData(DbContextOptionsBuilder<ReceiptContext> optionsBuilder) {
@@ -21,11 +21,11 @@ namespace Bachelor2021.DataAcess.Maintenance {
                 var receipts = db.Receipts;
                 Console.WriteLine("Bachelor2021: \n");
                 foreach (var receipt in receipts) {
-                    Console.WriteLine("{0}:", receipt.ReceiptId);
-                    Console.WriteLine("{0}:", receipt.Amount);
-                    Console.WriteLine("{0}:", receipt.Type);
-                    Console.WriteLine("{0}:", receipt.Company);
-                    Console.WriteLine("{0}:", receipt.Date);
+                    Console.WriteLine("Id: {0}", receipt.ReceiptId);
+                    Console.WriteLine("Amount: {0}", receipt.Amount);
+                    Console.WriteLine("Type: {0}", receipt.Type);
+                    Console.WriteLine("Company: {0}", receipt.Company);
+                    Console.WriteLine("Date: {0}", receipt.Date);
                 }
             }
         }

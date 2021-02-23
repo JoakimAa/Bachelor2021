@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 /* import Form from './Form';
  */
-import { create } from '../utils/receiptService';
+import { create, list, get } from '../utils/receiptService';
 import { upload } from '../utils/imageService';
 
 const Upload = () => {
@@ -13,6 +13,7 @@ const Upload = () => {
   const [success, setSuccess] = useState(false);
   const [imageId, setImageId] = useState(null);
   const [receiptValue, setReceiptValue] = useState(null);
+  const [tempReceiptValue, setTempReceiptValue] = useState(null);
   const [imageData, setImageData] = useState(null);
   const [src, setSrc] = useState(null);
 
@@ -37,35 +38,39 @@ const Upload = () => {
     }
   };
 
-  /* useEffect(() => {
-    if (src) { */
-  const tempData = async () => {
-    const { data } = await {
-      data: {
-        data: {
-          type: 'Kvittering',
-          amount: '200',
-          date: '20.01.2021',
-        },
-        success: true,
-      },
-    };
-    reset(data.data);
-    if (!data.success) {
-      setError(data.error);
-    } else {
-      setReceiptValue(data.data);
+  useEffect(() => {
+    if (src) {
+      const fetchData = async () => {
+        console.log('Running tempdata');
+        /* setTempReceiptValue(await get(1).data.data); */
+        const { data } = await get(2);
+        /* setReceiptValue(await get(1)); */
+        /* const { data } = await {
+          data: {
+            data: {
+              type: 'Kvittering',
+              amount: '200',
+              date: '20.01.2021',
+            },
+            success: true,
+          },
+        }; */
+        // reset(data.data);
+        if (!data.success) {
+          setError(data.error);
+        } else {
+          setReceiptValue(data?.data);
+        }
+      };
+      fetchData();
     }
-  };
-  /*     tempData();
-    }
-  }, [src, reset]); */
+  }, [reset, src]);
 
   const handleImageSubmit = async (e) => {
     e.preventDefault();
     console.log('Laster opp bilde');
-    tempData();
-    const { data } = await upload(file);
+    const { data } = await upload();
+    /* tempData(); */
     if (!data.success) {
       setError(data.message);
     } else {
@@ -96,54 +101,61 @@ const Upload = () => {
       {success && <p>Laster opp bilde med id: {imageId}</p>}
       <FlexBox>
         <FlexStart>
-          {/* {receiptValue && ( */}
-          <FormGroup>
-            <StyledForm onSubmit={handleSubmit(onSubmit)}>
-              <FormGroup>
-                <InputLabel htmlFor="inpType">Type</InputLabel>
-                <Input
-                  type="text"
-                  name="type"
-                  id="inpType"
-                  placeholder="Type"
-                  ref={register({
-                    required: true,
-                  })}
-                />
-              </FormGroup>
-              <FormGroup>
-                <InputLabel htmlFor="impAmount">Pris</InputLabel>
-                <Input
-                  type="text"
-                  name="amount"
-                  id="impAmount"
-                  placeholder="Pris"
-                  ref={register({
-                    required: true,
-                  })}
-                />
-              </FormGroup>
-              <FormGroup>
-                <InputLabel htmlFor="inpDate">Dato</InputLabel>
-                <Input
-                  type="text"
-                  name="date"
-                  id="inpDate"
-                  placeholder="Date"
-                  ref={register({
-                    required: true,
-                  })}
-                />
-              </FormGroup>
-              <FormGroup>
-                <StyledButton type="submit" isLoading={formState.isSubmitting}>
-                  Send inn
-                </StyledButton>
-                {error && <p>{error.message}</p>}
-              </FormGroup>
-            </StyledForm>
-          </FormGroup>
-          {/* )} */}
+          {receiptValue && (
+            <FormGroup>
+              <StyledForm onSubmit={handleSubmit(onSubmit)}>
+                <FormGroup>
+                  <InputLabel htmlFor="inpType">Type</InputLabel>
+                  <Input
+                    type="text"
+                    name="type"
+                    id="inpType"
+                    placeholder="Type"
+                    ref={register({
+                      required: true,
+                    })}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <InputLabel htmlFor="impAmount">Pris</InputLabel>
+                  <Input
+                    type="text"
+                    name="amount"
+                    id="impAmount"
+                    placeholder="Pris"
+                    ref={register({
+                      required: true,
+                    })}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <InputLabel htmlFor="inpDate">Dato</InputLabel>
+                  <Input
+                    type="text"
+                    name="date"
+                    id="inpDate"
+                    placeholder="Date"
+                    ref={register({
+                      required: true,
+                    })}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <StyledButton
+                    type="submit"
+                    isLoading={formState.isSubmitting}
+                  >
+                    Send inn
+                  </StyledButton>
+                  {error && <p>{error.message}</p>}
+                </FormGroup>
+              </StyledForm>
+            </FormGroup>
+          )}
+
+          {receiptValue && console.log(`True: ${receiptValue}`)}
+          {console.log(`Just a log: ${receiptValue}`)}
+
           <StyledForm
             encType="multipart/form-data"
             method="post"

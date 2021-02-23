@@ -25,7 +25,7 @@ namespace Bachelor2021.Api {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             var connection = @"Server=(localdb)\MSSQLLocalDB;Database=Bachelor2021;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ReceiptContext>(options => options.UseSqlServer(connection));
 
             services.AddControllers();
             services.AddSwaggerGen(c => {
@@ -49,7 +49,9 @@ namespace Bachelor2021.Api {
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
         }
     }

@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bachelor2021.Api", "Bachelor2021.Api\Bachelor2021.Api.csproj", "{EF349DEE-EA25-4513-9580-4E4C7ECC9515}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bachelor2021.Model", "Bachelor2021.Model\Bachelor2021.Model.csproj", "{E66B56DE-9F78-4222-9F94-5393CB37F79C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bachelor2021.Model", "Bachelor2021.Model\Bachelor2021.Model.csproj", "{E66B56DE-9F78-4222-9F94-5393CB37F79C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bachelor2021.DataAccess", "Bachelor2021.DataAccess\Bachelor2021.DataAccess.csproj", "{A14D06F3-CEC0-4265-9534-1E95D66A7820}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bachelor2021.DataAccess", "Bachelor2021.DataAccess\Bachelor2021.DataAccess.csproj", "{A14D06F3-CEC0-4265-9534-1E95D66A7820}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bachelor2021.DataAccess.Maintenance", "Bachelor2021.DataAccess.Maintenance\Bachelor2021.DataAccess.Maintenance.csproj", "{FCF9E01A-0D6F-4B78-9D32-BF5A8B44144B}"
 EndProject

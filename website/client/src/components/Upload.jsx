@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import styled from 'styled-components';
@@ -15,6 +15,7 @@ const Upload = () => {
   const [receiptValue, setReceiptValue] = useState(null);
   const [imageData, setImageData] = useState(null);
   const [src, setSrc] = useState(null);
+  const [pictureIsUploaded, setPictureIsUploaded] = useState(false);
 
   const { register, handleSubmit, formState, reset } = useForm({
     mode: 'onBlur',
@@ -38,46 +39,26 @@ const Upload = () => {
   };
 
   useEffect(() => {
-    if (src) {
+    if (pictureIsUploaded) {
       const fetchData = async () => {
-        console.log('Running tempdata');
-        /* setTempReceiptValue(await get(1).data.data); */
-        const { data } = await get(2);
-        /* setReceiptValue(await get(1)); */
-        /* const { data } = await {
-          data: {
-            data: {
-              type: 'Kvittering',
-              amount: '200',
-              date: '20.01.2021',
-            },
-            success: true,
-          },
-        }; */
-        // reset(data.data);
-        if (!data.success) {
-          setError(data.error);
-        } else {
-          setReceiptValue(data?.data);
-        }
+        const data = await get('93da7bef-c73b-462a-d62b-08d8d887f5e2');
+        reset(data.data);
+        setReceiptValue(data?.data);
       };
       fetchData();
     }
-  }, [reset, src]);
+  }, [reset, pictureIsUploaded]);
 
   const handleImageSubmit = async (e) => {
     e.preventDefault();
     console.log('Laster opp bilde');
+    setPictureIsUploaded(true);
+    console.log(file);
     const { data } = await upload();
-    /* tempData(); */
-    if (!data.success) {
-      setError(data.message);
-    } else {
-      setImageData(data?.data);
-      setImageId(data?.data?._id);
-      setSuccess(true);
-      setError(null);
-    }
+    setImageData(data?.data);
+    setImageId(data?.data?._id);
+    setSuccess(true);
+    setError(null);
   };
 
   useEffect(() => {
@@ -153,7 +134,8 @@ const Upload = () => {
           )}
 
           {receiptValue && console.log(`True: ${receiptValue}`)}
-          {console.log(`Just a log: ${receiptValue}`)}
+          {console.log(`ReceiptValue`)}
+          {console.log(receiptValue)}
 
           <StyledForm
             encType="multipart/form-data"

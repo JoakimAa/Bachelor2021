@@ -12,6 +12,8 @@ export const list = async () => {
 
 export const get = async (id) => {
   try {
+    console.log('Return: ');
+    console.log(await http.get(`${API_URL}/${id}`));
     return await http.get(`${API_URL}/${id}`);
   } catch (err) {
     return err.response;

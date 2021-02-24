@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 /* import Form from './Form';
  */
-import { create, list, get } from '../utils/receiptService';
+import { create, get } from '../utils/receiptService';
 import { upload } from '../utils/imageService';
 
 const Upload = () => {
@@ -13,7 +13,6 @@ const Upload = () => {
   const [success, setSuccess] = useState(false);
   const [imageId, setImageId] = useState(null);
   const [receiptValue, setReceiptValue] = useState(null);
-  const [tempReceiptValue, setTempReceiptValue] = useState(null);
   const [imageData, setImageData] = useState(null);
   const [src, setSrc] = useState(null);
 

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Bachelor2021.DataAccess;
 using Bachelor2021.Model;
-using Newtonsoft.Json;
 
 namespace Bachelor2021.Api.Controllers
 {
@@ -25,13 +24,13 @@ namespace Bachelor2021.Api.Controllers
         // GET: api/Receipts
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Receipt>>> GetReceipts()
-        {   
+        {
             return await _context.Receipts.ToListAsync();
         }
 
         // GET: api/Receipts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Receipt>> GetReceipt(int id)
+        public async Task<ActionResult<Receipt>> GetReceipt(Guid id)
         {
             var receipt = await _context.Receipts.FindAsync(id);
 
@@ -46,7 +45,7 @@ namespace Bachelor2021.Api.Controllers
         // PUT: api/Receipts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutReceipt(int id, Receipt receipt)
+        public async Task<IActionResult> PutReceipt(Guid id, Receipt receipt)
         {
             if (id != receipt.ReceiptId)
             {
@@ -87,7 +86,7 @@ namespace Bachelor2021.Api.Controllers
 
         // DELETE: api/Receipts/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReceipt(int id)
+        public async Task<IActionResult> DeleteReceipt(Guid id)
         {
             var receipt = await _context.Receipts.FindAsync(id);
             if (receipt == null)
@@ -101,7 +100,7 @@ namespace Bachelor2021.Api.Controllers
             return NoContent();
         }
 
-        private bool ReceiptExists(int id)
+        private bool ReceiptExists(Guid id)
         {
             return _context.Receipts.Any(e => e.ReceiptId == id);
         }

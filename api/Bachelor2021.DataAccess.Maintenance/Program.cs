@@ -26,6 +26,7 @@ namespace Bachelor2021.DataAcess.Maintenance {
                     Console.WriteLine("Type: {0}", receipt.Type);
                     Console.WriteLine("Company: {0}", receipt.Company);
                     Console.WriteLine("Date: {0}", receipt.Date);
+                    Console.WriteLine("\n");
                 }
             }
         }

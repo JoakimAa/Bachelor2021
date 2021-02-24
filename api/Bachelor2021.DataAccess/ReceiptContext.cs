@@ -8,8 +8,6 @@ namespace Bachelor2021.DataAccess {
 
         public DbSet<Receipt> Receipts { get; set; }
         public DbSet<Image> Images { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder options) =>
-                                       options.UseSqlite("Data Source=database.db");
         public ReceiptContext(DbContextOptions<ReceiptContext> options) : base(options) { }
       
 

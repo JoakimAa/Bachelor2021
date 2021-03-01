@@ -1,19 +1,29 @@
-%! Author = Sander Riis, og gutta
-%! Date = 01/03/2021
 
 % Preamble
 \documentclass[11pt]{article}
-
 % Packages
 \usepackage{amsmath}
 
+
+\usepackage{datetime}
+
+\newdate{date}{12}{03}{2021}
+\date{\displaydate{date}}
+
+\author {
+    Aarskog, Joakim\\
+    \and
+    Lillelien, Sondre\\
+    \and
+    Riis, Sander\\
+}
+
 % Document
 \begin{document}
+\title{Hello}
+\maketitle
 
-    hello
-
-
-    \bibliography{main}
-    \bibliographystyle{plain}
+\bibliography{main}
+\bibliographystyle{plain}
 
 \end{document}

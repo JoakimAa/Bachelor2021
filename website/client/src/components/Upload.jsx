@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import styled from 'styled-components';
@@ -145,19 +145,7 @@ const Upload = () => {
               </StyledForm>
             </FormGroup>
           )}
-{/* 
-          {receiptValue && console.log(`True: ${receiptValue}`)}
-          {console.log(`ReceiptValue`)}
-          {console.log(receiptValue)}
 
-          {imageId && console.log(`True: ${imageId}`)}
-          {console.log(`Image id`)}
-          {console.log(imageId)}
-
-          {file && console.log(`True: ${file}`)}
-          {console.log(`Image file`)}
-          {console.log(file)}
- */}
           <StyledForm
             encType="multipart/form-data"
             method="post"

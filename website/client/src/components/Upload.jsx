@@ -29,7 +29,8 @@ const Upload = () => {
   }
 
   const onSubmit = async (formData) => {
-    const { data } = await create(formData, { image: imageData._id });
+    const { data } = await create(formData, { image: imageData.imageId });
+    console.log(data);
     if (!data.success) {
       setError(data.message);
     } else {
@@ -41,7 +42,7 @@ const Upload = () => {
   useEffect(() => {
     if (pictureIsUploaded) {
       const fetchData = async () => {
-        const data = await get('93da7bef-c73b-462a-d62b-08d8d887f5e2');
+        const data = await get(1);
         reset(data.data);
         setReceiptValue(data?.data);
       };
@@ -53,12 +54,12 @@ const Upload = () => {
     e.preventDefault();
     console.log('Laster opp bilde');
     setPictureIsUploaded(true);
-    console.log(file);
-    const { data } = await upload();
-    setImageData(data?.data);
-    setImageId(data?.data?._id);
+    const { data } = await upload(file);
+    setImageData(data.imageData);
+    setImageId(data.imageId);
     setSuccess(true);
     setError(null);
+    console.log(await data);
   };
 
   useEffect(() => {
@@ -97,19 +98,31 @@ const Upload = () => {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <InputLabel htmlFor="impAmount">Pris</InputLabel>
+                  <InputLabel htmlFor="inpAmount">Price</InputLabel>
                   <Input
                     type="text"
                     name="amount"
-                    id="impAmount"
-                    placeholder="Pris"
+                    id="inpAmount"
+                    placeholder="Price"
                     ref={register({
                       required: true,
                     })}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <InputLabel htmlFor="inpDate">Dato</InputLabel>
+                  <InputLabel htmlFor="inpCompany">Company</InputLabel>
+                  <Input
+                    type="text"
+                    name="company"
+                    id="inpCompany"
+                    placeholder="Company"
+                    ref={register({
+                      required: true,
+                    })}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <InputLabel htmlFor="inpDate">Date</InputLabel>
                   <Input
                     type="text"
                     name="date"
@@ -132,11 +145,19 @@ const Upload = () => {
               </StyledForm>
             </FormGroup>
           )}
-
+{/* 
           {receiptValue && console.log(`True: ${receiptValue}`)}
           {console.log(`ReceiptValue`)}
           {console.log(receiptValue)}
 
+          {imageId && console.log(`True: ${imageId}`)}
+          {console.log(`Image id`)}
+          {console.log(imageId)}
+
+          {file && console.log(`True: ${file}`)}
+          {console.log(`Image file`)}
+          {console.log(file)}
+ */}
           <StyledForm
             encType="multipart/form-data"
             method="post"

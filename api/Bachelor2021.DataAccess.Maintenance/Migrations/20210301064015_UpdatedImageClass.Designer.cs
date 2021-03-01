@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bachelor2021.DataAccess.Maintenance.Migrations
 {
-    [DbContext(typeof(ReceiptContext))]
-    [Migration("20210224053552_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(DataContext))]
+    [Migration("20210301064015_UpdatedImageClass")]
+    partial class UpdatedImageClass
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,26 +23,36 @@ namespace Bachelor2021.DataAccess.Maintenance.Migrations
 
             modelBuilder.Entity("Bachelor2021.Model.Image", b =>
                 {
-                    b.Property<Guid>("imageId")
+                    b.Property<int>("ImageId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte[]>("Data")
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FileType")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<byte[]>("ImageData")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("Suffix")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("imageId");
+                    b.HasKey("ImageId");
 
                     b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Bachelor2021.Model.Receipt", b =>
                 {
-                    b.Property<Guid>("ReceiptId")
+                    b.Property<int>("ReceiptId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<double>("Amount")
                         .HasColumnType("float");
@@ -55,8 +65,8 @@ namespace Bachelor2021.DataAccess.Maintenance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("MyPropertyimageId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -64,18 +74,18 @@ namespace Bachelor2021.DataAccess.Maintenance.Migrations
 
                     b.HasKey("ReceiptId");
 
-                    b.HasIndex("MyPropertyimageId");
+                    b.HasIndex("ImageId");
 
                     b.ToTable("Receipts");
                 });
 
             modelBuilder.Entity("Bachelor2021.Model.Receipt", b =>
                 {
-                    b.HasOne("Bachelor2021.Model.Image", "MyProperty")
+                    b.HasOne("Bachelor2021.Model.Image", "Image")
                         .WithMany()
-                        .HasForeignKey("MyPropertyimageId");
+                        .HasForeignKey("ImageId");
 
-                    b.Navigation("MyProperty");
+                    b.Navigation("Image");
                 });
 #pragma warning restore 612, 618
         }

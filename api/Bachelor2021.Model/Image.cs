@@ -8,10 +8,13 @@ using System.Text;
 namespace Bachelor2021.Model {
     public class Image {
         [Key]
-        public Guid ImageId { get; set; }
-        public string Title { get; set; }
-        public string ImageName { get; set; }
-        [NotMapped]
-        public IFormFile ImageFile { get; set; }
+        public int ImageId { get; set; }
+        [MaxLength(100)]
+        public string Name { get; set; }
+        [MaxLength(100)]
+        public string FileType { get; set; }
+        [MaxLength]
+        public byte[] ImageData { get; set; }
+        public DateTime? CreatedOn { get; set; }
     }
 }

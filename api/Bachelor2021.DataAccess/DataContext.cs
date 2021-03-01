@@ -4,21 +4,21 @@ using Microsoft.EntityFrameworkCore.Design;
 using System;
 
 namespace Bachelor2021.DataAccess {
-    public class ReceiptContext : DbContext {
+    public class DataContext : DbContext {
 
         public DbSet<Receipt> Receipts { get; set; }
         public DbSet<Image> Images { get; set; }
-        public ReceiptContext(DbContextOptions<ReceiptContext> options) : base(options) { }
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
       
 
-        class DataContextFactory : IDesignTimeDbContextFactory<ReceiptContext> {
-            public ReceiptContext CreateDbContext(string[] args) {
+        class DataContextFactory : IDesignTimeDbContextFactory<DataContext> {
+            public DataContext CreateDbContext(string[] args) {
                 var connection = @"Server=(localdb)\MSSQLLocalDB;Database=Bachelor2021;Trusted_Connection=True;ConnectRetryCount=0";
 
-                var optionsBuilder = new DbContextOptionsBuilder<ReceiptContext>();
+                var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
                 optionsBuilder.UseSqlServer(connection, x => x.MigrationsAssembly("Bachelor2021.DataAccess.Maintenance"));
 
-                return new ReceiptContext(optionsBuilder.Options);
+                return new DataContext(optionsBuilder.Options);
             }
         }
     }

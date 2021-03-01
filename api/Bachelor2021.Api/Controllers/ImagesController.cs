@@ -1,42 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Bachelor2021.DataAccess;
+using Bachelor2021.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Bachelor2021.DataAccess;
-using Bachelor2021.Model;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Bachelor2021.Api.Controllers
-{
+namespace Bachelor2021.Api.Controllers {
+
     [Route("api/[controller]")]
     [ApiController]
-    public class ImagesController : ControllerBase
-    {
-        private readonly ReceiptContext _context;
+    public class ImagesController : ControllerBase {
+        private readonly DataContext _context;
 
-        public ImagesController(ReceiptContext context)
-        {
+        public ImagesController(DataContext context) {
             _context = context;
         }
 
         // GET: api/Images
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Image>>> GetImages()
-        {
+        public async Task<ActionResult<IEnumerable<Image>>> GetImages() {
             return await _context.Images.ToListAsync();
         }
 
         // GET: api/Images/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Image>> GetImage(Guid id)
-        {
+        public async Task<ActionResult<Image>> GetImage(int id) {
             var image = await _context.Images.FindAsync(id);
 
-            if (image == null)
-            {
+            if (image == null) {
                 return NotFound();
             }
 
@@ -46,27 +40,21 @@ namespace Bachelor2021.Api.Controllers
         // PUT: api/Images/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutImage(Guid id, Image image)
-        {
-            if (id != image.ImageId)
-            {
+        public async Task<IActionResult> PutImage(int id, Image image) {
+            if (id != image.ImageId) {
                 return BadRequest();
             }
 
             _context.Entry(image).State = EntityState.Modified;
 
-            try
-            {
+            try {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ImageExists(id))
-                {
+            catch (DbUpdateConcurrencyException) {
+                if (!ImageExists(id)) {
                     return NotFound();
                 }
-                else
-                {
+                else {
                     throw;
                 }
             }
@@ -76,30 +64,49 @@ namespace Bachelor2021.Api.Controllers
 
         // POST: api/Images
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<Image>> PostImage(Image image)
+        //{
+        //    _context.Images.Add(image);
+        //    await _context.SaveChangesAsync();
+
+        //    return CreatedAtAction("GetImage", new { id = image.ImageId }, image);
+        //}
         [HttpPost]
-        public async Task<ActionResult<Image>> PostImage(Image image)
-        {
+        public async Task<ActionResult<ImageDTO>> PostImage([FromForm] ImageDTO img) {
+            var image = new Image();
+            if (img != null) {
 
-            //string fileName = Path.GetFileNameWithoutExtension(image.name);
-            //string extension = Path.GetExtension(image.ImageFile.FileName);
-            //image.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            //string path = Path.Combine(wwwRootPath + "/Image/", fileName);
-            //using (var fileStream = new FileStream(path, FileMode.Create)) {
-            //    await image.ImageFile.CopyToAsync(fileStream);
+                image.Name = img.FileName;
 
-            _context.Images.Add(image);
-            await _context.SaveChangesAsync();
+                byte[] imageData = null;
+                using (var binaryReader = new BinaryReader(img.Image.OpenReadStream())) {
+                    imageData = binaryReader.ReadBytes((int)img.Image.Length);
+                }
+
+                image.ImageData = imageData;
+                image.CreatedOn = DateTime.Now;
+                image.FileType = Path.GetExtension(img.FileName);
+
+                //Getting FileName
+                //var fileName = Path.GetFileName(img.Name);
+                ////Getting file Extension
+                //var fileExtension = Path.GetExtension(fileName);
+                //// concatenating  FileName + FileExtension
+                //var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
+
+                _context.Images.Add(image);
+                await _context.SaveChangesAsync();
+            }
 
             return CreatedAtAction("GetImage", new { id = image.ImageId }, image);
         }
 
         // DELETE: api/Images/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteImage(Guid id)
-        {
+        public async Task<IActionResult> DeleteImage(int id) {
             var image = await _context.Images.FindAsync(id);
-            if (image == null)
-            {
+            if (image == null) {
                 return NotFound();
             }
 
@@ -109,8 +116,7 @@ namespace Bachelor2021.Api.Controllers
             return NoContent();
         }
 
-        private bool ImageExists(Guid id)
-        {
+        private bool ImageExists(int id) {
             return _context.Images.Any(e => e.ImageId == id);
         }
     }

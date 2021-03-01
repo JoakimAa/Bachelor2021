@@ -29,7 +29,7 @@ namespace Bachelor2021.Api {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             var connection = @"Server=(localdb)\MSSQLLocalDB;Database=Bachelor2021;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<ReceiptContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
             services.AddControllers();
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bachelor2021.Api", Version = "v1" });
@@ -38,7 +38,7 @@ namespace Bachelor2021.Api {
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins, builder => {
-                    builder.WithOrigins("http://localhost:3001").AllowAnyHeader().AllowCredentials(); ;
+                    builder.WithOrigins("http://localhost:3001").AllowAnyHeader().AllowCredentials().AllowAnyMethod(); ;
                 });
             });
         }

@@ -4,16 +4,14 @@ using Bachelor2021.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bachelor2021.DataAccess.Maintenance.Migrations
 {
-    [DbContext(typeof(ReceiptContext))]
-    [Migration("20210224060543_FixedImage")]
-    partial class FixedImage
+    [DbContext(typeof(DataContext))]
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,15 +21,24 @@ namespace Bachelor2021.DataAccess.Maintenance.Migrations
 
             modelBuilder.Entity("Bachelor2021.Model.Image", b =>
                 {
-                    b.Property<Guid>("ImageId")
+                    b.Property<int>("ImageId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ImageName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("FileType")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ImageId");
 
@@ -40,9 +47,10 @@ namespace Bachelor2021.DataAccess.Maintenance.Migrations
 
             modelBuilder.Entity("Bachelor2021.Model.Receipt", b =>
                 {
-                    b.Property<Guid>("ReceiptId")
+                    b.Property<int>("ReceiptId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<double>("Amount")
                         .HasColumnType("float");
@@ -55,8 +63,8 @@ namespace Bachelor2021.DataAccess.Maintenance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ImageId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .IsRequired()

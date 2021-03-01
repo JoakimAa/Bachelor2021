@@ -14,9 +14,9 @@ namespace Bachelor2021.Api.Controllers
     [ApiController]
     public class ReceiptsController : ControllerBase
     {
-        private readonly ReceiptContext _context;
+        private readonly DataContext _context;
 
-        public ReceiptsController(ReceiptContext context)
+        public ReceiptsController(DataContext context)
         {
             _context = context;
         }
@@ -30,7 +30,7 @@ namespace Bachelor2021.Api.Controllers
 
         // GET: api/Receipts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Receipt>> GetReceipt(Guid id)
+        public async Task<ActionResult<Receipt>> GetReceipt(int id)
         {
             var receipt = await _context.Receipts.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace Bachelor2021.Api.Controllers
         // PUT: api/Receipts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutReceipt(Guid id, Receipt receipt)
+        public async Task<IActionResult> PutReceipt(int id, Receipt receipt)
         {
             if (id != receipt.ReceiptId)
             {
@@ -86,7 +86,7 @@ namespace Bachelor2021.Api.Controllers
 
         // DELETE: api/Receipts/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReceipt(Guid id)
+        public async Task<IActionResult> DeleteReceipt(int id)
         {
             var receipt = await _context.Receipts.FindAsync(id);
             if (receipt == null)
@@ -100,7 +100,7 @@ namespace Bachelor2021.Api.Controllers
             return NoContent();
         }
 
-        private bool ReceiptExists(Guid id)
+        private bool ReceiptExists(int id)
         {
             return _context.Receipts.Any(e => e.ReceiptId == id);
         }

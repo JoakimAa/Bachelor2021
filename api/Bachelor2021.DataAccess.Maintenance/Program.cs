@@ -9,15 +9,15 @@ namespace Bachelor2021.DataAcess.Maintenance {
         static void Main(string[] args) {
             var connection = @"Server=(localdb)\MSSQLLocalDB;Database=Bachelor2021;Trusted_Connection=True;ConnectRetryCount=0";
 
-            var optionsBuilder = new DbContextOptionsBuilder<ReceiptContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
             optionsBuilder.UseSqlServer(connection, x => x.MigrationsAssembly("Bachelor2021.DataAccess.Maintenance"));
 
-            //PopulateDatabase(optionsBuilder);
-            QueryData(optionsBuilder);
+            PopulateDatabase(optionsBuilder);
+            //QueryData(optionsBuilder);
         }
 
-        private static void QueryData(DbContextOptionsBuilder<ReceiptContext> optionsBuilder) {
-            using (var db = new ReceiptContext(optionsBuilder.Options)) {
+        private static void QueryData(DbContextOptionsBuilder<DataContext> optionsBuilder) {
+            using (var db = new DataContext(optionsBuilder.Options)) {
                 var receipts = db.Receipts;
                 Console.WriteLine("Bachelor2021: \n");
                 foreach (var receipt in receipts) {
@@ -31,9 +31,9 @@ namespace Bachelor2021.DataAcess.Maintenance {
             }
         }
 
-        private static void PopulateDatabase(DbContextOptionsBuilder<ReceiptContext> optionsBuilder) {
+        private static void PopulateDatabase(DbContextOptionsBuilder<DataContext> optionsBuilder) {
             try {
-                using (var data = new ReceiptContext(optionsBuilder.Options)) {
+                using (var data = new DataContext(optionsBuilder.Options)) {
 
                     // Create receipts
                     var receipt = new Receipt() { Amount = 200, Type = "Kvittering", Company = "Vy", Date = "23.02.2021"};

@@ -1,17 +1,29 @@
-%! Author = Sander Riis, og gutta
-%! Date = 01/03/2021
-% Preamble
-\documentclass[11pt]{article}
-% Packages
-\usepackage{amsmath}
+\documentclass[
+%master, % Master version, default: Bachelor
+%cover,  % Custom cover page, must be provided as an coverpage.pdf in A4 size
+        % Default: HiØ standard thesis titlepage
+%word,   % Word-like paragraph formatting, no indentations, air between paragraphs
+        % Default: As all documents are formatted, except those made with default M$ documents
+%sans    % Standard HiØ font: Source Sans Pro
+        % Default: Computer Modern, designed by Donald Knuth.
+]{thesistemplate}
 
+\usepackage[norsk]{babel} % Add this if you use another language
+% For available languages and their codes, see https://ctan.org/pkg/babel-contrib
+\usepackage{lmodern}
+% For those who needs code listings
+\usepackage{listings} % DO NOT CHANGE
+\renewcommand{\lstlistlistingname}{Kode} % If you are using another language, you need to specify the corresponding "Code List" title
 
-\usepackage{datetime}
+%Metadata, to appear on the half-title page (and the coverpage, if not a custom cover is provided), to be changed by you:
 
-\newdate{date}{12}{03}{2021}
-\date{\displaydate{date}}
-
-\author {
+\doctype{Bacheloroppgave}
+\department{Avdeling for Informasjonsteknologi}
+\affiliation{Høgskolen i Østfold}
+\place{Halden}
+\title{Advanced Image Recognition and AI Training} % Main title
+\subtitle{Structure, Content and Layout}
+\author{
     Aarskog, Joakim\\
     \and
     Lillelien, Sondre\\
@@ -19,12 +31,43 @@
     Riis, Sander\\
 }
 
-% Document
-\begin{document}
-\title{Hello}
-\maketitle
+\input{glossary}    % OPTIONAL, goes with \printglossaries at the end
 
-\bibliography{main}
-\bibliographystyle{plain}
+%\usepackage{listings}
+\begin{document}
+
+\maketitle          % DO NOT CHANGE
+\makehalftitle      % DO NOT CHANGE
+\frontmatter        % All stuff before Introduction: DO NOT CHANGE
+
+\input{preface}
+\input{abstract}
+\input{acknowledgments}
+\input{prerequisites}   % OPTIONAL
+
+\tableofcontents    % DO NOT CHANGE
+
+\listoffigures      % OPTIONAL
+\listoftables       % OPTIONAL
+\lstlistoflistings  % OPTIONAL
+
+\mainmatter  %Setting the format and layout for all the stuff from Introduction and on: DO NOT CHANGE
+
+% Your chapter files
+\input{introduction}
+\input{analysis}
+\input{design}
+\input{implementation}
+\input{evaluation}
+\input{discussion}
+\input{conclusion}
+
+\bibliographystyle{plain}   % Your preferred bibliogrphy style
+\bibliography{main}       % DO NOT CHANGE, or substitute with another, or several, *.bib files
+
+\printglossaries            % OPTIONAL, goes with \input{glossary} before
+
+\appendix                   % OPTIONAL
+\input{how-to}              % READ THIS CHAPTER: Sample code of everything you need and more :-)
 
 \end{document}

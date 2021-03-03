@@ -5,24 +5,23 @@
 This chapter describes the practical and theoretical foundation of your project.
 Basically, there are two aspects you should focus on, your research topic, and related work (literature and projects).
 
-\section{Research topic (generic title)}\label{sec:research-topic-(generic-title)}
+\section{}\label{sec:research-topic-(generic-title)}
 
-We are "hired" by Simployer to create an app.
-This app will allow the user to take a picture of a receipt with their phone.
+We were assigned a project with Simployer to create a solution to read an image and extracting data.
+This solution will allow the user to take a picture of a receipt with their phone.
 Then the information on the receipt will be extracted and analysed and automatically sorted into the database.
-We are aiming for extracting 3 key details from the receipt: Date, Total amount(money) and understanding the type of receipt(like if it is a taxi receipt).
-\\\\
+We are aiming for extracting 3 key details from the receipt: Date, Total amount(money) and understanding the type of receipt(like if it is a taxi receipt).\\
+\\
 The app will consist of two main parts: The OCR(optical character recognition), and the model that reads the data.
 We are going to use a free open source OCR, named Tesseracts.
 The OCR is what will allow us to extract text from the images.
 This OCR will send all the text that is on the receipt in the form of an array to the model.
-The model will then decide what information is the correct data to extract and keep.
-\\\\
+The model will then decide what information is the correct data to extract and keep.\\
+\\
 With the app we also need to include an API that will talk with the app and talk with Simployers server.
 This API gets the data from the model and will prompt the information that is selected for the user for a final validation, before sending it to the Simpoyer database.
-This will allow Simployer to easily search in the database based on the metadata that was extracted.
-
-\\\\
+This will allow Simployer to easily search in the database based on the metadata that was extracted.\\
+\\
 Here you will describe the thesis topic in sufficient detail to work out the details of your project, so that the reader gets a perfectly clear picture of the settings of your project.
 It is important to define your scope, and perhaps narrow down a broad subject.
 Also, if there are such, describe constraints and requirements you need to follow.

@@ -3,7 +3,7 @@
 
 
 %% Book options
-\DeclareOption{11pt,a4paper,twoside}{
+\DeclareOption{11pt,a4paper,oneside}{
   \PassOptionsToClass{\CurrentOption}{book}
 }
 
@@ -63,13 +63,13 @@
 }
 
 % Execute default options
-\ExecuteOptions{11pt,a4paper,twoside,openright}
+\ExecuteOptions{11pt,a4paper,oneside,openright}
 
 % Process given options
 \ProcessOptions\relax
 
 % Load base
-\LoadClass[11pt,a4paper,twoside]{book}
+\LoadClass[11pt,a4paper,oneside]{book}
 
 % Load additional packages and commands.
 
@@ -141,7 +141,7 @@
     
         % Smaller margins on titlepage
         \newgeometry{top=7mm,bottom=15mm,inner=15mm,outer=15mm}
-        \pagestyle{empty}
+        \pagestyle{empty
         \begin{titlepage}
             %\includegraphics[width=0.5\textwidth,right]{hiof-logo}
             \includegraphics[width=0.5\textwidth,right]{hiof-logo-no}

@@ -80,11 +80,11 @@
 %\RequirePackage{listings}
 
 % Remove self reference in table of contents
-%\ProvideDocumentCommand{\addchaptertocentry}{ m }{%
-%	\addcontentsline{toc}{chapter}{#1}%
+\ProvideDocumentCommand{\addchaptertocentry}{ m }{%
+	\addcontentsline{toc}{chapter}{#1}%
 	
 
-%\addchaptertocentry{\contentsname}\@starttoc{toc}}{}{}
+\addchaptertocentry{\contentsname}\@starttoc{toc}}{}{}
 
 
 %\ifus
@@ -164,7 +164,7 @@
         }
         
         \begin{figure}[!b]
-        \includegraphics[width=0.99\textwidth]{Images/hiof-footer}
+        \includegraphics[width=0.99\textwidth]{Images/hiof-footer}\label{fig:figure}
         \end{figure}
         
         \null

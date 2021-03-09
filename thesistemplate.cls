@@ -144,7 +144,7 @@
         \pagestyle{empty
         \begin{titlepage}
             %\includegraphics[width=0.5\textwidth,right]{hiof-logo}
-            \includegraphics[width=0.5\textwidth,right]{hiof-logo-no}
+            \includegraphics[width=0.5\textwidth,right]{Images/hiof-logo-no}
             \mbox{
                 \vtop{
                 \vskip 5cm
@@ -164,7 +164,7 @@
         }
         
         \begin{figure}[!b]
-        \includegraphics[width=0.99\textwidth]{hiof-footer}
+        \includegraphics[width=0.99\textwidth]{Images/hiof-footer}
         \end{figure}
         
         \null

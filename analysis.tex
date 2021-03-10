@@ -5,7 +5,7 @@
 This chapter describes the practical and theoretical foundation of your project.
 Basically, there are two aspects you should focus on, your research topic, and related work (literature and projects).
 
-\section{Hvordan det skal gjøres}\label{sec:research-topic-(generic-title)}
+\section{What we are planning to do}\label{sec:research-topic-(generic-title)}
 
 We were assigned a project with Simployer to create a solution to read an image and extracting data.
 This solution will allow the user to take a picture of a receipt with their phone.
@@ -26,12 +26,12 @@ This will allow Simployer to easily search in the database based on the metadata
 Here you will describe the thesis topic in sufficient detail to work out the details of your project, so that the reader gets a perfectly clear picture of the settings of your project.
 It is important to define your scope, and perhaps narrow down a broad subject.
 Also, if there are such, describe constraints and requirements you need to follow.
+
 If your work is part of a larger project, or if you are cooperating with an external company or research institute, this is the place to tell the reader about that.
 
 
-\section{Options}\label{sec:related-work-(generic-title)}
+\section{Google Cloud Vision API}\label{sec:API_Google}
 
-Google could Vision API\\
 
 This is a cloud API created by google it contains a well optimised OCR and good variety of detection.
 The detection includes:
@@ -66,7 +66,49 @@ If you have a request size of 50.000-requests this will be 49*1.5\$ = 73,5 dolla
 This will reset every month.
 
 
-\section{Methods (generic title)}\label{sec:methods-(generic-title)}
+\section{Amazon Textract}\label{sec:API_Amazon}
+
+Amazon offers some verity of features that can be used on text documents
+\\
+Detect Document Text API (OCR)\\
+This feature is the classic OCR feature that will extract text from a document.\\
+Amazon will charge you 0.0015\$ per page (1.50\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
+0.0006\$ per page (0.6\$ per 1000)
+\\\\
+Table Extraction\\
+This is an improved version of Detect Document Text API. This will groupe the text in tables.\\
+This is helpful with structured data, such as financial reports.
+Amazon will charge you 0.015\$ per page (15.0\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
+0.01\$ per page (10\$ per 1000)
+\\\\
+Form Extraction\\
+This detects key-value pairs in documents, for example if your document has a field named "first name" it will pair it will Mike.
+This way "first name" would be the key and "Mike" would be the value.
+This makes it easy to either sort it into a database or reuse the values in variables.
+With normal OCR the relation is lost.\\
+Amazon will charge you 0.05\$ per page (50\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
+0.04\$ per page (40\$ per 1000)
+\\\\
+Analyze Document API for pages with tables and forms\\
+This is a combination of the tables and forms extraction\\
+Amazon will charge you 0.065\$ per page (65\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
+0.05\$ per page (0.50\$ per 1000)
+\\\\
+Note that Amazon changes their pricing on the region you are in (you might want to check the price for your region), they also do not include a free 1000 scans per a month.
+
+\section{Open source OCR)}\label{sec:Open source)}
+The one open source OCR that is looked at as the best is tesseract.
+This was first produced by HP in the 80's and later made open source in 2005 and funded by google since 2006.
+Most OCR programs today are build on this, like google cloud vision API. This is our 3rd and final option.
+This will require us to code and make an OCR for ourself.
+This is no problem if you only work with pdf and other document types like this.
+This requires little to no pre-processing or tuning.
+The problem starts when you are going to extract text from a picture.
+
+You will need a lot of pre-processing and tuning to make this even work, not to mention read correctly.
+This is because OCR's need good contrast and little to no noice in the pictures.
+Not to mention the text need to be flat, the biggest problem is curved text. NB!
+
 
 
 \section{Tools (generic title)}\label{sec:tools-(generic-title)}

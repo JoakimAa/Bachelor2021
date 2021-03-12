@@ -114,6 +114,7 @@
 \newcommand{\department}[1]{\newcommand{\dep}{#1}}
 \newcommand{\place}[1]{\newcommand{\plc}{#1}}
 \newcommand{\subtitle}[1]{\newcommand{\subt}{#1}}
+\newcommand{\group}[1]{\newcommand{\grp}{#1}}
 
 
 \ifcover
@@ -140,11 +141,11 @@
 \renewcommand{\maketitle}{
     
         % Smaller margins on titlepage
-        \newgeometry{inner=25mm,outer=35mm,top=70mm,bottom=40mm}
+        \newgeometry{top=7mm,bottom=15mm,inner=15mm,outer=15mm}
         \pagestyle{empty}
         \begin{titlepage}
             %\includegraphics[width=0.5\textwidth,right]{hiof-logo}
-            \includegraphics[width=0.5\textwidth,right]{Images/hiof-logo-no}
+           % \includegraphics[width=0.5\textwidth,right]{Images/hiof-logo-no}
             \mbox{
                 \vtop{
                 \vskip 5cm
@@ -158,13 +159,13 @@
                      \textsf{\LARGE \@author} \par
 
                 \vskip 1cm
-                    \textsf{\large \dep\\ \aff\\ \plc\\ \@date } \par
+                    \textsf{\large \grp\\ \dep\\ \aff\\ \plc\\ \@date } \par
                 \end{center}
             }%\mbox
         }
         
         \begin{figure}[!b]
-        \includegraphics[width=0.99\textwidth]{Images/hiof-footer}\label{fig:figure}
+        %\includegraphics[width=0.99\textwidth]{Images/hiof-footer}\label{fig:figure}
         \end{figure}
         
         \null
@@ -212,7 +213,7 @@
 
 
 %%Common number levels in table of contents
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 
 %%Various new commands
 

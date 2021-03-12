@@ -114,6 +114,7 @@
 \newcommand{\department}[1]{\newcommand{\dep}{#1}}
 \newcommand{\place}[1]{\newcommand{\plc}{#1}}
 \newcommand{\subtitle}[1]{\newcommand{\subt}{#1}}
+\newcommand{\group}[1]{\newcommand{\grp}{#1}}
 
 
 \ifcover
@@ -158,7 +159,7 @@
                      \textsf{\LARGE \@author} \par
 
                 \vskip 1cm
-                    \textsf{\large \dep\\ \aff\\ \plc\\ \@date } \par
+                    \textsf{\large \grp\\ \dep\\ \aff\\ \plc\\ \@date } \par
                 \end{center}
             }%\mbox
         }

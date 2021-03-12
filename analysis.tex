@@ -24,7 +24,7 @@ This will allow Simployer to easily search in the database based on the metadata
 \subsection{Google Cloud Vision API}\label{subsec:API_Google}
 
 Google Cloud Vision API contains a well optimised OCR and good variety of detection.
-The detection features includes:
+The detection features are listed in figure 2.1.
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/googleAPI_features}}
@@ -36,7 +36,7 @@ We can see that Google API offers everything from text recognition to landmark l
 The Google API is know to be industry leading in the field, so this comes as no surprise.
 This API will have almost everything you need to develop an application with text recognition.
 
-The API also has a lot of features in their beta version which is not included in the list above.
+The API also has a lot of features in their beta version which is not included in figure 2.1.
 \clearpage
 
 
@@ -84,23 +84,21 @@ Amazon will charge you 0.065\$ per page (65\$ per 1000) for the first million pa
 
 Note that Amazon changes their pricing on the region you are in (you might want to check the price for your region), they also do not include a free 1000 scans per a month.
 
-\subsection{Open source OCR}\label{subsec:Open source}
-The one open source OCR that is looked at as the best is tesseract.
-This was first produced by HP in the 80's and later made open source in 2005 and funded by google since 2006.
-Most OCR programs today are build on this, like google cloud vision API. This is our 3rd and final option.
-This will require us to code and make an OCR for ourself.
-This is no problem if you only work with pdf and other document types like this.
-This requires little to no pre-processing or tuning.
-The problem starts when you are going to extract text from a picture.
-
-You will need a lot of pre-processing and tuning to make this even work, not to mention read correctly.
-This is because OCR's need good contrast and little to no noice in the pictures.
+\subsection{Tesseract}\label{subsec:Tesseract}
+Tesseract is an open-source OCR engine that supports over 100 different languages.
+It has the reputation of being one of the best open-source OCR engines.
+It was created by HP in the 80's and later made open-source in 2005 and funded by google since 2006.
+Most other OCR APIs today are build on top of this, like Google Cloud Vision API.
+If this engine is used, code that takes advantage of the engine's built-in methods must be written.
+When dealing with high-quality images and computer generated pdf receipts, writing code to extract the text is relatively simple.
+But when the images are of lower quality, more care must be given to pre-processing to improve the accuracy of the text extraction.
+This is because OCR software needs good contrast and little to no nice in the images.
 Another problem is curved text, like in a book.
 This might be the hardest ting to solve.
 
 \textbf{Scaling the image}
 You should try to scale the image in a size between 300dpi and 600dpi.
-Anything less will make it unreadable for the OCR and anything more will just take up processing power.
+Anything less will make it unreadable for the OCR and anything more will just take up processing power with little to no improvement in accuracy.
 
 \textbf{How to create contrast}
 

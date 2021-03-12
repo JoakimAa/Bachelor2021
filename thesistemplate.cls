@@ -141,7 +141,7 @@
 \renewcommand{\maketitle}{
     
         % Smaller margins on titlepage
-        \newgeometry{inner=25mm,outer=35mm,top=70mm,bottom=40mm}
+        \newgeometry{inner=25mm,outer=35mm,top=30mm,bottom=40mm}
         \pagestyle{empty}
         \begin{titlepage}
             %\includegraphics[width=0.5\textwidth,right]{hiof-logo}

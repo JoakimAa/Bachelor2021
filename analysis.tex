@@ -7,32 +7,30 @@ Basically, there are two aspects you should focus on, your research topic, and r
 
 \section{Research topic}\label{sec:research-topic}
 
-We were assigned a project with Simployer to create a solution to read an image and extracting data.
+Our project is to create a solution that uses text recognition on an image and extracts the relevant data.
 This solution will allow the user to take a picture of a receipt with their phone.
 Then the information on the receipt will be extracted and analysed and automatically sorted into the database.
-We are aiming for extracting 3 key details from the receipt: Date, Total amount(money) and understanding the type of receipt(like if it is a taxi receipt).\\
-\\
+We are aiming for extracting 3 key details from the receipt: Date, Total amount(money) and understanding the type of receipt(like if it is a taxi receipt).
+
 The app will consist of two main parts: The OCR(optical character recognition), and the model that reads the data.
 We are going to use a free open source OCR, named Tesseracts.
 The OCR is what will allow us to extract text from the images.
 This OCR will send all the text that is on the receipt in the form of an array to the model.
-The model will then decide what information is the correct data to extract and keep.\\
-\\
+The model will then decide what information is the correct data to extract and keep.
+
 With the app we also need to include an API that will talk with the app and talk with Simployers server.
 This API gets the data from the model and will prompt the information that is selected for the user for a final
 validation, before sending it to the Simployer database.
-This will allow Simployer to easily search in the database based on the metadata that was extracted.\\
-\\
+This will allow Simployer to easily search in the database based on the metadata that was extracted.
+
 Here you will describe the thesis topic in sufficient detail to work out the details of your project, so that the reader gets a perfectly clear picture of the settings of your project.
 It is important to define your scope, and perhaps narrow down a broad subject.
 Also, if there are such, describe constraints and requirements you need to follow.
 
 If your work is part of a larger project, or if you are cooperating with an external company or research institute, this is the place to tell the reader about that.
 
-
 \section{Tools}\label{sec:tools}
 \subsection{Google Cloud Vision API}\label{subsec:API_Google}
-
 
 This is a cloud API created by google it contains a well optimised OCR and good variety of detection.
 The detection includes:
@@ -46,7 +44,7 @@ The detection includes:
 We can see that google API offers everything from text recognition to landmark location and crop Hints.
 The google API os know to be industry leading in the field, so this comes as no surprise.
 This API will have almost everything you need to develop an application with recognition.
-\\
+
 The google API also have a lot of features that is in beta.
 This is live features.
 This means in the coming years they will also be usable for any companies that will want to use technology like live face recognition
@@ -69,31 +67,31 @@ This will reset every month.
 \subsection{Amazon Textract}\label{subsec:API_Amazon}
 
 Amazon offers some verity of features that can be used on text documents
-\\
+
 Detect Document Text API (OCR)\\
 This feature is the classic OCR feature that will extract text from a document.\\
 Amazon will charge you 0.0015\$ per page (1.50\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
 0.0006\$ per page (0.6\$ per 1000)
-\\\\
-Table Extraction\\
-This is an improved version of Detect Document Text API. This will groupe the text in tables.\\
+
+Table Extraction
+This is an improved version of Detect Document Text API. This will groupe the text in tables.
 This is helpful with structured data, such as financial reports.
 Amazon will charge you 0.015\$ per page (15.0\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
 0.01\$ per page (10\$ per 1000)
-\\\\
-Form Extraction\\
+
+Form Extraction
 This detects key-value pairs in documents, for example if your document has a field named "first name" it will pair it will Mike.
 This way "first name" would be the key and "Mike" would be the value.
 This makes it easy to either sort it into a database or reuse the values in variables.
-With normal OCR the relation is lost.\\
+With normal OCR the relation is lost.
 Amazon will charge you 0.05\$ per page (50\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
 0.04\$ per page (40\$ per 1000)
-\\\\
-Analyze Document API for pages with tables and forms\\
-This is a combination of the tables and forms extraction\\
+
+Analyze Document API for pages with tables and forms
+This is a combination of the tables and forms extraction
 Amazon will charge you 0.065\$ per page (65\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
 0.05\$ per page (0.50\$ per 1000)
-\\\\
+
 Note that Amazon changes their pricing on the region you are in (you might want to check the price for your region), they also do not include a free 1000 scans per a month.
 
 \subsection{Open source OCR}\label{subsec:Open source}
@@ -109,13 +107,13 @@ You will need a lot of pre-processing and tuning to make this even work, not to 
 This is because OCR's need good contrast and little to no noice in the pictures.
 Another problem is curved text, like in a book.
 This might be the hardest ting to solve.
-\\
+
 \textbf{Scaling the image}
 You should try to scale the image in a size between 300dpi and 600dpi.
 Anything less will make it unreadable for the OCR and anything more will just take up processing power.
 
 \textbf{How to create contrast}
-\\\\
+
 
 First you will have to transform the image from RBG into a grayscaled image.
 This image can then be used to make a threshold for the image.
@@ -137,6 +135,7 @@ The OCR does not read text that is tilted.
 \textbf{Edge detection}
 
 
+\section{Tools (generic title)}\label{sec:tools-(generic-title)}
 
 \section{Summary}\label{sec:summary}
 

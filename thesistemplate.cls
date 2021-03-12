@@ -164,9 +164,9 @@
             }%\mbox
         }
         
-        \begin{figure}[!b]
-        \includegraphics[width=0.99\textwidth]{Images/hiof-footer}\label{fig:figure}
-        \end{figure}
+        %\begin{figure}[!b]
+        %\includegraphics[width=0.99\textwidth]{Images/hiof-footer}\label{fig:figure}
+        %\end{figure}
         
         \null
         \end{titlepage}

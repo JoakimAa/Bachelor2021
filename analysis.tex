@@ -79,7 +79,8 @@ Amazon will charge you 0.015\$ per page (15.0\$ per 1000) for the first million 
 0.01\$ per page (10\$ per 1000)
 
 \textbf{Form Extraction}
-This detects key-value pairs in documents, for example if your document has a field named "first name" it will pair it will Mike.
+This detects key-value pairs in documents, for example if your document has a field named "firstName" it will pair
+it with "Mike".
 This way "first name" would be the key and "Mike" would be the value.
 This makes it easy to either sort it into a database or reuse the values in variables.
 With normal OCR the relation is lost.
@@ -104,13 +105,13 @@ If this engine is used, code that takes advantage of the engine's built-in metho
 When dealing with high-quality images and computer generated pdf receipts, writing code to extract the text is relatively simple.
 When the images are of lower quality, more care must be given to pre-processing to improve the accuracy of the text
 extraction.
-This is because OCR software needs good contrast and little to no nice in the images.
+This is because OCR software needs good contrast and little to no noise in the images.
 Another problem is curved text, like in a book.
 This might be the hardest ting to solve.
 
 \section{Preprocessing}\label{sec:preprocessing}
 Having images of ideal quality for use in an OCR is a luxury.
-Often you will have images of low quality or taken from suboptimal angles.
+Images will often be of low quality or taken from suboptimal angles.
 In order to mitigate the effects that low quality images will have on the text extraction accuracy, the images should go through a preprocessing stage before getting sent to the OCR software.
 
 \subsection{Scaling the image}\label{subsec:scaling-the-image}
@@ -120,7 +121,7 @@ Anything less will make it unreadable for the OCR and anything more will consume
 \subsection{Skew correction}\label{subsec:skew-correction}
 OCR engines use line segmentation to separate the text found in an image into different lines of data.
 Therefore, it is important that the OCR is given images that are as straight as possible.
-Skew correction is the part of the preprocessing pipeline that addresses this issue.
+Skew correction is the part of the pre-processing pipeline that addresses this issue.
 
 \subsection{Remove background noise}\label{subsec:remove-background-noise}
 Image noise can reduce the accuracy of the OCR engine.

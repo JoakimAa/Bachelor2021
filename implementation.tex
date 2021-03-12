@@ -12,13 +12,13 @@ The API is also connected to the ML and OCR module.
 \section{Web solution}\label{sec:Web solution}
 
 The web solution is made with React in JavaScript.
-The purpose of the web solution is to give the user an interface where they can upload an image of a receipt and get
-the corresponding data from the image, and then send in the receipt with the data from the image.
+The purpose of the web solution is to give the user an interface where they can upload an image of a receipt.
+And get the corresponding data from the image, and then send in the receipt with the data from the image.
 This is to make the process of entering the data less time consuming.
 
 When the user uploads an image, the web solution sends a POST request to the API, then the API saves the image to
 the database.
-When the image is saved the image is sent to the OCR for text recognition, if the output makes sense the data is
-returned and displayed to the user.
-If the returned data is correct the user can then upload the receipt to the database.
+When the image is saved, the image is sent to the OCR for text recognition.
+If the output makes sense the data is returned and displayed to the user.
+Then if the returned data is correct the user can then upload the receipt to the database.
 

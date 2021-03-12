@@ -213,7 +213,7 @@
 
 
 %%Common number levels in table of contents
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 
 %%Various new commands
 

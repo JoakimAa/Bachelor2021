@@ -107,7 +107,40 @@ The problem starts when you are going to extract text from a picture.
 
 You will need a lot of pre-processing and tuning to make this even work, not to mention read correctly.
 This is because OCR's need good contrast and little to no noice in the pictures.
-Not to mention the text need to be flat, the biggest problem is curved text. NB!
+Another problem is curved text, like in a book.
+This might be the hardest ting to solve.
+\\
+\textbf{Scaling the image}
+You should try to scale the image in a size between 300dpi and 600dpi.
+Anything less will make it unreadable for the OCR and anything more will just take up processing power.
+
+\textbf{How to create contrast}
+\\\\
+
+First you will have to transform the image from RBG into a grayscaled image.
+This image can then be used to make a threshold for the image.
+Adaptive threshold is a built in function in openCV, that breaks the image into different sections.
+There it tries to find the optimal threshold for the local part of the image.
+This means that it removed noise and optimises blur in the image.
+This sounds very good, but we have found that a combination of global threshold and something that is called Otsu's threshold (threshold that is the same for the whole image).
+Is the best way to make a threshold you also will need to use Gaussian blur on the image before you use the threshold on the image.
+this blur function will try to remove as much "grain" on the image as possible.
+
+\textbf{Remove background noise}
+There is always noise in the image.
+Removing noise in the background is very important to improve readability.
+
+\textbf{Straighten the image}
+It is very important to rotate the image to a horizontal level.
+The OCR does not read text that is tilted.
+
+\textbf{Edge detection}
+
+
+
+
+
+
 
 
 

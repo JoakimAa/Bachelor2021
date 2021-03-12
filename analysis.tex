@@ -21,7 +21,12 @@ validation, before sending it to the Simployer database.
 This will allow Simployer to easily search in the database based on the metadata that was extracted.
 
 \section{Tools}\label{sec:tools}
-\subsection{Google Cloud Vision API}\label{subsec:API_Google}
+This section details the different tool that have been considered for use in the thesis.
+\subsection{OCR engines}\label{subsec:ocr-engines}
+There are many OCR engines that could be used for this thesis.
+Three main ones have been selected for consideration.
+These are Google Cloud Vision API, Amazon Textract, and Tesseract.
+\subsubsection{Google Cloud Vision API}\label{subsubsec:API_Google}
 
 Google Cloud Vision API contains a well optimised OCR and good variety of detection.
 The detection features are listed in figure 2.1.
@@ -29,7 +34,8 @@ The detection features are listed in figure 2.1.
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/googleAPI_features}}
     \caption{Overview of features (list from https://cloud.google.com/vision/pricing)}
-    \label{fig:Features}
+    \label{fig:figure1}
+
 \end{figure}
 
 We can see that Google API offers everything from text recognition to landmark location and crop Hints.
@@ -42,8 +48,9 @@ The API also has a lot of features in their beta version which is not included i
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/googleAPI_prices}}
-    \caption{Overview of features (list from https://cloud.google.com/vision/pricing)}
-    \label{fig:Prices}
+    \caption{Overview of prices (list from https://cloud.google.com/vision/pricing)}
+    \label{fig:figure2}
+
 \end{figure}
 
 Google is the best in the field, but they are also the most expensive API to use.
@@ -52,7 +59,7 @@ This means that you are getting the first 1000-requests free and then you will n
 If you have a request size of 50.000-requests this will be 49*1.5\$ = 73,5 dollars (620 NOK).
 This will reset every month.
 
-\subsection{Amazon Textract}\label{subsec:API_Amazon}
+\subsubsection{Amazon Textract}\label{subsubsec:API_Amazon}
 
 Amazon's AWS hosts a service called Textract.
 This cloud-based service lets you upload an image to their text recognition software.
@@ -84,7 +91,7 @@ Amazon will charge you 0.065\$ per page (65\$ per 1000) for the first million pa
 
 Note that Amazon changes their pricing on the region you are in (you might want to check the price for your region), they also do not include a free 1000 scans per a month.
 
-\subsection{Tesseract}\label{subsec:Tesseract}
+\subsubsection{Tesseract}\label{subsubsec:Tesseract}
 Tesseract is an open-source OCR engine that supports over 100 different languages.
 It has the reputation of being one of the best open-source OCR engines.
 It was created by HP in the 80's and later made open-source in 2005 and funded by google since 2006.

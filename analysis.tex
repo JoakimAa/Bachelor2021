@@ -5,7 +5,7 @@
 \section{Research topic}\label{sec:research-topic}
 
 Our project is to create a solution that allows a user to take an image of a receipt and automatically upload the relevant data to a database.
-This automates the process of handling travel receipts, thus making it less time consuming and reduces the cost.
+This automates the process of handling travel receipts, thus making it less time-consuming and reduces the cost.
 To achieve this, we will be using Optical Character Recognition software and machine learning\@.
 The extracted data from the image consists of date, total amount, and the receipt type.
 
@@ -54,7 +54,7 @@ The API also has a lot of features in their beta version which is not included i
 \end{figure}
 
 Google is the best in the field, but they are also the most expensive API to use.
-The prices are calculated for each 1000-request.
+The prices are calculated for every 1000th request
 This means that you are getting the first 1000-requests free and then you will need to play 1.5\$ for each 1000-request you do on for example text detection.
 If you have a request size of 50.000-requests this will be 49*1.5\$ = 73,5 dollars (620 NOK).
 This will reset every month.
@@ -109,29 +109,28 @@ Having images of ideal quality for use in an OCR is a luxury.
 Often you will have images of low quality or taken from a suboptimal angles.
 In order to mitigate the effects that low quality images will have on the text extraction accuracy, the images should go through a preprocessing stage before getting sent to the OCR software.
 
+\subsection{Scaling the image}\label{subsec:scaling-the-image}
+OCR software will have the best performance when given images between 300dpi and 600dpi.
+Anything less will make it unreadable for the OCR and anything more will extra processing power with little to no improvement in accuracy.
 
-\textbf{Scaling the image}
-You should try to scale the image in a size between 300dpi and 600dpi.
-Anything less will make it unreadable for the OCR and anything more will just take up processing power with little to no improvement in accuracy.
+\subsection{Skew correction}\label{subsec:skew-correction}
+OCR engines use line segmentation to separate the text found in an image into different lines of data.
+Therefore, it is important that the OCR is given images that are as straight as possible.
+Skew correction is the part of the preprocessing pipeline that addresses this issue.
 
-\textbf{How to create contrast}
+\subsection{Remove background noise}\label{subsec:remove-background-noise}
+Image noise can reduce the accuracy of the OCR engine.
+Because of this, removing noise in the background is very important to improve readability.
+Applying a Gaussian blur is one way of reducing the noise in the image.
+
+\subsection{Binarization}\label{subsec:how-to-create-contrast}
+OCR engines are usually designed to handle input images with a black-and-white color scheme.
+The process of converting a colorized or grayscale image to black-and-white is called binarization.
+Once an image has gone through binarization, the background should be white and any foreground elements like text should be black.
+
+If your image is in RGB format, it will first need to be converted to grayscale format before thresholding techniques can be used.
+Adaptive thresholding is one such technique.
+It involves partitioning the image into smaller regions, and calculating the threshold for what should be black and what should be white, in that region.
 
 
-First you will have to transform the image from RBG into a grayscaled image.
-This image can then be used to make a threshold for the image.
-Adaptive threshold is a built-in function in openCV, that breaks the image into different sections.
-There it tries to find the optimal threshold for the local part of the image.
-This means that it removed noise and optimises blur in the image.
-This sounds very good, but we have found that a combination of global threshold and something that is called Otsu's threshold (threshold that is the same for the whole image).
-Is the best way to make a threshold you also will need to use Gaussian blur on the image before you use the threshold on the image.
-this blur function will try to remove as much "grain" on the image as possible.
 
-\textbf{Remove background noise}
-There is always noise in the image.
-Removing noise in the background is very important to improve readability.
-
-\textbf{Straighten the image}
-It is very important to rotate the image to a horizontal level.
-The OCR does not read text that is tilted.
-
-\textbf{Edge detection}

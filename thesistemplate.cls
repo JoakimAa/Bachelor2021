@@ -144,8 +144,8 @@
         \newgeometry{inner=25mm,outer=35mm,top=30mm,bottom=40mm}
         \pagestyle{empty}
         \begin{titlepage}
-            %\includegraphics[width=0.5\textwidth,right]{hiof-logo}
-           % \includegraphics[width=0.5\textwidth,right]{Images/hiof-logo-no}
+            \includegraphics[width=0.5\textwidth,right]{hiof-logo}
+            \includegraphics[width=0.5\textwidth,right]{Images/hiof-logo-no}
             \mbox{
                 \vtop{
                 \vskip 5cm
@@ -165,7 +165,7 @@
         }
         
         \begin{figure}[!b]
-        %\includegraphics[width=0.99\textwidth]{Images/hiof-footer}\label{fig:figure}
+        \includegraphics[width=0.99\textwidth]{Images/hiof-footer}\label{fig:figure}
         \end{figure}
         
         \null

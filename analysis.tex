@@ -6,10 +6,10 @@
 
 Our project is to create a solution that allows a user to take an image of a receipt and automatically upload the relevant data to a database.
 This automates the process of handling travel receipts, thus making it less time consuming and reduces the cost.
-To achieve this, we will be using text recognition (OCR) and ML\@.
+To achieve this, we will be using Optical Character Recognition software and machine learning\@.
 The extracted data from the image consists of date, total amount, and the receipt type.
 
-The app will consist of two main parts: The OCR(optical character recognition), and the model that reads the data.
+The app will consist of two main parts: The OCR, and the model that reads the data.
 We are going to use a free open source OCR, named Tesseracts.
 The OCR is what will allow us to extract text from the images.
 This OCR will send all the text that is on the receipt in the form of an array to the model.
@@ -103,6 +103,8 @@ This is because OCR software needs good contrast and little to no nice in the im
 Another problem is curved text, like in a book.
 This might be the hardest ting to solve.
 
+\section{Preprocessing}\label{sec:preprocessing}
+
 \textbf{Scaling the image}
 You should try to scale the image in a size between 300dpi and 600dpi.
 Anything less will make it unreadable for the OCR and anything more will just take up processing power with little to no improvement in accuracy.
@@ -112,7 +114,7 @@ Anything less will make it unreadable for the OCR and anything more will just ta
 
 First you will have to transform the image from RBG into a grayscaled image.
 This image can then be used to make a threshold for the image.
-Adaptive threshold is a built in function in openCV, that breaks the image into different sections.
+Adaptive threshold is a built-in function in openCV, that breaks the image into different sections.
 There it tries to find the optimal threshold for the local part of the image.
 This means that it removed noise and optimises blur in the image.
 This sounds very good, but we have found that a combination of global threshold and something that is called Otsu's threshold (threshold that is the same for the whole image).

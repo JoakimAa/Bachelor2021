@@ -1,0 +1,141 @@
+\cleardoublepage
+\chapter{Analysis}
+\label{ch:analysis}
+
+\section{Research topic}\label{sec:research-topic}
+
+Our project is to create a solution that allows a user to take an image of a receipt, and automatically upload the
+relevant data to a database.
+This automates the process of handling travel receipts, thus making it less time-consuming and reduces the cost.
+To achieve this, we will be using Optical Character Recognition software and machine learning\@.
+The extracted data from the image consists of date, total amount, and the receipt type.
+
+The app will consist of two main parts: The OCR, and the model that reads the data.
+We are going to use a free open source OCR, named Tesseracts.
+The OCR is what will allow us to extract text from the images.
+This OCR will send all the text that is on the receipt in the form of an array to the model.
+The model will then decide what information is the correct data to extract and keep.
+
+With the app we also need to include an API that will talk with the app and talk with Simployers server.
+This API gets the data from the model and will prompt the information that is selected for the user for a final
+validation, before sending it to the Simployer database.
+This will allow Simployer to easily search in the database based on the metadata that was extracted.
+
+Another objective of this thesis is to analyse and compare solutions that already exists on the market.
+And then create a prototype of each solution and connect them to the API\@.
+
+\section{Tools}\label{sec:tools}
+This section details the different tools that have been considered for use in the thesis.
+\subsection{OCR engines}\label{subsec:ocr-engines}
+There are many OCR engines that could be used for this thesis.
+Three main ones have been selected for consideration.
+These are Google Cloud Vision API, Amazon Textract, and Tesseract.
+\subsubsection{Google Cloud Vision API}\label{subsubsec:API_Google}
+
+Google Cloud Vision API contains a well optimised OCR and good variety of detection.
+The detection features are listed in figure 2.1.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/googleAPI_features}}
+    \caption{Overview of features (list from https://cloud.google.com/vision/pricing)}
+    \label{fig:figure1}
+
+\end{figure}
+
+We can see that Google API offers everything from text recognition, to landmark location and crop Hints.
+The Google API is know to be industry leading in the field, so this comes as no surprise.
+This API will have almost everything you need to develop an application with text recognition.
+
+The API also has a lot of features in their beta version which is not included in figure 2.1.
+\clearpage
+
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/googleAPI_prices}}
+    \caption{Overview of prices (list from https://cloud.google.com/vision/pricing)}
+    \label{fig:figure2}
+
+\end{figure}
+
+Google is the best in the field, but they are also the most expensive API to use.
+The prices are calculated for every 1000th request
+This means that you are getting the first 1000-requests free and then you will need to play 1.5\$ for each 1000-request you do on for example text detection.
+If you have a request size of 50.000-requests this will be 49*1.5\$ = 73,5 dollars (620 NOK).
+This will reset every month.
+
+\subsubsection{Amazon Textract}\label{subsubsec:API_Amazon}
+
+Amazon's AWS hosts a service called Textract.
+This cloud-based service lets you upload an image to their text recognition software.
+
+\textbf{Detect Document Text API}
+This feature is the classic OCR feature that will extract text from a document.
+Amazon will charge you 0.0015\$ per page (1.50\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
+0.0006\$ per page (0.6\$ per 1000)
+
+\textbf{Table Extraction}
+This is an improved version of Detect Document Text API. This will group the text in tables.
+This is helpful with structured data, such as financial reports.
+Amazon will charge you 0.015\$ per page (15.0\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
+0.01\$ per page (10\$ per 1000)
+
+\textbf{Form Extraction}
+This detects key-value pairs in documents, for example if your document has a field named "firstName" it will pair
+it with "Mike".
+This way "first name" would be the key and "Mike" would be the value.
+This makes it easy to either sort it into a database or reuse the values in variables.
+With normal OCR the relation is lost.
+Amazon will charge you 0.05\$ per page (50\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
+0.04\$ per page (40\$ per 1000)
+
+\textbf{Analyze Document API}
+
+This is a combination of the tables and forms extraction
+Amazon will charge you 0.065\$ per page (65\$ per 1000) for the first million pages, when you exceed 1 million the price wil go down to
+0.05\$ per page (0.50\$ per 1000)
+
+Note that Amazon changes their pricing on the region you are in (you might want to check the price for your region), they also do not include a free 1000 scans per a month.
+
+\subsubsection{Tesseract}\label{subsubsec:Tesseract}
+Tesseract is an open-source OCR engine that supports over 100 different languages.
+It has the reputation of being one of the best open-source OCR engines.
+It was created by HP in the 80's and later made open-source in 2005 and funded by google since 2006.
+Most other OCR APIs today are build on top of this, like Google Cloud Vision API.
+
+If this engine is used, code that takes advantage of the engine's built-in methods must be written.
+When dealing with high-quality images and computer generated pdf receipts, writing code to extract the text is relatively simple.
+When the images are of lower quality, more care must be given to pre-processing to improve the accuracy of the text
+extraction.
+This is because OCR software needs good contrast and little to no noise in the images.
+Another problem is curved text, like in a book.
+This might be the hardest ting to solve.
+
+\section{Preprocessing}\label{sec:preprocessing}
+Having images of ideal quality for use in an OCR is a luxury.
+Images will often be of low quality or taken from suboptimal angles.
+In order to mitigate the effects that low quality images will have on the text extraction accuracy, the images should go through a preprocessing stage before getting sent to the OCR software.
+
+\subsection{Scaling the image}\label{subsec:scaling-the-image}
+OCR software will have the best performance when given images between 300dpi and 600dpi.
+Anything less will make it unreadable for the OCR and anything more will consume extra processing power with little to no improvement in accuracy.
+
+\subsection{Skew correction}\label{subsec:skew-correction}
+OCR engines use line segmentation to separate the text found in an image into different lines of data.
+Therefore, it is important that the OCR is given images that are as straight as possible.
+Skew correction is the part of the pre-processing pipeline that addresses this issue.
+
+\subsection{Remove background noise}\label{subsec:remove-background-noise}
+Image noise can reduce the accuracy of the OCR engine.
+Because of this, removing noise in the background is very important to improve readability.
+Applying a Gaussian blur is one way of reducing the noise in the image.
+
+\subsection{Binarization}\label{subsec:how-to-create-contrast}
+OCR engines are usually designed to handle input images with a black-and-white color scheme.
+The process of converting a colorized or grayscale image to black-and-white is called binarization.
+Once an image has gone through binarization, the background should be white and any foreground elements like text should be black.
+
+If your image is in RGB format, it will first need to be converted to grayscale format before thresholding techniques can be used.
+Adaptive thresholding is one such technique.
+It involves partitioning the image into smaller regions, and calculating the threshold for what should be black and what should be white, in that region.
+
+
+

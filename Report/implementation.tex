@@ -22,6 +22,18 @@ When the image is saved, the image is sent to the OCR for text recognition.
 If the output makes sense the data is returned and displayed to the user.
 Then if the returned data is correct the user can then upload the receipt to the database.
 
+\section{Convolutional Neural Network}{sec: cnn}
+
+Our CNN is implemented using Keras.
+Keras is a library for tensorflow that allows for the creation of neural network models with only a few lines of code.
+The model consist of an input layer, two hidden layers, and an output layer.
+The input layer and first hidden layer are convolutional layers with 64 nodes in each layer.
+The second hidden layer and the output layer are dense layers, where the hidden layer has 64 nodes and the output layer has 3 nodes.
+The model uses the Adam optimizer and the categorical crossentropy loss function.
+
+
+
+
 
 
 

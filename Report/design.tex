@@ -8,7 +8,7 @@ The design is made to efficiently and correctly tackle the problem statement.
 
 This project consists of 2 main parts: the API and the machine learning model.
 
-Something about the api
+Something about the api NB!
 
 The machine learning model can be split into three parts.
 The CNN that, labels the images.
@@ -20,18 +20,13 @@ OCR that extracts the text from the images, and RNN that takes the text from the
 
 \section{CNN}\label{sec:CNN}
 
-The first layer of our model is the CNN, this is taking the images and labeling the receipts after what firm the receipts comes from.
+The first layer of our model is the Convolutional Neural Network or CNN. This is taking the images and labeling the receipts after what firm the receipts comes from.
 This is done by having one folder of receipt images per firm and training the model to recognize these receipts.
-For our model this means that we have a CNN with a single input layer that will take all the images and three output layers.
-We have three outputs because we only have three firms that we for this model.
+This means that the model is supervised.
+For our use purpose we need to use a CNN with a single input layer that will take all the images and three output layers.
+We have three outputs because we only have firms that we for this model.
 
 #We need some image here#
-
-A Convolutional Neural Network, or \textbf{CNN}, is used in this project.
-It is used as a classifier to differentiate between different types of receipts.
-The CNN takes images of receipts as feature inputs, and organizes the images into folder corresponding to their type.
-Since our CNN is a classifier, our learning model is supervised.
-This means that when training the network, the input images has to be labeled with their corresponding type.
 
 \section{OCR}\label{sec:OCR}
 
@@ -39,3 +34,5 @@ The second layer of our model is the OCR. This is a really simple OCR that does 
 The OCR does more or less function as the eyes for our RNN
 
 #We need some image here#
+
+\section{RNN}\label{sec:RNN}

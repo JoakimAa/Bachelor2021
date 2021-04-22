@@ -31,6 +31,7 @@
 \contentsline {chapter}{\numberline {4}Implementation}{10}{}%
 \contentsline {section}{\numberline {4.1}REST API}{10}{}%
 \contentsline {section}{\numberline {4.2}Web solution}{10}{}%
+\contentsline {section}{\numberline {4.3}Convolutional Neural Network}{10}{}%
 \contentsline {chapter}{\numberline {5}Evaluation}{11}{}%
 \contentsline {chapter}{\numberline {6}Discussion}{12}{}%
 \contentsline {chapter}{\numberline {7}Conclusion}{13}{}%

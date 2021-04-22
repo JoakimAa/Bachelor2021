@@ -22,13 +22,32 @@ When the image is saved, the image is sent to the OCR for text recognition.
 If the output makes sense the data is returned and displayed to the user.
 Then if the returned data is correct the user can then upload the receipt to the database.
 
-\section{Convolutional Neural Network}{sec: cnn}
+\section{Dataset}\label{dataset}
+
+The dataset provided by Simployer consists of 1194 unlabeled images and pdfs.
+However, the variance of the types of receipts in the dataset is very large.
+Because of this, we end up with a very small amount of images of each type after labeling them.
+The dataset also includes receipts in several languages, mainly norwegian, english and polish.
+We filtered the dataset to only include norwegian receipts and removing images of bad quality.
+At the end of this process, the amount of usable data was very small.
+The original dataset of 1194 images has been filtered down to 91 images, split into three different types of receipts.
+
+\section{Data Augmentation}\label{data augmentation}
+
+Because of the low amount of images in the filtered dataset, data augmentation has to be done in order to give us enough images to be able to effectively train the CNN.
+We used an open source data augmentation tool for images for this task LINK.
+The augmentor takes a directory of images and applies a series of transformations on the images like scaling, skewing and rotating.
+This creates copies of the images with slight differences, increasing the size of our dataset.
+After applying enough transformations, the size of the dataset grew from 91 images to 1500.
+
+\section{Convolutional Neural Network}\label{sec: cnn}
 
 Our CNN is implemented using Keras.
 Keras is a library for tensorflow that allows for the creation of neural network models with only a few lines of code.
 The model consist of an input layer, two hidden layers, and an output layer.
 The input layer and first hidden layer are convolutional layers with 64 nodes in each layer.
 The second hidden layer and the output layer are dense layers, where the hidden layer has 64 nodes and the output layer has 3 nodes.
+The activation function of the first three layers is Rectified Linear Unit (ReLU), while the output layer uses the sigmoid function.
 The model uses the Adam optimizer and the categorical crossentropy loss function.
 
 

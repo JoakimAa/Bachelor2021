@@ -1,6 +1,6 @@
 \babel@toc {british}{}
 \contentsline {chapter}{\numberline {}Contents\markboth {\MakeUppercase {Contents}}{\MakeUppercase {Contents}}}{i}{}%
-\contentsline {chapter}{\numberline {}List of Figures}{ii}{}%
+\contentsline {chapter}{\numberline {}List of Figures}{iii}{}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{}%
 \contentsline {section}{\numberline {1.1}Background and motivation}{1}{}%
 \contentsline {subsection}{\numberline {1.1.1}Project Group}{1}{}%
@@ -24,6 +24,10 @@
 \contentsline {subsection}{\numberline {2.3.3}Remove background noise}{7}{}%
 \contentsline {subsection}{\numberline {2.3.4}Binarization}{8}{}%
 \contentsline {chapter}{\numberline {3}Design}{9}{}%
+\contentsline {section}{\numberline {3.1}Overview}{9}{}%
+\contentsline {section}{\numberline {3.2}API}{9}{}%
+\contentsline {section}{\numberline {3.3}CNN}{9}{}%
+\contentsline {section}{\numberline {3.4}OCR}{9}{}%
 \contentsline {chapter}{\numberline {4}Implementation}{10}{}%
 \contentsline {section}{\numberline {4.1}REST API}{10}{}%
 \contentsline {section}{\numberline {4.2}Web solution}{10}{}%

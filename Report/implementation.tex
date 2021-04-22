@@ -32,15 +32,23 @@ We filtered the dataset to only include norwegian receipts and removing images o
 At the end of this process, the amount of usable data was very small.
 The original dataset of 1194 images has been filtered down to 91 images, split into three different types of receipts.
 
-\section{Data Augmentation}\label{data augmentation}
+\section{Pre-processing}\label{pre-processing}
 
+\subsection{Data augmentation}\label{data augmentation}
 Because of the low amount of images in the filtered dataset, data augmentation has to be done in order to give us enough images to be able to effectively train the CNN.
 We used an open source data augmentation tool for images for this task LINK.
 The augmentor takes a directory of images and applies a series of transformations on the images like scaling, skewing and rotating.
 This creates copies of the images with slight differences, increasing the size of our dataset.
 After applying enough transformations, the size of the dataset grew from 91 images to 1500.
 
-\section{Convolutional Neural Network}\label{sec: cnn}
+\subsection{Image preparation}\label{imgprep}
+Many of the images in the dataset are taken in different resolutions.
+In order to prepare the images to be passed forward to the CNN model, the images resolution is rescaled to 60x60 pixels.
+This significantly reduces the training time required by the network with minimal to no loss in accuracy.
+The images are also converted to grayscale instead of RGB.
+This reduces the amount input nodes required by the network, as each pixel will have one value instead of three.
+
+\section{Convolutional Neural Network}\label{sec:cnn}
 
 Our CNN is implemented using Keras.
 Keras is a library for tensorflow that allows for the creation of neural network models with only a few lines of code.

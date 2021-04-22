@@ -1,40 +1,65 @@
 \chapter{Design}
 \label{ch:design}
-Chapter 3 provides a detailed walkthrough of how the thesis is designed.
-The design is made to efficiently and correctly tackle the problem statement.
 
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/pipeline}}
+    \caption{Graphic illustrating the project pipeline (PLACEHOLDER)}
+    \label{fig:figure3}
+\end{figure}
+The project is designed to be able to take an input image of a receipt sent over http, and provide metadata to that image based on it's contents.
+This metadata includes the company name that issued the receipt, the date the receipt was made, and the price of the purchase.
+In order to transfer the image to our machine learning models, a .NET API is used.
 
-\section{Overview}\label{sec:Overview}
+API GREIER HER
 
-This project consists of 2 main parts: the API and the machine learning model.
+We have decided to split up the metadata extraction into two separate parts;
+a Convolutional Neural Network for image classification and a Recurrent Neural Network for natural language processing.
 
-Something about the api NB!
+The CNN will take an image as input, decide which company issued that receipt based on previous training data.
 
-The machine learning model can be split into three parts.
-The CNN that, labels the images.
-OCR that extracts the text from the images, and RNN that takes the text from the OCR and validates key values.
+The RNN will take text as input.
+In order to extract the text from the images, an open-source OCR is used.
 
+Finally, the outputs of the CNN and RNN and combined and provided back to the user.
+This pipeline is illustrated in figure 3.1
 
 \section{API}\label{sec:API}
 
+\section{Pre-processing}\label{sec:pre-processing}
+A CNN does not require images of large resolution in order to accurately classify an image.
+In addition, training the network with large resolution images take significantly longer.
+Because of this, all the images that are going to be fed into the CNN are downscaled.
+This also solves the problem of images being of different sizes, as the CNN requires all the images to have the same size.
 
-\section{CNN}\label{sec:CNN}
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/beforeafterrescale}}
+    \caption{Before and after image rescaling}
+    \label{fig:figure3.2}
+\end{figure}
+While the text in the image is now completely unreadable, the CNN will have no issues telling images in this format apart from each other.
 
-The first layer of our model is the Convolutional Neural Network or CNN. This is taking the images and labeling the receipts after what firm the receipts comes from.
-This is done by having one folder of receipt images per firm and training the model to recognize these receipts.
-This means that the model is supervised.
-For our use purpose we need to use a CNN with a single input layer that will take all the images and three output layers.
-We have three outputs because we only have firms that we for this model.
+\section{Convolutional Neural network}\label{sec:CNN}
+As stated previously, we are using a CNN as an image classifier in order to determine which company issued the receipt.
 
-#We need some image here#
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/cnnplaceholder}}
+    \caption{Graphic illustrating the Convolutional Neural Network (PLACEHOLDER)}
+    \label{fig:figure3.3}
+\end{figure}
 
-\section{OCR}\label{sec:OCR}
+Figure 3.3 illustrates the layout of our CNN.
+The input layer takes the pixel value of the image.
+Because of this, the number of nodes in the input layer has to be equal to the amount of pixels in the image.
+The output layer has three nodes, one for each type of receipt the network is trained to classify.
 
-The second layer of our model is the OCR. This is a really simple OCR that does som pre-processing on our images and does a text extraction.
-The OCR does more or less function as the eyes for our RNN
+We are using a supervised learning-model to train our network.
+Because of this, the training data has to be labeled.
+This labeling can be labor intensive if the dataset you are labeling is large.
+Since we started with a very small amount of images before the use of data augmentation, it is a small task.
 
-#We need some image here#
+\section{Optical Character Recognition}\label{sec:OCR}
 
-\section{RNN}\label{sec:RNN}
 
-\section{RNN}\label{sec:RNN}
+
+\section{Recurrent Neural Network}\label{sec:RNN}
+

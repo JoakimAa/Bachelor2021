@@ -34,3 +34,7 @@ print(detectedWords)
 cv2.imshow('adaptive_img', adaptive_thresholdImg)
 cv2.imshow('result', img)
 cv2.waitKey(0)
+
+
+
+

@@ -10,7 +10,8 @@ The project is designed to be able to take an input image of a receipt sent over
 This metadata includes the company name that issued the receipt, the date the receipt was made, and the price of the purchase.
 In order to transfer the image to our machine learning models, a .NET API is used.
 
-API GREIER HER
+The API exposes several endpoints that allows for saving an image and a receipt to a database.
+The API is also connected to the ML and OCR module.
 
 We have decided to split up the metadata extraction into two separate parts;
 a Convolutional Neural Network for image classification and a Recurrent Neural Network for natural language processing.
@@ -24,6 +25,7 @@ Finally, the outputs of the CNN and RNN and combined and provided back to the us
 This pipeline is illustrated in figure 3.1
 
 \section{API}\label{sec:API}
+The API is used as the connection point between the different endpoints
 
 \section{Dataset}\label{sec:dataset}
 In order to train our neural network models, Simployer provided us with a sample of images from their database.

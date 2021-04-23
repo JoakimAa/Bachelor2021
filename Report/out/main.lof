@@ -5,12 +5,13 @@
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Overview of prices (list from https://cloud.google.com/vision/pricing)}}{6}{}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Graphic illustrating the project pipeline (PLACEHOLDER)}}{9}{}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Before and after image rescaling}}{9}{}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Graphic illustrating the Convolutional Neural Network (PLACEHOLDER)}}{10}{}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Before and after image rescaling}}{10}{}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Graphic illustrating the Convolutional Neural Network (PLACEHOLDER)}}{11}{}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Example output of pytesseract with a test image}}{11}{}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}}{12}{}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces CNN model}}{13}{}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces CNN model compile}}{13}{}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}}{14}{}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces CNN model}}{15}{}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces CNN model compile}}{15}{}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

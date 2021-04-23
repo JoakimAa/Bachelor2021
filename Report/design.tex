@@ -11,7 +11,7 @@ This metadata includes the company name that issued the receipt, the date the re
 In order to transfer the image to our machine learning models, a .NET API is used.
 
 The API exposes several endpoints that allows for saving an image and a receipt to a database.
-The API is also connected to the ML and OCR module.
+The API is also connected to the CNN and OCR module.
 
 We have decided to split up the metadata extraction into two separate parts;
 a Convolutional Neural Network for image classification and a Recurrent Neural Network for natural language processing.
@@ -25,7 +25,11 @@ Finally, the outputs of the CNN and RNN and combined and provided back to the us
 This pipeline is illustrated in figure 3.1
 
 \section{API}\label{sec:API}
-The API is used as the connection point between the different endpoints
+The API is used as the connection point between the different modules, it sends and receives data through the pipeline.
+The user sends in an image via a website and the API handles the request and sends the data to the CNN and the OCR\@.
+
+When the data has been processed through the CNN and OCR, the API sends the data back to the
+user.
 
 \section{Dataset}\label{sec:dataset}
 In order to train our neural network models, Simployer provided us with a sample of images from their database.

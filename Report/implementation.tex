@@ -24,13 +24,19 @@ Then if the returned data is correct the user can then upload the receipt to the
 
 \section{Dataset}\label{dataset}
 
-The dataset provided by Simployer consists of 1194 unlabeled images and pdfs.
+As mentioned previously, dataset provided by Simployer consists of 1194 unlabeled images and pdfs.
 However, the variance of the types of receipts in the dataset is very large.
+When attempting to label the data with the corresponding company name, the amount of different companies were very large.
 Because of this, we end up with a very small amount of images of each type after labeling them.
-The dataset also includes receipts in several languages, mainly norwegian, english and polish.
-We filtered the dataset to only include norwegian receipts and removing images of bad quality.
+We decided to use the 3 most frequent companies, with the third most frequent company occurring only 19 times.
 At the end of this process, the amount of usable data was very small.
 The original dataset of 1194 images has been filtered down to 91 images, split into three different types of receipts.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/exampleimages}}
+    \caption{Examples of labeled images}
+    \label{fig:figure4.1}
+\end{figure}
 
 \section{Pre-processing}\label{pre-processing}
 
@@ -40,6 +46,12 @@ We used an open source data augmentation tool for images for this task LINK.
 The augmentor takes a directory of images and applies a series of transformations on the images like scaling, skewing and rotating.
 This creates copies of the images with slight differences, increasing the size of our dataset.
 After applying enough transformations, the size of the dataset grew from 91 images to 1500.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/example_augmented}}
+    \caption{Original image on the left, along with generated images from blur and rotation transformations}
+    \label{fig:figure4.2}
+\end{figure}
 
 \subsection{Image preparation}\label{imgprep}
 Many of the images in the dataset are taken in different resolutions.

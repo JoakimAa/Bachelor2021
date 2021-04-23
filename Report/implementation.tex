@@ -6,22 +6,29 @@ This includes how the thesis group chose to implement the design discussed in pr
 
 \section{REST API}\label{sec:REST API}
 
-The API is a REST API coded in C# with .NET.
+The API is a REST API coded in C\# with .NET.
 REST stands for REpresentational State Transfer and is a software architecture style.
 For the API to be considered a REST API it has to follow some set guidelines and principles.
 
-The API consists of 4 different modules: The API endpoints, DataAccess, DataAccess.Maintenance and Model.
+The API consists of 4 different modules: The API endpoints, DataAccess,\\
+DataAccess.Maintenance and Model.
 
-API endpoints contains the controllers which handles the routing and requests.
+\textbf{API endpoints} contains the controllers which handles the routing and requests.
+There are two controllers, one for receipt and one for image.
+They both contain the methods GET, POST, PUT, and DELETE\@.
 
-DataAccess contains the DataContext for the database.
+In ImagesController the POST method uses the ImageDTO object.
+It initializes a new Image object, and populates the corresponding data.
+To set the image data, it serializes the image data from the DTO, and uses this data to for the image data.
+
+\textbf{DataAccess} contains the DataContext for the database.
 For the sake of simplicity, we have decided to utilize a local database.
 
-DataAccess.Maintenance contains the migrations for the project.
+\textbf{DataAccess.Maintenance} contains the migrations for the project.
 This is to make it cleaner and to have a console app where it is possible to update the database without having to run the API\@.
 
-The Model module contains the different models we use.
-There is one for receipts and one for image, there is also a data transfer object for both of them.
+The \textbf{Model} module contains the different models we use.
+There is one for receipts and one for image, there is also a data transfer object for image.
 The DTO is an object that carries data between processes and makes it more efficient by doing it in only one call.
 This is done by aggregating the data instead of sending it one by one.
 
@@ -38,9 +45,9 @@ When the image is saved, the image is sent to the OCR for text recognition.
 If the output makes sense the data is returned and displayed to the user.
 Then if the returned data is correct the user can then upload the receipt to the database.
 
-\section{Dataset}\label{dataset}
+\section{Dataset}\label{sec:dataset2}
 
-As mentioned previously, dataset provided by Simployer consists of 1194 unlabeled images and pdfs.
+As mentioned previously, dataset provided by Simployer consists of 1194 unlabeled images and PDF's.
 However, the variance of the types of receipts in the dataset is very large.
 When attempting to label the data with the corresponding company name, the amount of different companies were very large.
 Because of this, we end up with a very small amount of images of each type after labeling them.

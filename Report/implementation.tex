@@ -53,11 +53,49 @@ This reduces the amount input nodes required by the network, as each pixel will 
 Our CNN is implemented using Keras.
 Keras is a library for tensorflow that allows for the creation of neural network models with only a few lines of code.
 The model consist of an input layer, two hidden layers, and an output layer.
-The input layer and first hidden layer are convolutional layers with 64 nodes in each layer.
-The second hidden layer and the output layer are dense layers, where the hidden layer has 64 nodes and the output layer has 3 nodes.
+The input layer and first hidden layer are 2D convolutional layers with 32 and 64 filters.
+The second hidden layer and the output layer are dense layers, where the hidden layer has 64 filters and the output layer has 3 filters.
 The activation function of the first three layers is Rectified Linear Unit (ReLU), while the output layer uses the sigmoid function.
-The model uses the Adam optimizer and the categorical cross-entropy loss function.
+Maxpooling2D is used to define a stride of 2.
+This means that we take the biggest number with something thats called a max operation.
+We combine the results to get a 2x2 max pool output, down from a 4x4 format.
+As illustrated below.
 
+\begin{figure}[h]
+    \center{\includegraphics[width=0.65 \textwidth]{Images/maxpooling2D}}
+    \caption{Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}
+    \label{fig:figure6}
+
+\end{figure}
+
+We have also used batchnormalixation with the default settings in the input and hidden layers of out model.
+This means that the model is sharding the data in batches.
+This in turn lets us train the model with a lot less trainingsteps, and it gives us even better accuracy.
+The last function we will talk about in the input and hidden layers are the dropout function.
+This function will force the model to drop random filters during the training.
+This will force an adaption in the model that makes it more versatile.
+This is because the model can't just rely on one good path to carry its accuracy.
+Therefore, it will end up with a more generic understanding of the data and avoid an overfitting.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.65 \textwidth]{Images/CNN_model}}
+    \caption{CNN model}
+    \label{fig:figure4}
+
+\end{figure}
+
+In the compile function we defined we choose to use cross-entropy as our loss function.
+Because this is the best for multiclass classification.
+The optimizer is the standard adam optimizer.
+
+
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.65 \textwidth]{Images/CNN_compile}}
+    \caption{CNN model compile}
+    \label{fig:figure5}
+
+\end{figure}
 
 
 

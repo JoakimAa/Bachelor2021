@@ -150,7 +150,14 @@ This strengthening of pathways is how we as humans learn, and it is what we try 
 \end{figure}
 
 The digital version of our neurons functions much in the same way.
-They
+They take inputs as numbers instead of electrical signals, and based on the strength of the connections the numbers arrived through, decide whether to fire off their own signal.
+This process is illustrated in figure 2.4.
+The input $x_n$ is the n-th signal being passed to the neuron.
+The weight $w_n$ is the strength of the connection between the last neuron and this neuron.
+All the inputs are multiplied with their corresponding weights, and summed up in the neuron, along with a bias for that neuron.
+The activation function is what decides whether that neuron should fire of their signal to the next neuron or not.
+In mathematical terms, the whole process looks like this: \[y = f(\left(\sum_{i=1}^{n} x_i w_i\right) + bias)\]
+Adjusting the weights to make the neuron fire when it is supposed to it what makes the network learn.
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/network_neuron}}

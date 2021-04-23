@@ -58,8 +58,19 @@ This labeling can be labor intensive if the dataset you are labeling is large.
 Since we started with a very small amount of images before the use of data augmentation, it is a small task.
 
 \section{Optical Character Recognition}\label{sec:OCR}
+In order to extract the text found in an image, we are using the open-source OCR software Python-tesseract.
+Python-tesseract, or Pytesseract for short, utilizes Google's Tesseract-OCR engine.
 
+When metadata for a particular image is requested by a user, the API will provide our implementation of Pytesseract with an image.
+Pytesseract will take this image as an input, and can provide outputs in various formats like xml or pdf.
+We will be using the output in string format, as this will serve as the input to our RNN model.
+Once Pytesseract has completed the text extraction, the output string is then fetched by our API to be provided to our RNN model.
 
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/ocr_before_after}}
+    \caption{Example output of pytesseract with a test image}
+    \label{fig:figure3.4}
+\end{figure}
 
 \section{Recurrent Neural Network}\label{sec:RNN}
 

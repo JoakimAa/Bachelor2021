@@ -28,18 +28,17 @@ X_test = normalize(X_test, axis=1)
 y_train = to_categorical(y_train)
 y_test = to_categorical(y_test)
 
-
 opt = tf.keras.optimizers.Adam()
 model = Sequential()
-model.add(Conv2D(32, (3,3), input_shape = X.shape[1:]))
+model.add(Conv2D(32, (3, 3), input_shape=X.shape[1:]))
 model.add(Activation("relu"))
-model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(BatchNormalization())
 model.add(Dropout(0.2))
 
-model.add(Conv2D(64, (3,3)))
+model.add(Conv2D(64, (3, 3)))
 model.add(Activation("relu"))
-model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(BatchNormalization())
 model.add(Dropout(0.2))
 
@@ -60,7 +59,6 @@ print(val_loss, val_acc)
 model.save("models/my_model")
 
 if PLOTS:
-
     plt.plot(history.history['acc'])
     plt.plot(history.history['val_acc'])
     plt.title('model accuracy')

@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import os
 import cv2
 import random
@@ -44,6 +43,7 @@ def xy_save(X, y):
     pickle_out = open("pickledDataset/y.pickle", "wb")
     pickle.dump(y, pickle_out)
     pickle_out.close()
+
 
 training_data = create_training_data()
 X, y = xy_split(training_data)

@@ -2,7 +2,7 @@ from tensorflow.keras.models import load_model
 import numpy as np
 import cv2
 
-CATEGORIES = ["flybuss","neptuntaxi", "trondertaxi"]
+CATEGORIES = ["flybuss", "neptuntaxi", "trondertaxi"]
 IMG_SIZE = 60
 TEST_DIR = "testImages"
 
@@ -17,5 +17,3 @@ predicted_category = CATEGORIES[np.argmax(prediction_array)]
 
 print(prediction_array)
 print(predicted_category)
-
-

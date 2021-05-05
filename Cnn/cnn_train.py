@@ -5,6 +5,7 @@ from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D,
 from tensorflow.keras.utils import normalize, to_categorical
 import pickle
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 
 PLOTS = False;
@@ -56,6 +57,8 @@ history = model.fit(X_train, y_train, batch_size=32, epochs=30, validation_data=
 
 val_loss, val_acc = model.evaluate(X_test, y_test)
 print(val_loss, val_acc)
+y_pred = model.predict(X_test)
+print(confusion_matrix(y_test.argmax(axis=1), y_pred.argmax(axis=1)))
 model.save("models/my_model")
 
 if PLOTS:

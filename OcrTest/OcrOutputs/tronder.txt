@@ -1,0 +1,66 @@
+KVITTERING
+Nr: @33492-01
+Egenandel EMV
+
+Loyvenr:
+3 001083
+1838791
+
+184
+Slutt omr 141
+
+REISE INFORMASJON
+Start: 28-12-2017 14:00
+Starttid, kunde:28-12-2017 14:02
+Slutt: 28-12-2017 14:27
+
+TIDSBRUK
+
+Total:
+
+Fremk jor ing: @:00 min
+Med passasjer: 27:18 min
+
+KJORESTREKNING
+Total: 31.17 kin
+Fremkjering: @.
+
+Med passasjer: f
+
+PRIS
+Pas| ag:
+Fastpris:
+STOPPET
+0.000km 0: 28in
+Total pris: kr.
+
+Delkuittering
+Sum: Ki
+Tot: kr. 399-0
+
+MUA letto
+: ¢}
+
+Fra
+TRONDHEIM LUFTHAUN, URRNES , LUFT
+
+Til
+ASBU@RNSENS GATE 25A,7052 TROND
+
+TAXI-INFORMASJON
+Regnr: UHS86;
+
+Orgnr: NOS758 123 16MUA
+Plombering: @1-09-2016 kl. 12:30
+
+TAKST
+
+TAKSTNAVN TYPE PASLAG KR/KMKR/TINE
+$ 8.68 8.0
+
+Flytaxi 8.08 08
+TYPE $: KM- 0G TIDDEBIT, B: KH- ELLER TIDDEBIT
+K$:38b3
+
+ 
+

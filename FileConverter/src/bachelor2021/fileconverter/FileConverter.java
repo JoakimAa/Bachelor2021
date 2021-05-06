@@ -4,14 +4,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class FileConverter {
 
     public static HashMap<String, String> mapGuidFilenames(String filname) {
-        HashMap<String, String> fileMapper = new HashMap<String, String>();
+        HashMap<String, String> fileMapper = new HashMap<>();
 
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(filname))) {
             String line;
@@ -24,14 +23,12 @@ public class FileConverter {
             System.out.println(ioe);
         }
 
-
-
         return fileMapper;
     }
 
     public static void convertFilename(String filename, HashMap<String, String> fileMapper) {
-        HashMap<String, Integer> occurences = new HashMap<String, Integer>();
-        HashMap<String, Boolean> filenameOccurences = new HashMap<String, Boolean>();
+        HashMap<String, Integer> occurences = new HashMap<>();
+        HashMap<String, Boolean> filenameOccurences = new HashMap<>();
         File dir = new File(filename);
         File[] files = dir.listFiles();
 
@@ -77,5 +74,5 @@ public class FileConverter {
         /*for (Map.Entry<String, Boolean> entry : filenameOccurences.entrySet()) {
             System.out.println("File occurance: " + entry.getKey() + " - Bool: " + entry.getValue());
         }*/
-    };
+    }
 }

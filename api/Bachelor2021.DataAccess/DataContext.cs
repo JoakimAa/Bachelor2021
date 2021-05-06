@@ -9,7 +9,7 @@ namespace Bachelor2021.DataAccess {
         public DbSet<Receipt> Receipts { get; set; }
         public DbSet<Image> Images { get; set; }
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-      
+
 
         class DataContextFactory : IDesignTimeDbContextFactory<DataContext> {
             public DataContext CreateDbContext(string[] args) {

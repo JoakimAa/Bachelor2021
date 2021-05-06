@@ -97,6 +97,7 @@ namespace Bachelor2021.Api.Controllers {
 
                 _context.Images.Add(image);
                 await _context.SaveChangesAsync();
+
             }
 
             return CreatedAtAction("GetImage", new { id = image.ImageId }, image);

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Bachelor2021.DataAccess;
 using Bachelor2021.Model;
+using System.IO;
 
 namespace Bachelor2021.Api.Controllers
 {
@@ -78,6 +79,7 @@ namespace Bachelor2021.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Receipt>> PostReceipt(Receipt receipt)
         {
+           
             _context.Receipts.Add(receipt);
             await _context.SaveChangesAsync();
 

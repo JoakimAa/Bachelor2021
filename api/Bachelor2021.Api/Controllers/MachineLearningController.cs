@@ -21,8 +21,6 @@ namespace Bachelor2021.Api.Controllers {
             var receipt = new Receipt();
 
             if (img != null) {
-
- 
                 image.Name = img.FileName;
 
                 byte[] imageData = null;
@@ -34,36 +32,24 @@ namespace Bachelor2021.Api.Controllers {
                 image.CreatedOn = DateTime.Now;
                 image.FileType = Path.GetExtension(img.FileName);
 
-                //Getting FileName
-                //var fileName = Path.GetFileName(img.Name);
-                ////Getting file Extension
-                //var fileExtension = Path.GetExtension(fileName);
-                //// concatenating  FileName + FileExtension
-                //var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
-
                 var uirWebAPI = "http://localhost:5000/v1/api/upload";
-                //string base64String = string.Empty;
-                // webResponse = string.Empty;
 
-                Uri uri = new Uri(uirWebAPI);
-                WebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+                var uri = new Uri(uirWebAPI);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
                 var base64String = Convert.ToBase64String(image.ImageData);
+
                 await using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream())) {
                     dynamic imageJson = new JObject();
                     imageJson.content = base64String;
                     streamWriter.Write(imageJson.ToString());
                 }
-                HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream());
+                var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using var streamReader = new StreamReader(httpWebResponse.GetResponseStream());
                 var webResponse = streamReader.ReadToEnd();
                 receipt = JsonConvert.DeserializeObject<Receipt>(webResponse);
-
             }
-            receipt.Date = DateTime.Now.ToString("dd:MM:yy HH:mm:ss");
-
-
             return receipt;
         }
     }

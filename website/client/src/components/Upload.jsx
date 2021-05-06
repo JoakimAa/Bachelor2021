@@ -4,16 +4,17 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 /* import Form from './Form';
  */
-import { create, get } from '../utils/receiptService';
+import { create } from '../utils/receiptService';
 import { upload } from '../utils/imageService';
+import { sendImage } from '../utils/machineLearningService';
 
 const Upload = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [receiptSuccess, setReceiptSuccess] = useState(false);
   const [imageId, setImageId] = useState(null);
   const [receiptValue, setReceiptValue] = useState(null);
-  const [imageData, setImageData] = useState(null);
   const [src, setSrc] = useState(null);
   const [pictureIsUploaded, setPictureIsUploaded] = useState(false);
 
@@ -29,33 +30,28 @@ const Upload = () => {
   }
 
   const onSubmit = async (formData) => {
-    const { data } = await create(formData, { image: imageData.imageId });
+    const { data } = await create(formData, imageId);
     console.log(data);
-    if (!data.success) {
-      setError(data.message);
-    } else {
-      setSuccess(true);
-      setError(null);
-    }
+    setReceiptSuccess(true);
+    setError(null);
   };
 
   useEffect(() => {
     if (pictureIsUploaded) {
       const fetchData = async () => {
-        const data = await get(1);
+        const data = await sendImage(file);
         reset(data.data);
         setReceiptValue(data?.data);
       };
       fetchData();
     }
-  }, [reset, pictureIsUploaded]);
+  }, [reset, pictureIsUploaded, file]);
 
   const handleImageSubmit = async (e) => {
     e.preventDefault();
     console.log('Laster opp bilde');
-    setPictureIsUploaded(true);
     const { data } = await upload(file);
-    setImageData(data.imageData);
+    setPictureIsUploaded(true);
     setImageId(data.imageId);
     setSuccess(true);
     setError(null);
@@ -79,7 +75,12 @@ const Upload = () => {
   return (
     <>
       {error && <p>Noe gikk galt med opplastingen</p>}
-      {success && <p>Laster opp bilde med id: {imageId}</p>}
+      {success && (
+        <SuccessMessage>Laster opp bilde med id: {imageId}</SuccessMessage>
+      )}
+      {receiptSuccess && (
+        <SuccessMessage>Kvitteringen har blitt lastet opp</SuccessMessage>
+      )}
       <FlexBox>
         <FlexStart>
           {receiptValue && (
@@ -194,6 +195,11 @@ const FlexBoxImage = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin: auto;
+`;
+
+const SuccessMessage = styled.p`
+  margin: 0;
+  align-items: left;
 `;
 
 const Label = styled.label``;

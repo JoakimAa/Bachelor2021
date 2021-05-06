@@ -28,8 +28,9 @@ export const put = async (id, data) => {
   }
 };
 
-export const create = async (data) => {
+export const create = async (data, imageId) => {
   try {
+    data.imageId = imageId;
     return await http.post(`${API_URL}`, data);
   } catch (err) {
     return err.response;

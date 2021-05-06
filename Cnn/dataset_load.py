@@ -8,7 +8,6 @@ DATADIR = "C:\Datasets\simpdata_labeled"
 CATEGORIES = ["flybuss", "neptuntaxi", "trondertaxi"]
 IMG_SIZE = 60
 
-
 def create_training_data():
     training_data = []
     for category in CATEGORIES:

@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 
-PLOTS = False;
+PLOTS = False
 
 physical_devices = tf.config.experimental.list_physical_devices('GPU')
 if len(physical_devices) > 0:
@@ -59,7 +59,7 @@ val_loss, val_acc = model.evaluate(X_test, y_test)
 print(val_loss, val_acc)
 y_pred = model.predict(X_test)
 print(confusion_matrix(y_test.argmax(axis=1), y_pred.argmax(axis=1)))
-model.save("models/my_model")
+model.save("models/my_model", overwrite=True)
 
 if PLOTS:
     plt.plot(history.history['acc'])

@@ -24,8 +24,6 @@ public class FileConverter {
             System.out.println(ioe);
         }
 
-
-
         return fileMapper;
     }
 
@@ -67,7 +65,6 @@ public class FileConverter {
 
                 System.out.println(name + " renamed to " + newName + " " + i);
             }
-
         }
 
         for (Map.Entry<String, Integer> entry : occurences.entrySet()) {

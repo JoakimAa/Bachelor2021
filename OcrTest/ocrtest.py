@@ -5,6 +5,7 @@ import os
 
 BASE_PATH = "testImages"
 CATEGORIES = ["flybuss.JPG", "neptun.jpg", "tronder.JPG"]
+CONFIG = "--psm 4"
 
 for category in CATEGORIES:
     path = os.path.join(BASE_PATH, category)
@@ -22,8 +23,9 @@ for category in CATEGORIES:
         cv2.THRESH_BINARY,
         11,
         10)
+    thresh = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
 
-    img_string = pytesseract.image_to_string(img)
+    img_string = pytesseract.image_to_string(thresh, config=CONFIG, lang="nor")
     text_path = os.path.join("OcrOutputs", category.split(".")[0] + ".txt")
     text_file = open(text_path, "w")
     text_file.write(img_string)
@@ -31,5 +33,5 @@ for category in CATEGORIES:
 
     print("----------IMAGE TO STRING: ", category, "-----------")
     print(img_string)
-    plt.imshow(gaus_thres, cmap="gray")
+    plt.imshow(thresh, cmap="gray")
     plt.show()

@@ -38,7 +38,7 @@ The detection features are listed in figure 2.1.
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/googleAPI_features}}
     \caption{Overview of features (list from https://cloud.google.com/vision/pricing)}
-    \label{fig:figure1}
+    \label{fig:figure2.1}
 
 \end{figure}
 
@@ -52,7 +52,7 @@ The API also has a lot of features in their beta version which is not included i
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/googleAPI_prices}}
     \caption{Overview of prices (list from https://cloud.google.com/vision/pricing)}
-    \label{fig:figure2}
+    \label{fig:figure2.2}
 
 \end{figure}
 
@@ -136,6 +136,34 @@ Once an image has gone through binarization, the background should be white and 
 If your image is in RGB format, it will first need to be converted to grayscale format before thresholding techniques can be used.
 Adaptive thresholding is one such technique.
 It involves partitioning the image into smaller regions, and calculating the threshold for what should be black and what should be white, in that region.
+
+\section{Neural Networks}\label{sec:neural networks}
+Artificial Neural Networks, or just Neural Networks as they are more commonly called, is a machine learning technique that learns by replicating the functions of the brain.
+Our brain has billions of neurons connected through synapses in a massive network.
+These neurons receive electrical signals from other neurons, and may send out their own electrical signal if their received signal was strong enough.
+If the paths these signals take are used often, they will strengthen, allowing for a greater portion of electricity to be transfered.
+This strengthening of pathways is how we as humans learn, and it is what we try to replicate with an Artifical Neural Network.
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/neuron}}
+    \caption{Illustration of a neuron. https://scx1.b-cdn.net/csz/news/800a/2018/2-whyareneuron.jpg}
+    \label{fig:figure2.3}
+\end{figure}
+
+The digital version of our neurons functions much in the same way.
+They take inputs as numbers instead of electrical signals, and based on the strength of the connections the numbers arrived through, decide whether to fire off their own signal.
+This process is illustrated in figure 2.4.
+The input $x_n$ is the n-th signal being passed to the neuron.
+The weight $w_n$ is the strength of the connection between the last neuron and this neuron.
+All the inputs are multiplied with their corresponding weights, and summed up in the neuron, along with a bias for that neuron.
+The activation function is what decides whether that neuron should fire of their signal to the next neuron or not.
+In mathematical terms, the whole process looks like this: \[y = f(\left(\sum_{i=1}^{n} x_i w_i\right) + bias)\]
+Adjusting the weights to make the neuron fire when it is supposed to it what makes the network learn.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/network_neuron}}
+    \caption{Abstraction of a neuron for use in Artifical Neural Networks. https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRTFh3jYAWBE9gH0bKPJXykku4WDgqhJvQeQ&usqp=CAU}
+    \label{fig:figure2.4}
+\end{figure}
 
 
 

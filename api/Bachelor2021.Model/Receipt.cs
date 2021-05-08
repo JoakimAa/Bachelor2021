@@ -9,12 +9,12 @@ namespace Bachelor2021.Model {
         [Required]
         public double Amount { get; set; }
         [Required]
-        public String Type { get; set; }
+        public string Type { get; set; }
         [Required]
-        public String Company { get; set; }
+        public string Company { get; set; }
         [Required]
-        public String Date { get; set; }
-        public Image Image { get; set; }
+        public string Date { get; set; }
+        public int ImageId { get; set; }
     }
 }
 

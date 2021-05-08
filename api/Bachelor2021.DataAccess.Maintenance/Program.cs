@@ -12,7 +12,7 @@ namespace Bachelor2021.DataAcess.Maintenance {
             var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
             optionsBuilder.UseSqlServer(connection, x => x.MigrationsAssembly("Bachelor2021.DataAccess.Maintenance"));
 
-            PopulateDatabase(optionsBuilder);
+            //PopulateDatabase(optionsBuilder);
             //QueryData(optionsBuilder);
         }
 
@@ -36,8 +36,8 @@ namespace Bachelor2021.DataAcess.Maintenance {
                 using (var data = new DataContext(optionsBuilder.Options)) {
 
                     // Create receipts
-                    var receipt = new Receipt() { Amount = 200, Type = "Kvittering", Company = "Vy", Date = "23.02.2021"};
-                    var receipt2 = new Receipt() { Amount = 300, Type = "Faktura", Company = "Vy", Date = "23.02.2021"};
+                    var receipt = new Receipt() { Amount = 200, Type = "Kvittering", Company = "Vy", Date = "23.02.2021 22:00"};
+                    var receipt2 = new Receipt() { Amount = 300, Type = "Faktura", Company = "Vy", Date = "23.02.2021 23:00"};
 
                     data.Add(receipt);
                     data.Add(receipt2);

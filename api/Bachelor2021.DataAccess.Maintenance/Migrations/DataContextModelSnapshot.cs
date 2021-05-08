@@ -63,7 +63,7 @@ namespace Bachelor2021.DataAccess.Maintenance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ImageId")
+                    b.Property<int>("ImageId")
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
@@ -72,18 +72,7 @@ namespace Bachelor2021.DataAccess.Maintenance.Migrations
 
                     b.HasKey("ReceiptId");
 
-                    b.HasIndex("ImageId");
-
                     b.ToTable("Receipts");
-                });
-
-            modelBuilder.Entity("Bachelor2021.Model.Receipt", b =>
-                {
-                    b.HasOne("Bachelor2021.Model.Image", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
-
-                    b.Navigation("Image");
                 });
 #pragma warning restore 612, 618
         }

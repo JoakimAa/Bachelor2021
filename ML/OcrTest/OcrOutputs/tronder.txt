@@ -1,0 +1,69 @@
+KUITTERING
+Nr: Ø33492-01
+Egenandel EMV
+
+Leyuenr:
+3 001083
+1838791
+
+184
+Slutt omr 141
+
+RE I SE I NF OR MAS JON
+Start: 28-12-2017 14:90
+Starttid, kunde:28-12-2017 14:02
+Slutt: 28-12-2017 14:27
+
+TIDSBRUK
+
+Total:
+
+Fremk jør ing: 0:00 min
+Med passasjer: 27:18 min
+
+KJØRESTREKNING
+Total: 31.17 kit
+Fremkjør ing: 0.
+
+Med passasjer:
+
+PRIS
+Paslag:
+Fastpris: kr.
+STOPPET
+
+ø.o00km 0281
+GEER kr.
+
+Deikuitter 119
+
+Sun: FOR
+Tue: kr. 399.ø00
+
+MIN etto
+: 1
+
+Fra
+
+TRONDHEIM LUFTHAVN, VÆRNES LUFT
+i
+
+ASBJØRNSENS GATE 25A,7052 TROND
+
+TAXI - INFORMASJON
+Regnr: UHS8G;
+
+Orgnr: NO9758 123 16MUR
+Plomber ing: 01-09-2016 kl. 12:30
+
+TAKST
+
+SD PASLAG KR/KM — KR/TIHE
+5 CAL) 8.0
+
+Flytøai 8.06 08
+TYPE $: KM- OG TIDDEBIT, 8: KM- ELLER TIDDEBIT
+KS: 3853
+
+ 
+

@@ -144,8 +144,7 @@
         \newgeometry{inner=25mm,outer=35mm,top=30mm,bottom=40mm}
         \pagestyle{empty}
         \begin{titlepage}
-            \includegraphics[width=0.5\textwidth,right]{hiof-logo}
-            \includegraphics[width=0.5\textwidth,right]{Images/hiof-logo-no}
+            \includegraphics[width=0.5\textwidth,right]{Images/hiof-logo}
             \mbox{
                 \vtop{
                 \vskip 5cm

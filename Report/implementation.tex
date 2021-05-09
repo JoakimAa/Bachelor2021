@@ -6,8 +6,31 @@ This includes how the thesis group chose to implement the design discussed in pr
 
 \section{REST API}\label{sec:REST API}
 
-The API exposes several endpoints that allows for saving an image and a receipt to a database.
-The API is also connected to the ML and OCR module.
+The API is a REST API coded in C\# with .NET.
+REST stands for REpresentational State Transfer and is a software architecture style.
+For the API to be considered a REST API it has to follow some set guidelines and principles.
+
+The API consists of 4 different modules: The API endpoints, DataAccess,\\
+DataAccess.Maintenance and Model.
+
+\textbf{API endpoints} contains the controllers which handles the routing and requests.
+There are two controllers, one for receipt and one for image.
+They both contain the methods GET, POST, PUT, and DELETE\@.
+
+In ImagesController the POST method uses the ImageDTO object.
+It initializes a new Image object, and populates the corresponding data.
+To set the image data, it serializes the image data from the DTO, and uses this data to for the image data.
+
+\textbf{DataAccess} contains the DataContext for the database.
+For the sake of simplicity, we have decided to utilize a local database.
+
+\textbf{DataAccess.Maintenance} contains the migrations for the project.
+This is to make it cleaner and to have a console app where it is possible to update the database without having to run the API\@.
+
+The \textbf{Model} module contains the different models we use.
+There is one for receipts and one for image, there is also a data transfer object for image.
+The DTO is an object that carries data between processes and makes it more efficient by doing it in only one call.
+This is done by aggregating the data instead of sending it one by one.
 
 \section{Web solution}\label{sec:Web solution}
 
@@ -21,4 +44,123 @@ the database.
 When the image is saved, the image is sent to the OCR for text recognition.
 If the output makes sense the data is returned and displayed to the user.
 Then if the returned data is correct the user can then upload the receipt to the database.
+
+\section{Dataset}\label{sec:dataset2}
+
+As mentioned previously, dataset provided by Simployer consists of 1194 unlabeled images and PDF's.
+However, the variance of the types of receipts in the dataset is very large.
+When attempting to label the data with the corresponding company name, the amount of different companies were very large.
+Because of this, we end up with a very small amount of images of each type after labeling them.
+We decided to use the 3 most frequent companies, with the third most frequent company occurring only 19 times.
+At the end of this process, the amount of usable data was very small.
+The original dataset of 1194 images has been filtered down to 91 images, split into three different types of receipts.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/exampleimages}}
+    \caption{Examples of labeled images}
+    \label{fig:figure4.1}
+\end{figure}
+
+\section{Pre-processing}\label{pre-processing}
+
+\subsection{Data augmentation}\label{data augmentation}
+Because of the low amount of images in the filtered dataset, data augmentation has to be done in order to give us enough images to be able to effectively train the CNN.
+We used an open source data augmentation tool for images for this task LINK.
+The augmentor takes a directory of images and applies a series of transformations on the images like scaling, skewing and rotating.
+This creates copies of the images with slight differences, increasing the size of our dataset.
+After applying enough transformations, the size of the dataset grew from 91 images to 1500.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/example_augmented}}
+    \caption{Original image on the left, along with generated images from blur and rotation transformations}
+    \label{fig:figure4.2}
+\end{figure}
+
+\subsection{Image preparation}\label{imgprep}
+Many of the images in the dataset are taken in different resolutions.
+In order to prepare the images to be passed forward to the CNN model, the images resolution is rescaled to 60x60 pixels.
+This significantly reduces the training time required by the network with minimal to no loss in accuracy.
+The images are also converted to grayscale instead of RGB.
+This reduces the amount input nodes required by the network, as each pixel will have one value instead of three.
+
+\section{Convolutional Neural Network}\label{sec:cnn}
+
+Our CNN is implemented using Keras.
+Keras is a library for tensorflow that allows for the creation of neural network models with only a few lines of code.
+The model consist of an input layer, two hidden layers, and an output layer.
+The input layer and first hidden layer are 2D convolutional layers with 32 and 64 filters.
+The second hidden layer, and the output layer are dense layers, where the hidden layer has 64 filters and the output layer has 3 filters.
+The activation function of the first three layers is Rectified Linear Unit (ReLU), while the output layer uses the sigmoid function.
+Maxpooling2D is used to define a stride of 2.
+This means that we take the biggest number with something thats called a max operation.
+We combine the results to get a 2x2 max pool output, down from a 4x4 format.
+As illustrated below.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.8 \textwidth]{Images/maxpooling2D}}
+    \caption{Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}
+    \label{fig:figure6}
+
+\end{figure}
+
+We have also used batchnormalixation with the default settings in the input and hidden layers of out model.
+This means that the model is sharding the data in batches.
+This in turn lets us train the model with a lot less trainingsteps, and it gives us even better accuracy.
+The last function we will talk about in the input and hidden layers are the dropout function.
+This function will force the model to drop random filters during the training.
+This will force an adaption in the model that makes it more versatile.
+This is because the model can't just rely on one good path to carry its accuracy.
+Therefore, it will end up with a more generic understanding of the data and avoid an overfitting.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.8 \textwidth]{Images/CNN_model}}
+    \caption{CNN model}
+    \label{fig:figure4}
+
+\end{figure}
+
+In the compile function we defined we choose to use cross-entropy as our loss function.
+Because this is the best for multiclass classification.
+The optimizer is the standard adam optimizer.
+
+
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.8 \textwidth]{Images/CNN_compile}}
+    \caption{CNN model compile}
+    \label{fig:figure5}
+
+\end{figure}
+
+
+\section{OCR}\label{sec:OCR_implementation}
+
+The first thing we did in the OCR was
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.8 \textwidth]{Images/OCR1}}
+    \caption{CNN model compile}
+    \label{fig:figure7}
+
+\end{figure}
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.8 \textwidth]{Images/OCR2}}
+    \caption{CNN model compile}
+    \label{fig:figure8}
+
+\end{figure}
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.8 \textwidth]{Images/OCR4}}
+    \caption{CNN model compile}
+    \label{fig:figure9}
+
+\end{figure}
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.8 \textwidth]{Images/OCR5}}
+    \caption{CNN model compile}
+    \label{fig:figure10}
+\end{figure}
 

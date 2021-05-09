@@ -1,18 +1,18 @@
 import spacy
 
-text_file = open("TextInput/rawText.txt", "r", encoding="utf-8")
+text_file = open("TextInput/rawText_neptun.txt", "r", encoding="utf-8")
 text = text_file.read()
 text_file.close()
 
 print("-----------BEFORE JOIN--------------")
 print(text)
 
-text = str.join(" ", text.splitlines())
+#text = str.join(" ", text.splitlines())
 
-print("-----------AFTER JOIN--------------")
-print(text)
+#print("-----------AFTER JOIN--------------")
+#print(text)
 
-nlp = spacy.load("nb_core_news_sm")
+nlp = spacy.load("pl_core_news_md")
 
 print("-----------SPACY OUTPUT--------------")
 doc = nlp(text)

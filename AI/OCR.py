@@ -2,10 +2,10 @@ import cv2
 import pytesseract
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
-img = cv2.imread('vy.jpg')
+img = cv2.imread('nor_kvitt.jpg')
 #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 grayImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-adaptive_thresholdImg = cv2.adaptiveThreshold(grayImg, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 77, 14)
+adaptive_thresholdImg = cv2.adaptiveThreshold(grayImg, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 41, 17)
 
 
 NOR = 'nor'
@@ -34,3 +34,6 @@ print(detectedWords)
 cv2.imshow('adaptive_img', adaptive_thresholdImg)
 cv2.imshow('result', img)
 cv2.waitKey(0)
+
+
+

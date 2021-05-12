@@ -19,7 +19,6 @@ export const sendImage = async (image) => {
       headers: { Accept: 'application/json' },
     });
   } catch (err) {
-    console.log(err);
     return err.response;
   }
 };

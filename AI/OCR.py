@@ -1,11 +1,11 @@
 import cv2
 import pytesseract
-from thinc.backends.linalg import Mat
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
-img = cv2.imread('images/2018-01-01 Taxi__rot-10.JPG')
-
-img_S = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
+img = cv2.imread('out/aligned.jpg')
+template = cv2.imread("out/template.jpg")
+img_S = cv2.resize(img, None, fx=0.9, fy=0.9, interpolation=cv2.INTER_AREA)
+img_T = cv2.resize(template, None, fx=0.9, fy=0.9, interpolation=cv2.INTER_AREA)
 
 #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 grayImg = cv2.cvtColor(img_S, cv2.COLOR_BGR2GRAY)
@@ -37,6 +37,7 @@ for x, b in enumerate(boxes.splitlines()):
 print(detectedWords)
 cv2.imshow('adaptive_img', adaptive_thresholdImg)
 cv2.imshow('result', img_S)
+cv2.imshow("template", img_T)
 cv2.waitKey(0)
 
 

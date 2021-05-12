@@ -9,12 +9,9 @@ pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesse
 
 img1= cv2.imread('images/2018-01-01 Taxi__rot-10.JPG')
 img2 = cv2.imread('images/2017-12-28 Taxi__blur1.2.JPG')
-#img1= cv2.imread('2017-12-28 Taxi__blur1.2.JPG')
-#img2 = cv2.imread('2018-01-01 Taxi__rot-10.JPG')
 
-
-im1 = cv2.resize(img1, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
-im2 = cv2.resize(img2, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
+im1 = cv2.resize(img1, None, fx=0.8, fy=0.5, interpolation=cv2.INTER_AREA)
+im2 = cv2.resize(img2, None, fx=0.8, fy=0.5, interpolation=cv2.INTER_AREA)
 
 MAX_FEATURES = 500
 GOOD_MATCH_PERCENT = 0.15
@@ -101,6 +98,10 @@ if __name__ == '__main__':
 	outFilename = "aligned.jpg"
 	print("Saving aligned image : ", outFilename);
 	cv2.imwrite("out/" + outFilename, imReg)
+
+	template = "template.jpg"
+	print("default image")
+	cv2.imwrite("out/" + template, im2)
 
 
 

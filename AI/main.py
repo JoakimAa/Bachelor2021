@@ -1,147 +1,112 @@
+from __future__ import print_function
 import cv2
 import pytesseract
 import numpy as np
-from matplotlib import pyplot as plt
-from imutils.object_detection import non_max_suppression
+
+#(https://learnopencv.com/feature-based-image-alignment-using-opencv-c-python/)
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
-# image = cv2.imread('nor_kvitt2.jpg')
-#args = {"image":"nor_kvitt2,jpg", "east":"../input/text-detection/east_text_detection.pb", "min_confidence":0.5, "width":320, "height":320}
-#image = cv2.imread(args['image'])
 
-image = cv2.imread('vy.jpg')
-east = "frozen_east_text_detection.pb"
-newW = 640
-newH = 480
-min_confidence = 0.5
+img1= cv2.imread('2018-01-01 Taxi__rot-10.JPG')
+img2 = cv2.imread('2017-12-28 Taxi__blur1.2.JPG')
+#img1= cv2.imread('2017-12-28 Taxi__blur1.2.JPG')
+#img2 = cv2.imread('2018-01-01 Taxi__rot-10.JPG')
 
 
-# Saving a original image and shape
-orig = image.copy()
-(origH, origW) = image.shape[:2]
+im1 = cv2.resize(img1, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
+im2 = cv2.resize(img2, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
 
-# set the new height and width to default 320 by using args #dictionary.
-#(newW, newH) = (args["width"], args["height"])
+MAX_FEATURES = 500
+GOOD_MATCH_PERCENT = 0.15
 
-# Calculate the ratio between original and new image for both height and weight.
-# This ratio will be used to translate bounding box location on the original image.
-rW = origW / float(newW)
-rH = origH / float(newH)
+def alignImages(img1, img2):
 
-# resize the original image to new dimensions
-image = cv2.resize(image, (newW, newH))
-(H, W) = image.shape[:2]
+	# Convert images to grayscale
+	im1Gray = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
+	im2Gray = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
+	# Detect ORB features and compute descriptors.
+	orb = cv2.ORB_create(MAX_FEATURES)
+	keypoints1, descriptors1 = orb.detectAndCompute(im1Gray, None)
+	keypoints2, descriptors2 = orb.detectAndCompute(im2Gray, None)
 
-# construct a blob from the image to forward pass it to EAST model
-blob = cv2.dnn.blobFromImage(image, 1.0, (W, H),
-                             (123.68, 116.78, 103.94), swapRB=True, crop=False)
+	# Match features.
+	matcher = cv2.DescriptorMatcher_create(cv2.DESCRIPTOR_MATCHER_BRUTEFORCE_HAMMING)
+	matches = matcher.match(descriptors1, descriptors2, None)
 
+	# Sort matches by score
 
-# load the pre-trained EAST model for text detection
-net = cv2.dnn.readNet(east)
+	matches.sort(key=lambda x: x.distance, reverse=False)
 
-# We would like to get two outputs from the EAST model.
-#1. Probabilty scores for the region whether that contains text or not.
-#2. Geometry of the text -- Coordinates of the bounding box detecting a text
-# The following two layer need to pulled from EAST model for achieving this.
-layerNames = [
-	"feature_fusion/Conv_7/Sigmoid",
-	"feature_fusion/concat_3"]
+	# Remove not so good matches
 
-#Forward pass the blob from the image to get the desired output layers
-net.setInput(blob)
-(scores, geometry) = net.forward(layerNames)
+	numGoodMatches = int(len(matches) * GOOD_MATCH_PERCENT)
+
+	matches = matches[:numGoodMatches]
 
 
 
+	# Draw top matches
 
-## Returns a bounding box and probability score if it is more than minimum confidence
-def predictions(prob_score, geo):
-    (numR, numC) = prob_score.shape[2:4]
-    boxes = []
-    confidence_val = []
+	imMatches = cv2.drawMatches(im1, keypoints1, im2, keypoints2, matches, None)
 
-    # loop over rows
-    for y in range(0, numR):
-        scoresData = prob_score[0, 0, y]
-        x0 = geo[0, 0, y]
-        x1 = geo[0, 1, y]
-        x2 = geo[0, 2, y]
-        x3 = geo[0, 3, y]
-        anglesData = geo[0, 4, y]
-
-        # loop over the number of columns
-        for i in range(0, numC):
-            if scoresData[i] < min_confidence:
-                continue
-
-            (offX, offY) = (i * 4.0, y * 4.0)
-
-            # extracting the rotation angle for the prediction and computing the sine and cosine
-            angle = anglesData[i]
-            cos = np.cos(angle)
-            sin = np.sin(angle)
-
-            # using the geo volume to get the dimensions of the bounding box
-            h = x0[i] + x2[i]
-            w = x1[i] + x3[i]
-
-            # compute start and end for the text pred bbox
-            endX = int(offX + (cos * x1[i]) + (sin * x2[i]))
-            endY = int(offY - (sin * x1[i]) + (cos * x2[i]))
-            startX = int(endX - w)
-            startY = int(endY - h)
-
-            boxes.append((startX, startY, endX, endY))
-            confidence_val.append(scoresData[i])
-
-    # return bounding boxes and associated confidence_val
-    return (boxes, confidence_val)
-
-# Find predictions and  apply non-maxima suppression
-(boxes, confidence_val) = predictions(scores, geometry)
-boxes = non_max_suppression(np.array(boxes), probs=confidence_val)
+	cv2.imwrite("matches.jpg", imMatches)
 
 
-##Text Detection and Recognition
 
-# initialize the list of results
-results = []
+	# Extract location of good matches
 
-# loop over the bounding boxes to find the coordinate of bounding boxes
-for (startX, startY, endX, endY) in boxes:
-    # scale the coordinates based on the respective ratios in order to reflect bounding box on the original image
-    startX = int(startX * rW)
-    startY = int(startY * rH)
-    endX = int(endX * rW)
-    endY = int(endY * rH)
+	points1 = np.zeros((len(matches), 2), dtype=np.float32)
 
-    # extract the region of interest
-    r = orig[startY:endY, startX:endX]
+	points2 = np.zeros((len(matches), 2), dtype=np.float32)
 
-    # configuration setting to convert image to string.
-    configuration = "-l nor  --psm 4"
-    ##This will recognize the text from the image of bounding box
-    text = pytesseract.image_to_string(r, config=configuration)
 
-    # append bbox coordinate and associated text to the list of results
-    results.append(((startX, startY, endX, endY), text))
 
-# Display the image with bounding box and recognized text
-orig_image = orig.copy()
+	for i, match in enumerate(matches):
+		points1[i, :] = keypoints1[match.queryIdx].pt
+		points2[i, :] = keypoints2[match.trainIdx].pt
 
-# Moving over the results and display on the image
-for ((start_X, start_Y, end_X, end_Y), text) in results:
-    # display the text detected by Tesseract
-    print("{}\n".format(text))
 
-    # Displaying text
-    text = "".join([x if ord(x) < 128 else "" for x in text]).strip()
-    cv2.rectangle(orig_image, (start_X, start_Y), (end_X, end_Y),
-                  (0, 0, 255), 2)
-    cv2.putText(orig_image, text, (start_X, start_Y - 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
-plt.imshow(orig_image)
-plt.title('Output')
-plt.show()
+	# Find homography
+	h, mask = cv2.findHomography(points1, points2, cv2.RANSAC)
+
+	# Use homography
+	height, width, channels = im2.shape
+	im1Reg = cv2.warpPerspective(im1, h, (width, height))
+
+
+
+	return im1Reg, h
+
+
+
+if __name__ == '__main__':
+
+	# Read reference image
+	refFilename = "2017-12-28 Taxi__blur1.2.JPG"
+	print("Reading reference image : ", refFilename)
+	imReference = cv2.imread(refFilename, cv2.IMREAD_COLOR)
+
+	# Read image to be aligned
+	imFilename = "2018-01-01 Taxi__rot-10.JPG"
+	print("Reading image to align : ", imFilename);
+	im = cv2.imread(imFilename, cv2.IMREAD_COLOR)
+
+	print("Aligning images ...")
+	# Registered image will be resotred in imReg.
+	# The estimated homography will be stored in h.
+	imReg, h = alignImages(im, imReference)
+
+	# Write aligned image to disk.
+	outFilename = "aligned.jpg"
+	print("Saving aligned image : ", outFilename);
+	cv2.imwrite(outFilename, imReg)
+
+
+
+	# Print estimated homography
+	print("Estimated homography : \n", h)
+
+	#cv2.imshow("template",im1)
+	#cv2.imshow("skewed",imReg)
+	#cv2.waitKey(0)

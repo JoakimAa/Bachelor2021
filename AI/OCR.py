@@ -1,10 +1,14 @@
 import cv2
 import pytesseract
+from thinc.backends.linalg import Mat
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
-img = cv2.imread('nor_kvitt.jpg')
+img = cv2.imread('2018-01-01 Taxi__rot-10.JPG')
+
+img_S = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
+
 #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-grayImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+grayImg = cv2.cvtColor(img_S, cv2.COLOR_BGR2GRAY)
 adaptive_thresholdImg = cv2.adaptiveThreshold(grayImg, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 41, 17)
 
 
@@ -26,13 +30,13 @@ for x, b in enumerate(boxes.splitlines()):
         print(b)
         if len(b) == 12:
             x, y, w, h = int(b[6]), int(b[7]), int(b[8]), int(b[9])
-            cv2.rectangle(img, (x, y), (w + x, h + y), (0, 0, 255), 1)
-            cv2.putText(img, b[11], (x, y), cv2.FONT_HERSHEY_COMPLEX, 1, (25, 25, 255), 1)
+            cv2.rectangle(img_S, (x, y), (w + x, h + y), (0, 0, 255), 1)
+            cv2.putText(img_S, b[11], (x, y), cv2.FONT_HERSHEY_COMPLEX, 1, (25, 25, 255), 1)
             detectedWords.append(b[11])
 
 print(detectedWords)
 cv2.imshow('adaptive_img', adaptive_thresholdImg)
-cv2.imshow('result', img)
+cv2.imshow('result', img_S)
 cv2.waitKey(0)
 
 

@@ -3,7 +3,7 @@ import pytesseract
 from thinc.backends.linalg import Mat
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
-img = cv2.imread('2018-01-01 Taxi__rot-10.JPG')
+img = cv2.imread('images/2018-01-01 Taxi__rot-10.JPG')
 
 img_S = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
 

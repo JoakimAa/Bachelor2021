@@ -7,8 +7,8 @@ import numpy as np
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
-img1= cv2.imread('2018-01-01 Taxi__rot-10.JPG')
-img2 = cv2.imread('2017-12-28 Taxi__blur1.2.JPG')
+img1= cv2.imread('images/2018-01-01 Taxi__rot-10.JPG')
+img2 = cv2.imread('images/2017-12-28 Taxi__blur1.2.JPG')
 #img1= cv2.imread('2017-12-28 Taxi__blur1.2.JPG')
 #img2 = cv2.imread('2018-01-01 Taxi__rot-10.JPG')
 
@@ -49,7 +49,7 @@ def alignImages(img1, img2):
 
 	imMatches = cv2.drawMatches(im1, keypoints1, im2, keypoints2, matches, None)
 
-	cv2.imwrite("matches.jpg", imMatches)
+	cv2.imwrite("out/matches.jpg", imMatches)
 
 
 
@@ -100,7 +100,7 @@ if __name__ == '__main__':
 	# Write aligned image to disk.
 	outFilename = "aligned.jpg"
 	print("Saving aligned image : ", outFilename);
-	cv2.imwrite(outFilename, imReg)
+	cv2.imwrite("out/" + outFilename, imReg)
 
 
 

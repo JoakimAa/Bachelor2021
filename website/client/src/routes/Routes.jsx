@@ -12,6 +12,9 @@ const Routes = () => (
     <MainLayout>
       <Suspense fallback={<div>Loading ...</div>}>
         <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
           <Route exact path="/home">
             <HomePage />
           </Route>

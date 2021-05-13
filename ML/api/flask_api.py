@@ -5,9 +5,11 @@ import base64
 import numpy as np
 import io
 from Cnn import cnn_predict
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
-version = "v1"
 
 
 def base64_converter(base64_string):
@@ -16,31 +18,26 @@ def base64_converter(base64_string):
     return cv2.cvtColor(np.array(image), cv2.COLOR_BGR2GRAY)
 
 
-def base64_decode(request):
-    request_data = request.data
-    image_base64_decode = base64.urlsafe_b64decode(request_data)
-    return base64_converter(image_base64_decode)
-
-
-@app.route(f"/{version}/api/")
-def hello():
+@app.route(f"/{os.getenv('API_VERSION')}")
+def home():
     return "Home"
 
 
-@app.route(f"/{version}/api/upload", methods=["POST"])
-def api_1():
+@app.route(f"/{os.getenv('API_VERSION')}/upload", methods=["POST"])
+def post_image():
     image = base64_converter(request.data)
     print(image)
+    prediction = cnn_predict.classify_image(image)
     print(cnn_predict.classify_image(image))
 
     return {
         "amount": 97,
         "type": "Kvittering",
-        "company": "Entur",
+        "company": prediction,
         "date": "23.09.2017 10:38"
     }
 
 
 if __name__ == "__main__":
     #     run flask application in debug mode
-    app.run(debug=True, use_reloader=False, port=5002)
+    app.run(debug=True, use_reloader=False, port=os.getenv('BASE_PORT'))

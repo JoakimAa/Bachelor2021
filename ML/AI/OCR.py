@@ -7,7 +7,7 @@ template = cv2.imread("out/template.jpg")
 img_S = cv2.resize(img, None, fx=1, fy=0.9, interpolation=cv2.INTER_AREA)
 img_T = cv2.resize(template, None, fx=1, fy=0.9, interpolation=cv2.INTER_AREA)
 
-#img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 grayImg = cv2.cvtColor(img_S, cv2.COLOR_BGR2GRAY)
 adaptive_thresholdImg = cv2.adaptiveThreshold(grayImg, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 41, 17)
 

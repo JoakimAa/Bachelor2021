@@ -4,8 +4,8 @@ import cv2
 import base64
 import numpy as np
 import io
-from ML.Cnn import cnn_predict
-from ML.NER import ner_spacy_temp
+from AI.main import return_data
+from Cnn import cnn_predict
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -25,18 +25,16 @@ def home():
 
 
 @app.route(f"/{os.getenv('API_VERSION')}/upload", methods=["POST"])
-def post_image():
+async def post_image():
     image = base64_converter(request.data)
     print(image)
-    prediction = cnn_predict.classify_image(image)
+    prediction = await cnn_predict.classify_image(image)
+    ocr = return_data(image, prediction)
     print(cnn_predict.classify_image(image))
+    img1 = cv2.imread('../AI/temppicture/2018-01-01 Taxi__rot-10.JPG')
+    img2 = prediction
 
-    #GI BILDE OG PREDICTION TIL OCR HER
-
-    #OCR OUTPUT INN TIL SPACY
-    #price, date = ner_spacy_temp(ocr_text)
-
-
+    return_data(img1, img2)
 
     return {
         "amount": 97,

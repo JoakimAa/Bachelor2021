@@ -95,6 +95,9 @@ def return_data(img1, prediction):
     # Print estimated homography
     print("Estimated homography : \n", h)
 
+    return ""
+
+
 
 if __name__ == '__main__':
     # Read reference image

@@ -8,6 +8,9 @@ from AI.main import return_data
 from Cnn import cnn_predict
 import os
 from dotenv import load_dotenv
+from NER import ner_spacy_temp
+from NER.ner_spacy_temp import run_spacy
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -31,17 +34,16 @@ def post_image():
     prediction = cnn_predict.classify_image(image)
     ocr = return_data(image, prediction)
     print(prediction)
-    print(cnn_predict.classify_image(image))
-    # img1 = cv2.imread('../AI/temppicture/2018-01-01 Taxi__rot-10.JPG')
     img2 = prediction
 
-    res = return_data(image, img2)
+    ocr_data = return_data(image, img2)
+    price, date = run_spacy(ocr_data)
 
     return {
-        "amount": 97,
+        "amount": price,
         "type": "Kvittering",
         "company": prediction,
-        "date": "23.09.2017 10:38"
+        "date": date
     }
 
 

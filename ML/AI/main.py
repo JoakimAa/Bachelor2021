@@ -7,6 +7,7 @@ import numpy as np
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
+
 img1 = cv2.imread('images/2018-01-01 Taxi__rot-10.JPG')
 img2 = cv2.imread('images/2017-12-28 Taxi__blur1.2.JPG')
 

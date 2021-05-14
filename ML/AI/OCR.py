@@ -1,7 +1,7 @@
 import cv2
 import pytesseract
 
-pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+#pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 img = cv2.imread('out/aligned.jpg')
 template = cv2.imread("out/template.jpg")
 img_S = cv2.resize(img, None, fx=1, fy=0.9, interpolation=cv2.INTER_AREA)

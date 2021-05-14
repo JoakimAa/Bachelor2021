@@ -4,7 +4,8 @@ import cv2
 import base64
 import numpy as np
 import io
-from Cnn import cnn_predict
+from ML.Cnn import cnn_predict
+from ML.NER import ner_spacy_temp
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -29,6 +30,13 @@ def post_image():
     print(image)
     prediction = cnn_predict.classify_image(image)
     print(cnn_predict.classify_image(image))
+
+    #GI BILDE OG PREDICTION TIL OCR HER
+
+    #OCR OUTPUT INN TIL SPACY
+    #price, date = ner_spacy_temp(ocr_text)
+
+
 
     return {
         "amount": 97,

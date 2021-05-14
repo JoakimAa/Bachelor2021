@@ -6,7 +6,7 @@ text_file = open("TextInput/rawText_neptun.txt", "r", encoding="utf-8")
 
 nlp = spacy.load("nb_core_news_sm")
 
-text_file = open("TextInput/rawText.txt", "r", encoding="UTF-8", )
+text_file = open("TextInput/rawText_tronder.txt", "r", encoding="UTF-8", )
 
 text = text_file.read()
 text_file.close()
@@ -30,7 +30,7 @@ for ent in doc.ents:
     if (ent.label_ == "MISC"):
         print(ent.text)
 
-displacy.serve(doc, style='dep')
+#displacy.serve(doc, style='dep')
 for doc in doc.ents:
     for ent in doc:
         # print(token.ent_type_)

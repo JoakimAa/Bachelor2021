@@ -16,14 +16,15 @@
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Example output of pytesseract with a test image}}{15}{}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Examples of labeled images}}{17}{}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Original image on the left, along with generated images from blur and rotation transformations}}{18}{}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}}{19}{}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces CNN model}}{20}{}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces CNN model compile}}{20}{}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Finding matches between a given image to a template}}{18}{}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Original image on the left, along with generated images from blur and rotation transformations}}{19}{}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}}{19}{}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces CNN model}}{20}{}%
 \contentsline {figure}{\numberline {4.6}{\ignorespaces CNN model compile}}{20}{}%
 \contentsline {figure}{\numberline {4.7}{\ignorespaces CNN model compile}}{20}{}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces CNN model compile}}{20}{}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces CNN model compile}}{21}{}%
 \contentsline {figure}{\numberline {4.9}{\ignorespaces CNN model compile}}{21}{}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces CNN model compile}}{21}{}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

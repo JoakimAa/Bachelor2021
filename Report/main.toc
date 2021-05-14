@@ -38,10 +38,12 @@
 \contentsline {section}{\numberline {4.2}Web solution}{16}{}%
 \contentsline {section}{\numberline {4.3}Dataset}{17}{}%
 \contentsline {section}{\numberline {4.4}Pre-processing}{17}{}%
-\contentsline {subsection}{\numberline {4.4.1}Data augmentation}{17}{}%
-\contentsline {subsection}{\numberline {4.4.2}Image preparation}{18}{}%
+\contentsline {subsection}{\numberline {4.4.1}Aligning}{17}{}%
+\contentsline {subsubsection}{aligning}{17}{}%
+\contentsline {subsection}{\numberline {4.4.2}Data augmentation}{18}{}%
+\contentsline {subsection}{\numberline {4.4.3}Image preparation}{18}{}%
 \contentsline {section}{\numberline {4.5}Convolutional Neural Network}{18}{}%
-\contentsline {section}{\numberline {4.6}OCR}{19}{}%
+\contentsline {section}{\numberline {4.6}OCR}{20}{}%
 \contentsline {chapter}{\numberline {5}Evaluation}{22}{}%
 \contentsline {chapter}{\numberline {6}Discussion}{23}{}%
 \contentsline {chapter}{\numberline {7}Conclusion}{24}{}%

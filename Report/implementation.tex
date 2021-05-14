@@ -63,9 +63,29 @@ The original dataset of 1194 images has been filtered down to 91 images, split i
 
 \section{Pre-processing}\label{pre-processing}
 
-\subsection{Skewing}\label{skewing}
+\subsection{Aligning}\label{aligning}
 
+The first thing we make sure to do in our OCR is aligning the images.
+This is needed because an OCR can't reed skewed images.
+This means that we need to horizontal align the text as well as possible.
 
+\subsubsection[aligning]{Matching}
+
+Matching is a good way of having a dynamic aligning algorithm.
+We have template images for all the different receipts types (in this case 3 images).
+What the matching algorithm does is to look through the receipt you feed it and see if it has any "mathces" with the template one.
+It then calculates how much it needs to skew the image in a given direction, to make it aligned with the template version.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/match_image.png}}
+    \caption{Finding matches between a given image to a template}
+    \label{fig:figure4.2}
+\end{figure}
+
+In the image above you can see the algorithm finding matches between a Trøndertaxi receipt from two different years.
+Yes, these recipes is almost identical.
+Making this functionality dynamic for almost all receipts should be possible, (no evidence for this) by having a pool of template receipts.
+Then you can have a CNN check which receipts are the most similar and use the highest scoring receipt as the template image for any given receipt.
 
 \subsection{Data augmentation}\label{data augmentation}
 Because of the low amount of images in the filtered dataset, data augmentation has to be done in order to give us enough images to be able to effectively train the CNN.

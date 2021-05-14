@@ -165,5 +165,63 @@ Adjusting the weights to make the neuron fire when it is supposed to it what mak
     \label{fig:figure2.4}
 \end{figure}
 
+\section{Spacy}\label{sec:spacy}
+
+Spacy is a program that gives context and relations to sentences and words.
+With a foundation of machine learning.
+This becomes a great tool for data extraction.
+Spacy includes some great features that can make the production quick and easy.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.5\textwidth]{Images/spacy-features}}
+    \caption{Overview of spacy features. https://spacy.io/usage/spacy-101}
+    \label{fig:figure2.5}
+\end{figure}
+
+
+
+
+\subsection{Arcitecture}\label{sec:architecture}
+
+
+Spacy is structured around three main parts.
+The language class, the vocab and Doc objects.
+The language class is mainly focused on turning the data into doc objects.
+Docs contains a sequence of tokens and their annotations and the vocab contains word vectors and lexical attributes.
+With these spacy can centralize the strings and save memory(FOTNOTE: https://spacy.io/usage/spacy-101).
+The product of these three central parts of the architecture and other sub classes will provide the architecture that is shown under. (KAN MAN POENGTERE TIL BILDER PÅ DENNE MÅTEN?)
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.5\textwidth]{Images/Spacy-architecture}}
+    \caption{Overview of spacy architecture. https://spacy.io/usage/spacy-101}
+    \label{fig:figure2.6}
+\end{figure}
+
+Spacy got a lot to offer, but we will focus on Named Entities.
+Which is an object that is assigned a name.
+Spacy does this by asking the model for a prediction.
+However, the model is reliant on the data sit was trained on, this means that for a costume application.
+Dedicated training could be necessary.
+If we take a look at an example from their web page.
+They got a simple string: Apple is looking at buying U.K. startup for \$1 billion
+This will result with these labels
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.5\textwidth]{Images/Spacy-ex}}
+    \caption{Overview of spacy architecture. https://spacy.io/usage/spacy-101}
+    \label{fig:figure2.6}
+\end{figure}
+
+As you can see, you will get labels that describes the words.
+This combined with spacy's functionality to add relation to the words makes it easy to extract words or values you want.
+When you got the label of the words, you can ask for a relation overview.
+This will give you all the relations for your text.
+Then you can write a simple script that loops through all the words and select the once labeled as ORG. Uou can then extract all the substrings that is labeled as money.
+Then you would get out all the sentences that has and organisation talking about money in some form. 
+
+
+
+
+
 
 

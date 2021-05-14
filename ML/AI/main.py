@@ -11,12 +11,14 @@ MAX_FEATURES = 500
 GOOD_MATCH_PERCENT = 0.15
 
 
-def align_images(img1, img2):
-    # img1 = cv2.imread('templates/2018-01-01 Taxi__rot-10.JPG')
-    # img2 = cv2.imread('templates/trondertaxi.JPG')
+def align_images(img1, img2, prediction):
 
-    im1 = cv2.resize(img1, None, fx=0.8, fy=0.5, interpolation=cv2.INTER_AREA)
-    im2 = cv2.resize(img2, None, fx=0.8, fy=0.5, interpolation=cv2.INTER_AREA)
+    if(prediction == "trondertaxi"):
+        im1 = cv2.resize(img1, None, fx=0.8, fy=0.5, interpolation=cv2.INTER_AREA)
+        im2 = cv2.resize(img2, None, fx=0.8, fy=0.5, interpolation=cv2.INTER_AREA)
+    else:
+        im1 = cv2.resize(img1, None, fx=1, fy=1, interpolation=cv2.INTER_AREA)
+        im2 = cv2.resize(img2, None, fx=1, fy=1, interpolation=cv2.INTER_AREA)
 
     # Convert templates to grayscale
     im1Gray = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)

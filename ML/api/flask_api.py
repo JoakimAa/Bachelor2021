@@ -25,16 +25,17 @@ def home():
 
 
 @app.route(f"/{os.getenv('API_VERSION')}/upload", methods=["POST"])
-async def post_image():
+def post_image():
     image = base64_converter(request.data)
     print(image)
-    prediction = await cnn_predict.classify_image(image)
+    prediction = cnn_predict.classify_image(image)
     ocr = return_data(image, prediction)
+    print(prediction)
     print(cnn_predict.classify_image(image))
-    img1 = cv2.imread('../AI/temppicture/2018-01-01 Taxi__rot-10.JPG')
+    # img1 = cv2.imread('../AI/temppicture/2018-01-01 Taxi__rot-10.JPG')
     img2 = prediction
 
-    return_data(img1, img2)
+    res = return_data(image, img2)
 
     return {
         "amount": 97,

@@ -13,7 +13,7 @@ GOOD_MATCH_PERCENT = 0.15
 
 def align_images(img1, img2):
     # img1 = cv2.imread('templates/2018-01-01 Taxi__rot-10.JPG')
-    # img2 = cv2.imread('templates/trøndertaxi.JPG')
+    # img2 = cv2.imread('templates/trondertaxi.JPG')
 
     im1 = cv2.resize(img1, None, fx=0.8, fy=0.5, interpolation=cv2.INTER_AREA)
     im2 = cv2.resize(img2, None, fx=0.8, fy=0.5, interpolation=cv2.INTER_AREA)
@@ -68,7 +68,8 @@ def align_images(img1, img2):
 
 def return_data(img1, prediction):
     # Read reference image
-    template_ref_Filename = f"templates/{prediction}.png"
+    template_ref_Filename = f"../AI/templates/{prediction}.jpg"
+    print(f"../AI/templates/{prediction}.jpg")
     print("Reading reference image : ", template_ref_Filename)
     imReference = cv2.imread(template_ref_Filename, cv2.IMREAD_COLOR)
 
@@ -97,7 +98,7 @@ def return_data(img1, prediction):
 
 if __name__ == '__main__':
     # Read reference image
-    refFilename = "trøndertaxi.JPG"
+    refFilename = "trondertaxi.JPG"
     print("Reading reference image : ", refFilename)
     imReference = cv2.imread(refFilename, cv2.IMREAD_COLOR)
 

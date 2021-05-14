@@ -83,7 +83,7 @@ def return_data(img1, prediction):
     print("Aligning templates ...")
     # Registered image will be resotred in imReg.
     # The estimated homography will be stored in h.
-    imReg, h, im2 = align_images(im, imReference)
+    imReg, h, im2 = align_images(im, imReference, prediction)
 
     # Write aligned image to disk.
     outFilename = "aligned.jpg"
@@ -98,36 +98,6 @@ def return_data(img1, prediction):
     print("Estimated homography : \n", h)
 
     return ""
-
-
-
-if __name__ == '__main__':
-    # Read reference image
-    refFilename = "trondertaxi.JPG"
-    print("Reading reference image : ", refFilename)
-    imReference = cv2.imread(refFilename, cv2.IMREAD_COLOR)
-
-    # Read image to be aligned
-    imFilename = "2018-01-01 Taxi__rot-10.JPG"
-    print("Reading image to align : ", imFilename);
-    im = cv2.imread(imFilename, cv2.IMREAD_COLOR)
-
-    print("Aligning templates ...")
-    # Registered image will be resotred in imReg.
-    # The estimated homography will be stored in h.
-    imReg, h, im2 = align_images(im, imReference)
-
-    # Write aligned image to disk.
-    outFilename = "aligned.jpg"
-    print("Saving aligned image : ", outFilename);
-    cv2.imwrite("out/" + outFilename, imReg)
-
-    template = "template.jpg"
-    print("default image")
-    cv2.imwrite("out/" + template, im2)
-
-    # Print estimated homography
-    print("Estimated homography : \n", h)
 
 # cv2.imshow("template",im1)
 # cv2.imshow("skewed",imReg)

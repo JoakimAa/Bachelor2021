@@ -44,5 +44,7 @@ cv2.imshow('result', img_S)
 cv2.imshow("template", img_T)
 cv2.waitKey(0)
 
+output_string = ", ".join(detectedWords)
+
 
 

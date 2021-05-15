@@ -39,6 +39,9 @@ def post_image():
     ocr_data = return_data(image, img2)
     price, date = run_spacy(ocr_data)
 
+    #OCR OUTPUT HER
+    price, date = ner_spacy_temp.run_spacy(ocr_output)
+
     return {
         "amount": price,
         "type": "Kvittering",

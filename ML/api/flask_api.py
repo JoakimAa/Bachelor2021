@@ -10,6 +10,7 @@ import os
 from dotenv import load_dotenv
 from NER import ner_spacy_temp
 from NER.ner_spacy_temp import run_spacy
+from AI import OCR
 
 load_dotenv()
 
@@ -30,17 +31,14 @@ def home():
 @app.route(f"/{os.getenv('API_VERSION')}/upload", methods=["POST"])
 def post_image():
     image = base64_converter(request.data)
-    print(image)
+
     prediction = cnn_predict.classify_image(image)
-    ocr = return_data(image, prediction)
-    print(prediction)
-    img2 = prediction
 
-    ocr_data = return_data(image, img2)
-    price, date = run_spacy(ocr_data)
+    aligned_image = return_data(image, prediction)
 
-    #OCR OUTPUT HER
-    price, date = ner_spacy_temp.run_spacy(ocr_output)
+    image_text = OCR.run_ocr(aligned_image)
+
+    price, date = ner_spacy_temp.run_spacy(image_text)
 
     return {
         "amount": price,

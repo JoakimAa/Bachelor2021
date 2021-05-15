@@ -97,7 +97,7 @@ def return_data(img1, prediction):
     # Print estimated homography
     print("Estimated homography : \n", h)
 
-    return ""
+    return imReg
 
 # cv2.imshow("template",im1)
 # cv2.imshow("skewed",imReg)

@@ -1,5 +1,5 @@
 import spacy
-
+import re
 
 def run_spacy(img_text):
     nlp = spacy.load("nb_core_news_sm")
@@ -26,7 +26,7 @@ def get_date(doc):
     date_found = False
     date = ""
     for ent in doc.ents:
-        if ent.label == "DATE":
+        if re.search("([0-9]{2}([.]|/|-)[0-9]{2}([.]|/|-)[0-9]{4})", ent.text) and date_found is False:
             date = ent.text
             date_found = True
     if date_found:

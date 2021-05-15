@@ -36,9 +36,9 @@ def post_image():
 
     aligned_image = return_data(image, prediction)
 
-    image_text = OCR.run_ocr(aligned_image)
+    date, image_text = OCR.run_ocr(aligned_image)
 
-    price, date = ner_spacy_temp.run_spacy(image_text)
+    price = ner_spacy_temp.run_spacy(image_text)
 
     return {
         "amount": price,

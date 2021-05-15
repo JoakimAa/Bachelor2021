@@ -38,6 +38,7 @@ def run_ocr(img):
                 cv2.putText(img_S, b[11], (x, y), cv2.FONT_HERSHEY_COMPLEX, 1, (25, 25, 255), 1)
                 detectedWords.append(b[11])
 
+    date = ""
     for word in detectedWords:
         if (re.search("([0-9]{2}([.]|/|-)[0-9]{2}([.]|/|-)[0-9]{4})", word)):
             date = word
@@ -52,7 +53,4 @@ def run_ocr(img):
     # cv2.imshow("template", img_T)
     # cv2.waitKey(0)
 
-    return ", ".join(detectedWords)
-
-
-run_ocr()
+    return date, ", ".join(detectedWords)

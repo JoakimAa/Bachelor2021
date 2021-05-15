@@ -1,9 +1,11 @@
 import cv2
 import pytesseract
+import re
 
 #pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 img = cv2.imread('out/aligned.jpg')
 template = cv2.imread("out/template.jpg")
+regEx = "^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
 img_S = cv2.resize(img, None, fx=1, fy=0.9, interpolation=cv2.INTER_AREA)
 img_T = cv2.resize(template, None, fx=1, fy=0.9, interpolation=cv2.INTER_AREA)
 
@@ -33,6 +35,8 @@ for x, b in enumerate(boxes.splitlines()):
             cv2.rectangle(img_S, (x, y), (w + x, h + y), (0, 0, 255), 1)
             cv2.putText(img_S, b[11], (x, y), cv2.FONT_HERSHEY_COMPLEX, 1, (25, 25, 255), 1)
             detectedWords.append(b[11])
+            date = re.search(regEx,b[11])
+            print(date.groupe())
 
 print(detectedWords)
 cv2.imshow('adaptive_img', adaptive_thresholdImg)

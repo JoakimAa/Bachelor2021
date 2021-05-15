@@ -10,7 +10,6 @@ import os
 from dotenv import load_dotenv
 from NER import ner_spacy_temp
 from NER.ner_spacy_temp import run_spacy
-
 load_dotenv()
 
 app = Flask(__name__)
@@ -32,11 +31,8 @@ def post_image():
     image = base64_converter(request.data)
     print(image)
     prediction = cnn_predict.classify_image(image)
-    ocr = return_data(image, prediction)
     print(prediction)
-    img2 = prediction
-
-    ocr_data = return_data(image, img2)
+    ocr_data = return_data(image, prediction)
     price, date = run_spacy(ocr_data)
 
     return {

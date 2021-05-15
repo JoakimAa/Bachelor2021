@@ -46,7 +46,7 @@ for x, b in enumerate(boxes.splitlines()):
 
 
 for word in detectedWords:
-    if(re.search("([0-9]{2}([.]|/|-)[0-9]{2}([.]|/|-)[0-9]{4})", word)):
+    if re.search("([0-9]{2}([.]|/|-)[0-9]{2}([.]|/|-)[0-9]{4})", word):
         date = word
         print("Dato: ", date)
         break

@@ -13,7 +13,7 @@ GOOD_MATCH_PERCENT = 0.15
 
 def align_images(img1, img2, prediction):
 
-    if(prediction == "trondertaxi"):
+    if prediction == "trondertaxi":
         im1 = cv2.resize(img1, None, fx=0.8, fy=0.5, interpolation=cv2.INTER_AREA)
         im2 = cv2.resize(img2, None, fx=0.8, fy=0.5, interpolation=cv2.INTER_AREA)
     else:

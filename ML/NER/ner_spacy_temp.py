@@ -5,9 +5,9 @@ def run_spacy(img_text):
     nlp = spacy.load("nb_core_news_md")
     doc = nlp(img_text)
     price = get_price(doc)
-    date = get_date(doc)
+    #date = get_date(doc)
 
-    return price, date
+    return price
 
 
 def get_price(doc):

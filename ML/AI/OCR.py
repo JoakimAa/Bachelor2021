@@ -7,14 +7,12 @@ import numpy as np
 def run_ocr(img):
     pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
-    # img = cv2.imread('templates/trondertaxi.jpg')
+    #img = cv2.imread('templates/trondertaxi.jpg')
     # template = cv2.imread("out/template.jpg")
-    # img_S = cv2.resize(img, None, fx=1, fy=0.8, interpolation=cv2.INTER_AREA)
+    img_S = cv2.resize(img, None, fx=1, fy=0.8, interpolation=cv2.INTER_AREA)
     # img_T = cv2.resize(template, None, fx=1, fy=0.9, interpolation=cv2.INTER_AREA)
 
-    # grayImg = cv2.cvtColor(img_S, cv2.COLOR_BGR2GRAY)
-    grayImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
+    grayImg = cv2.cvtColor(img_S, cv2.COLOR_BGR2GRAY)
     adaptive_thresholdImg = cv2.adaptiveThreshold(grayImg, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 41,
                                                   17)
 
@@ -36,15 +34,13 @@ def run_ocr(img):
             print(b)
             if len(b) == 12:
                 x, y, w, h = int(b[6]), int(b[7]), int(b[8]), int(b[9])
-                # cv2.rectangle(img_S, (x, y), (w + x, h + y), (0, 0, 255), 1)
-                # cv2.putText(img_S, b[11], (x, y), cv2.FONT_HERSHEY_COMPLEX, 1, (25, 25, 255), 1)
-
-                cv2.rectangle(img, (x, y), (w + x, h + y), (0, 0, 255), 1)
-                cv2.putText(img, b[11], (x, y), cv2.FONT_HERSHEY_COMPLEX, 1, (25, 25, 255), 1)
+                cv2.rectangle(img_S, (x, y), (w + x, h + y), (0, 0, 255), 1)
+                cv2.putText(img_S, b[11], (x, y), cv2.FONT_HERSHEY_COMPLEX, 1, (25, 25, 255), 1)
                 detectedWords.append(b[11])
 
+    date = ""
     for word in detectedWords:
-        if re.search("([0-9]{2}([.]|/|-)[0-9]{2}([.]|/|-)[0-9]{4})", word):
+        if (re.search("([0-9]{2}([.]|/|-)[0-9]{2}([.]|/|-)[0-9]{4})", word)):
             date = word
             print("Dato: ", date)
             break
@@ -56,5 +52,5 @@ def run_ocr(img):
     # cv2.imshow('result', img_S)
     # cv2.imshow("template", img_T)
     # cv2.waitKey(0)
-    joined_words = ", ".join(detectedWords)
-    return joined_words.replace(", ", "\n")
+
+    return date, ", ".join(detectedWords)

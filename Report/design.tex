@@ -10,8 +10,8 @@ The project is designed to be able to take an input image of a receipt sent over
 This metadata includes the company name that issued the receipt, the date the receipt was made, and the price of the purchase.
 In order to transfer the image to our machine learning models, a .NET API is used.
 
-The API exposes several endpoints that allows for saving an image and a receipt to a database.
-The API is also connected to the CNN and OCR module.
+The .NET API exposes several endpoints that allows for saving an image and a receipt to a database.
+The .NET API is also connected to the CNN and OCR module via the ML API\@.
 
 We have decided to split up the metadata extraction into two separate parts;
 a Convolutional Neural Network for image classification and a Recurrent Neural Network for natural language processing.
@@ -21,15 +21,19 @@ The CNN will take an image as input, and decide which company issued that receip
 The RNN will take text as input.
 In order to extract the text from the images, an open-source OCR is used.
 
-Finally, the outputs of the CNN and RNN and combined and provided back to the user.
+Finally, the outputs of the CNN and OCR are combined in Spacy and the data is provided back to the user.
 This pipeline is illustrated in figure 3.1
 
-\section{API}\label{sec:API}
+\section{.NET API}\label{sec:.NET API}
 The API is used as the connection point between the different modules, it sends and receives data through the pipeline.
-The user sends in an image via a website and the API handles the request and sends the data to the CNN and the OCR\@.
+The user sends in an image via a website and the API handles the request and sends the data to the ML API\@.
 
-When the data has been processed through the CNN and OCR/RNN, the API sends the data back to the
+When the data has been processed through the CNN and OCR/Spacy, the API sends the data back to the
 user.
+
+\section{ML API}\label{sec:ML API}
+The ML API works as an endpoint for the machine learning model, it utilizes the CNN, OCR and Spacy to get data from
+the image the user sends in, and then send the data back to the .NET API.
 
 \section{Dataset}\label{sec:dataset}
 In order to train our neural network models, Simployer provided us with a sample of images from their database.

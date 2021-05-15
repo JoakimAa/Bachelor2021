@@ -32,19 +32,25 @@ namespace Bachelor2021.Api.Controllers {
                 image.CreatedOn = DateTime.Now;
                 image.FileType = Path.GetExtension(img.FileName);
 
-                var uirWebAPI = "http://localhost:5000/v1/api/upload";
+                var uirWebAPI = "http://localhost:5002/v1/api/upload";
 
                 var uri = new Uri(uirWebAPI);
                 var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
                 httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Accept = "application/json";
                 httpWebRequest.Method = "POST";
+
                 var base64String = Convert.ToBase64String(image.ImageData);
+                Console.WriteLine(base64String);
 
                 await using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream())) {
-                    dynamic imageJson = new JObject();
-                    imageJson.content = base64String;
-                    streamWriter.Write(imageJson.ToString());
+                    httpWebRequest.ContentLength = base64String.Length;
+                    //dynamic imageJson = new JObject();
+                    //imageJson.content = base64String;
+                    streamWriter.Write(base64String);
+                    Console.WriteLine(base64String.ToString());
                 }
+
                 var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 using var streamReader = new StreamReader(httpWebResponse.GetResponseStream());
                 var webResponse = streamReader.ReadToEnd();

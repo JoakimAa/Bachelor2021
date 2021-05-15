@@ -31,13 +31,13 @@ def home():
 @app.route(f"/{os.getenv('API_VERSION')}/upload", methods=["POST"])
 def post_image():
     image = base64_converter(request.data)
-
     prediction = cnn_predict.classify_image(image)
 
     aligned_image = return_data(image, prediction)
-
+    # cv2.imshow("test", aligned_image)
+    # cv2.waitKey(0)
     image_text = OCR.run_ocr(aligned_image)
-
+    # print(image_text)
     price, date = ner_spacy_temp.run_spacy(image_text)
 
     return {

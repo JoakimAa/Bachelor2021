@@ -14,8 +14,9 @@ The API consists of 4 different modules: The API endpoints, DataAccess,\\
 DataAccess.Maintenance and Model.
 
 \textbf{API endpoints} contains the controllers which handles the routing and requests.
-There are two controllers, one for receipt and one for image.
-They both contain the methods GET, POST, PUT, and DELETE\@.
+There are three controllers, one for receipt, one for image and one for connecting to the machine learning api.
+They receipt and image contain the methods GET, POST, PUT, and DELETE\@.
+While the machine learning only contains on  for posting a picture.
 
 In ImagesController the POST method uses the ImageDTO object.
 It initializes a new Image object, and populates the corresponding data.

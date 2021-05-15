@@ -2,7 +2,7 @@ import spacy
 import re
 
 def run_spacy(img_text):
-    nlp = spacy.load("nb_core_news_sm")
+    nlp = spacy.load("nb_core_news_md")
     doc = nlp(img_text)
     price = get_price(doc)
     date = get_date(doc)

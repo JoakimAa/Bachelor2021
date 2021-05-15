@@ -14,7 +14,7 @@ The API consists of 4 different modules: The API endpoints, DataAccess,\\
 DataAccess.Maintenance and Model.
 
 \textbf{API endpoints} contains the controllers which handles the routing and requests.
-There are three controllers, one for receipt, one for image and one for connecting to the machine learning api.
+There are three controllers, one for receipt, one for image and one for connecting to the machine learning API\@.
 They receipt and image contain the methods GET, POST, PUT, and DELETE\@.
 While the machine learning only contains on  for posting a picture.
 
@@ -32,6 +32,13 @@ The \textbf{Model} module contains the different models we use.
 There is one for receipts and one for image, there is also a data transfer object for image.
 The DTO is an object that carries data between processes and makes it more efficient by doing it in only one call.
 This is done by aggregating the data instead of sending it one by one.
+
+
+\section{ML API}\label{sec:ML API}
+The ML API is created using Flask.
+This has one POST route that takes in an base64 string and converts it to an image and sends it to CNN and OCR for
+processing.
+The data is then returned to the .NET API
 
 \section{Web solution}\label{sec:Web solution}
 

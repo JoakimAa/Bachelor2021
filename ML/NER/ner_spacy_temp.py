@@ -1,12 +1,12 @@
 import spacy
 import re
 
+
 def run_spacy(img_text):
-    nlp = spacy.load("nb_core_news_md")
+    nlp = spacy.load("en_core_web_sm")
     doc = nlp(img_text)
     price = get_price(doc)
-    #date = get_date(doc)
-
+    # date = get_date(doc)
     return price
 
 
@@ -32,6 +32,3 @@ def get_date(doc):
     if date_found:
         return date
     return "Date not found"
-
-
-

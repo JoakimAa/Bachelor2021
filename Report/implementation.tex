@@ -34,7 +34,7 @@ The DTO is an object that carries data between processes and makes it more effic
 This is done by aggregating the data instead of sending it one by one.
 
 
-\section{ML API}\label{sec:ML API}
+\section{ML API}\label{sec:ML API ch4}
 The ML API is created using Flask.
 This has one POST route that takes in an base64 string and converts it to an image and sends it to CNN and OCR for
 processing.
@@ -124,7 +124,7 @@ The input layer and first hidden layer are 2D convolutional layers with 32 and 6
 The second hidden layer, and the output layer are dense layers, where the hidden layer has 64 filters and the output layer has 3 filters.
 The activation function of the first three layers is Rectified Linear Unit (ReLU), while the output layer uses the sigmoid function.
 Maxpooling2D is used to define a stride of 2.
-This means that we take the biggest number with something thats called a max operation.
+This means that we take the biggest number with something that is called a max operation.
 We combine the results to get a 2x2 max pool output, down from a 4x4 format.
 As illustrated below.
 
@@ -135,9 +135,9 @@ As illustrated below.
 
 \end{figure}
 
-We have also used batchnormalixation with the default settings in the input and hidden layers of out model.
+We have also used batch normalisation with the default settings in the input and hidden layers of out model.
 This means that the model is sharding the data in batches.
-This in turn lets us train the model with a lot less trainingsteps, and it gives us even better accuracy.
+This in turn lets us train the model with a lot less training steps, and it gives us even better accuracy.
 The last function we will talk about in the input and hidden layers are the dropout function.
 This function will force the model to drop random filters during the training.
 This will force an adaption in the model that makes it more versatile.

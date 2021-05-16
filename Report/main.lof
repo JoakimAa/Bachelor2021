@@ -4,27 +4,27 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Overview of features (list from https://cloud.google.com/vision/pricing)}}{5}{figure.2.1}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Overview of prices (list from https://cloud.google.com/vision/pricing)}}{6}{figure.2.2}%
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Illustration of a neuron. https://scx1.b-cdn.net/csz/news/800a/2018/2-whyareneuron.jpg}}{8}{figure.2.3}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Abstraction of a neuron for use in Artifical Neural Networks. https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRTFh3jYAWBE9gH0bKPJXykku4WDgqhJvQeQ&usqp=CAU}}{8}{figure.2.4}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Overview of spacy features. https://spacy.io/usage/spacy-101}}{8}{figure.2.5}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Overview of spacy architecture. https://spacy.io/usage/spacy-101}}{9}{figure.2.6}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Overview of spacy architecture. https://spacy.io/usage/spacy-101}}{9}{figure.2.7}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Abstraction of a neuron for use in Artifical Neural Networks. https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRTFh3jYAWBE9gH0bKPJXykku4WDgqhJvQeQ&usqp=CAU}}{9}{figure.2.4}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Overview of spacy features. https://spacy.io/usage/spacy-101}}{10}{figure.2.5}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Overview of spacy architecture. https://spacy.io/usage/spacy-101}}{11}{figure.2.6}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Overview of spacy architecture. https://spacy.io/usage/spacy-101}}{11}{figure.2.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Graphic illustrating the project pipeline (PLACEHOLDER)}}{10}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Examples of the images found in the dataset provided by Simployer}}{11}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Before and after image rescaling}}{11}{figure.3.3}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Graphic illustrating the Convolutional Neural Network (PLACEHOLDER)}}{11}{figure.3.4}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Example output of pytesseract with a test image}}{12}{figure.3.5}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Graphic illustrating the project pipeline (PLACEHOLDER)}}{12}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Examples of the images found in the dataset provided by Simployer}}{13}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Before and after image rescaling}}{14}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Graphic illustrating the Convolutional Neural Network (PLACEHOLDER)}}{15}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Example output of pytesseract with a test image}}{15}{figure.3.5}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Examples of labeled images}}{14}{figure.4.1}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Finding matches between a given image to a template}}{16}{figure.4.2}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Original image on the left, along with generated images from blur and rotation transformations}}{16}{figure.4.3}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}}{16}{figure.4.4}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces CNN model}}{16}{figure.4.5}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces CNN model compile}}{16}{figure.4.6}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces CNN model compile}}{17}{figure.4.7}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces CNN model compile}}{17}{figure.4.8}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces CNN model compile}}{17}{figure.4.9}%
-\contentsline {figure}{\numberline {4.10}{\ignorespaces CNN model compile}}{17}{figure.4.10}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Examples of labeled images}}{18}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Finding matches between a given image to a template}}{19}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Original image on the left, along with generated images from blur and rotation transformations}}{20}{figure.4.3}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}}{20}{figure.4.4}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces CNN model}}{21}{figure.4.5}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces CNN model compile}}{21}{figure.4.6}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces CNN model compile}}{22}{figure.4.7}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces CNN model compile}}{22}{figure.4.8}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces CNN model compile}}{22}{figure.4.9}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces CNN model compile}}{22}{figure.4.10}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

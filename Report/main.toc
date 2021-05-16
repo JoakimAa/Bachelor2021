@@ -15,36 +15,37 @@
 \contentsline {section}{\numberline {2.1}Research topic}{4}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Tools}{4}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}OCR engines}{4}{subsection.2.2.1}%
-\contentsline {subsubsection}{Google Cloud Vision API}{5}{section*.3}%
+\contentsline {subsubsection}{Google Cloud Vision API}{4}{section*.3}%
 \contentsline {subsubsection}{Amazon Textract}{6}{section*.4}%
-\contentsline {subsubsection}{Tesseract}{6}{section*.5}%
+\contentsline {subsubsection}{Tesseract}{7}{section*.5}%
 \contentsline {section}{\numberline {2.3}Preprocessing}{7}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Scaling the image}{7}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Skew correction}{7}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Remove background noise}{7}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Binarization}{7}{subsection.2.3.4}%
-\contentsline {section}{\numberline {2.4}Neural Networks}{7}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Spacy}{8}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Arcitecture}{8}{subsection.2.5.1}%
-\contentsline {chapter}{\numberline {3}Design}{10}{chapter.3}%
-\contentsline {section}{\numberline {3.1}API}{10}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Dataset}{10}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Pre-processing}{11}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Convolutional Neural network}{11}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Optical Character Recognition}{11}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Recurrent Neural Network}{12}{section.3.6}%
-\contentsline {chapter}{\numberline {4}Implementation}{13}{chapter.4}%
-\contentsline {section}{\numberline {4.1}REST API}{13}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Web solution}{13}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Dataset}{14}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Pre-processing}{14}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Aligning}{14}{subsection.4.4.1}%
-\contentsline {subsubsection}{aligning}{14}{section*.6}%
-\contentsline {subsection}{\numberline {4.4.2}Data augmentation}{14}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Image preparation}{15}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}Convolutional Neural Network}{15}{section.4.5}%
-\contentsline {section}{\numberline {4.6}OCR}{15}{section.4.6}%
-\contentsline {chapter}{\numberline {5}Evaluation}{18}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Discussion}{19}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusion}{20}{chapter.7}%
-\contentsline {chapter}{\numberline {}Glossary}{21}{chapter*.8}%
+\contentsline {subsection}{\numberline {2.3.4}Binarization}{8}{subsection.2.3.4}%
+\contentsline {section}{\numberline {2.4}Neural Networks}{8}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Spacy}{9}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Arcitecture}{9}{subsection.2.5.1}%
+\contentsline {chapter}{\numberline {3}Design}{12}{chapter.3}%
+\contentsline {section}{\numberline {3.1}.NET API}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}ML API}{13}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Dataset}{13}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Pre-processing}{14}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Convolutional Neural network}{14}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Optical Character Recognition}{15}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Recurrent Neural Network}{16}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Implementation}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}REST API}{17}{section.4.1}%
+\contentsline {section}{\numberline {4.2}ML API}{17}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Web solution}{18}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Dataset}{18}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Pre-processing}{18}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Aligning}{18}{subsection.4.5.1}%
+\contentsline {subsubsection}{aligning}{19}{section*.6}%
+\contentsline {subsection}{\numberline {4.5.2}Data augmentation}{19}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Image preparation}{19}{subsection.4.5.3}%
+\contentsline {section}{\numberline {4.6}Convolutional Neural Network}{20}{section.4.6}%
+\contentsline {section}{\numberline {4.7}OCR}{21}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Evaluation}{23}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Discussion}{24}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusion}{25}{chapter.7}%

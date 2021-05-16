@@ -1,39 +1,64 @@
 \chapter{Design}
 \label{ch:design}
 
-\begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/pipeline}}
-    \caption{Graphic illustrating the project pipeline (PLACEHOLDER)}
-    \label{fig:figure3}
-\end{figure}
 The project is designed to be able to take an input image of a receipt sent over http, and provide metadata to that image based on its contents.
 This metadata includes the company name that issued the receipt, the date the receipt was made, and the price of the purchase.
 In order to transfer the image to our machine learning models, a .NET API is used.
 
-The .NET API exposes several endpoints that allows for saving an image and a receipt to a database.
-The .NET API is also connected to the CNN and OCR module via the ML API\@.
-
 We have decided to split up the metadata extraction into two separate parts;
-a Convolutional Neural Network for image classification and a Recurrent Neural Network for natural language processing.
+a Convolutional Neural Network for image classification and Spacy for natural language processing.
 
-The CNN will take an image as input, and decide which company issued that receipt based on previous training data.
+The CNN will take an image as an input, and decide which company issued that receipt based on previous training data.
 
-The RNN will take text as input.
-In order to extract the text from the images, an open-source OCR is used.
+Before the image is sent to the OCR, the image and the output from the CNN is sent through a process where the image is matched and aligned.
+The output from this is then sent to the OCR to find data on the image.
 
-Finally, the outputs of the CNN and OCR are combined in Spacy and the data is provided back to the user.
+From the output of the OCR we get a date, and a text string.
+The text string is sent to Spacy to extract the price.
+
+Finally the data from RNN, OCR and Spacy is provided back to the user.
 This pipeline is illustrated in figure 3.1
 
-\section{.NET API}\label{sec:.NET API}
-The API is used as the connection point between the different modules, it sends and receives data through the pipeline.
-The user sends in an image via a website and the API handles the request and sends the data to the ML API\@.
 
-When the data has been processed through the CNN and OCR/Spacy, the API sends the data back to the
-user.
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/PipelineLess}}
+    \caption{Graphic illustrating the project pipeline}
+    \label{fig:pipeline}
+\end{figure}
+
+\section{The pipeline}\label{sec:pipeline}
+
+The pipeline consists of different modules with endpoints, these are as follow (figure \ref{fig:pipeline}):
+\begin{compactitem}
+    \item Website
+    \item .NET API
+    \item Database
+    \item ML API\\
+\end{compactitem}
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.5\textwidth]{Images/ReactWebsite.png}}
+    \caption{React website}
+    \label{fig:reactWebsite}
+\end{figure}
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.5\textwidth]{Images/PipelineMLAPI.png}}
+    \caption{ML API pipeline}
+    \label{fig:ML API}
+\end{figure}
+
+\section{React website}\label{sec:reactWebsite}
+The website is the first point in the pipeline and gives the user a way to interact with the pipeline.
+The website allows the user to upload the picture which is sent through the pipeline, and consecutively the receipt (figure \ref{fig:reactWebsite}).
+
+\section{.NET API}\label{sec:.NET API}
+The .NET API exposes several endpoints that allows for sending an image to the ML API, and save an image and a receipt to a database.
 
 \section{ML API}\label{sec:ML API}
 The ML API works as an endpoint for the machine learning model, it utilizes the CNN, OCR and Spacy to get data from
-the image the user sends in, and then send the data back to the .NET API.
+the image the user sends in, and then sends the data back to the .NET API\@.
+The pipeline is explained in figure \ref{fig:ML API})
 
 \section{Dataset}\label{sec:dataset}
 In order to train our neural network models, Simployer provided us with a sample of images from their database.

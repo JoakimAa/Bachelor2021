@@ -1,22 +1,43 @@
 \chapter{Design}
 \label{ch:design}
 
-The project is designed to be able to take an input image of a receipt sent over http, and provide metadata to that image based on its contents.
+The pipeline is designed to be able to take an input image of a receipt sent over http.
+It is going to provide metadata to that image based on its contents.
 This metadata includes the company name that issued the receipt, the date the receipt was made, and the price of the purchase.
 In order to transfer the image to our machine learning models, a .NET API is used.
 
-We have decided to split up the metadata extraction into two separate parts;
-a Convolutional Neural Network for image classification and Spacy for natural language processing.
+The pipeline consists of a website,.NET API, database, ML API, CNN, OCR and Spacy.
 
-The CNN will take an image as an input, and decide which company issued that receipt based on previous training data.
+The webpage will take an image input from the user.
+The webpage is connected with the .NET API and database.
+From here the image is sent to what we call is a machine learning API.
+This is written in java, we use it because we can't communicate directly to our python program with the .NET API.
+The ML API is talking to a flask API to convert the information to python and from here the image is sent to the CNN.
+The CNN does a prediction on the category of the image.
+Which is the company, this information is also returned to the API.
+Since all the different companies got different receipts, we figured that this  was the easiest way to do it.
+For extracting the metadata for the companies we had one other solution that was heavily considered.
+That was to not use a CNN, but rather have an RNN do all the predictions.
+This would force us to change the alignment functionality of our pipeline.
+The prediction will be sent to the OCR from the CNN and the image itself will already have been sent to the OCR from the API.
+The prediction from the CNN will be used in the OCR to choose the right template for the image.
+The template is an aligned image that we have pre-loaded into the OCR model.
+This means that the OCR is holding one image of all the categorise we have and using this as a reference to skew the images horizontally (We need to do this because an OCR can't read skewed text).
+The skewing method is using something called matching, this basically finds similarities in the images and aligns the images based on these similarities. (You can read more about matching under implementation 4.5.1)
+We have this feature because our sample size is way too small.
+This forced us to create "fake" data by skewing images.
+This is a feature that is great to have, but in reality, not needed.
+This is because it is way better solutions for this.
+We would add a check for the image before accepting it.
+This would assure images that wasn't easily read by the OCR was discarded (the user would have to take another picture).
 
-Before the image is sent to the OCR, the image and the output from the CNN is sent through a process where the image is matched and aligned.
-The output from this is then sent to the OCR to find data on the image.
+The aligned image is sendt to the second part of our OCR, where we do some simple thresholding and extracting the text from the image.
+The OCR sends the extracted text as a string to the sapcy model and the date to the API.
+The Spacy model reads the string, adds relations to the text and evaluates the what's the total price.
+The date could also be evaluated in this model. (With research we have gotten the impression that its more common practise to find the date witn OCR).
 
-From the output of the OCR we get a date, and a text string.
-The text string is sent to Spacy to extract the price.
 
-Finally the data from RNN, OCR and Spacy is provided back to the user.
+Finally the data from CNN, OCR and Spacy is provided back to the user.
 This pipeline is illustrated in figure 3.1
 
 

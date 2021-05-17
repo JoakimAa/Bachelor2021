@@ -9,22 +9,24 @@
 \contentsline {figure}{\numberline {2.6}{\ignorespaces Overview of spacy architecture. https://spacy.io/usage/spacy-101}}{11}{figure.2.6}%
 \contentsline {figure}{\numberline {2.7}{\ignorespaces Overview of spacy architecture. https://spacy.io/usage/spacy-101}}{11}{figure.2.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Graphic illustrating the project pipeline (PLACEHOLDER)}}{12}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Examples of the images found in the dataset provided by Simployer}}{13}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Before and after image rescaling}}{14}{figure.3.3}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Graphic illustrating the Convolutional Neural Network (PLACEHOLDER)}}{15}{figure.3.4}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Example output of pytesseract with a test image}}{15}{figure.3.5}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Graphic illustrating the project pipeline}}{13}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces React website}}{13}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces ML API pipeline}}{14}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Examples of the images found in the dataset provided by Simployer}}{15}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Before and after image rescaling}}{16}{figure.3.5}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Graphic illustrating the Convolutional Neural Network (PLACEHOLDER)}}{17}{figure.3.6}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Example output of pytesseract with a test image}}{17}{figure.3.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Examples of labeled images}}{18}{figure.4.1}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Finding matches between a given image to a template}}{19}{figure.4.2}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Original image on the left, along with generated images from blur and rotation transformations}}{20}{figure.4.3}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}}{20}{figure.4.4}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces CNN model}}{21}{figure.4.5}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces CNN model compile}}{21}{figure.4.6}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces CNN model compile}}{22}{figure.4.7}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces CNN model compile}}{22}{figure.4.8}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces CNN model compile}}{22}{figure.4.9}%
-\contentsline {figure}{\numberline {4.10}{\ignorespaces CNN model compile}}{22}{figure.4.10}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Examples of labeled images}}{19}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Finding matches between a given image to a template}}{20}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Original image on the left, along with generated images from blur and rotation transformations}}{21}{figure.4.3}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}}{21}{figure.4.4}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces CNN model}}{22}{figure.4.5}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces CNN model compile}}{22}{figure.4.6}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces CNN model compile}}{23}{figure.4.7}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces CNN model compile}}{23}{figure.4.8}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces CNN model compile}}{23}{figure.4.9}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces CNN model compile}}{23}{figure.4.10}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

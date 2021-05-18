@@ -26,7 +26,6 @@
 \contentsline {figure}{\numberline {4.7}{\ignorespaces CNN model compile}}{23}{figure.4.7}%
 \contentsline {figure}{\numberline {4.8}{\ignorespaces CNN model compile}}{23}{figure.4.8}%
 \contentsline {figure}{\numberline {4.9}{\ignorespaces CNN model compile}}{23}{figure.4.9}%
-\contentsline {figure}{\numberline {4.10}{\ignorespaces CNN model compile}}{23}{figure.4.10}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Training and validation accuracy for a model trained on 200x200 images}}{25}{figure.5.1}%
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Training and validation loss for a model trained on 200x200 images}}{26}{figure.5.2}%
@@ -39,4 +38,5 @@
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Before and after pre-processing}}{31}{figure.5.9}%
 \contentsline {figure}{\numberline {5.10}{\ignorespaces Extracted text in red, appearing over the place it has been extracted from}}{32}{figure.5.10}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Character ambiguity in dates}}{35}{figure.6.1}%
 \addvspace {10\p@ }

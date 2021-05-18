@@ -1,28 +1,27 @@
 \cleardoublepage
 \chapter{Analysis}
 \label{ch:analysis}
+This chapter provides an overview of the research topic, and the tools and technologies used in this project.
 
 \section{Research topic}\label{sec:research-topic}
-
 Our project is to create a solution that allows a user to take an image of a receipt, and automatically upload the
 relevant data to a database.
 This automates the process of handling travel receipts, thus making it less time-consuming and reduces the cost.
 To achieve this, we will be using Optical Character Recognition software and machine learning\@.
 The extracted data from the image consists of date, total amount, and the receipt type.
 
-The app will consist of two main parts: The OCR, and the model that reads the data.
-We are going to use a free open source OCR, named Tesseracts.
-The OCR is what will allow us to extract text from the images.
-This OCR will send all the text that is on the receipt in the form of an array to the model.
-The model will then decide what information is the correct data to extract and keep.
+The research topic of this project has pivoted over the course the project timeline.
+Initially, the project was to create a C\# REST API connected to a machine learning module, capable of extracting desired information from images uploaded via the API.
+A lot of focus was to be put into the API being well documented and hosted on Microsoft Azure.
+It was also supposed to handle user authentication and logging of user statistics.
+As the project went on, we shifted our focus from the API to the machine learning module after talks with Simployer.
+This means the API will be more bare-bones, focused more on being able to provide the features necessary for the machine learning module to function.
 
-With the app we also need to include an API that will talk with the app and talk with Simployers server.
-This API gets the data from the model and will prompt the information that is selected for the user for a final
-validation, before sending it to the Simployer database.
-This will allow Simployer to easily search in the database based on the metadata that was extracted.
-
-Another objective of this thesis is to analyse and compare solutions that already exists on the market.
-And then create a prototype of each solution and connect them to the API\@.
+The app will consist of two main parts: The API and the machine learning modules.
+We are going to use one of the OCR tools described in~\ref{sec:ocr-engines}
+The OCR software is used to extract text from images, and will function as an input converter for our machine learning models that cannot work directly on images as an input.
+A CNN will be used for image classification and a NER software named Spacy will be used to detect relevant data in text.
+We considered using a RNN to detect relevant data in text, but decided against it due to time constraints.
 
 \section{Tools}\label{sec:tools}
 This section details the different tools that have been considered for use in the thesis.
@@ -33,12 +32,12 @@ These are Google Cloud Vision API, Amazon Textract, and Tesseract.
 \subsubsection{Google Cloud Vision API}\label{subsubsec:API_Google}
 
 Google Cloud Vision API contains a well optimised OCR and good variety of detection.
-The detection features are listed in figure 2.1.
+The detection features are listed in~\ref{fig:Google cloud API prices}
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/googleAPI_features}}
-    \caption{Overview of features (list from~\cite{GoogleCloudPricing})}
-    \label{fig:figure2.1}
+    \caption{Overview of features (list from ~\cite{GoogleCloudPricing})}
+    \label{fig:Google cloud API prices}
 
 \end{figure}
 
@@ -46,13 +45,13 @@ We can see that Google API offers everything from text recognition, to landmark 
 The Google API is know to be industry leading in the field, so this comes as no surprise.
 This API will have almost everything you need to develop an application with text recognition.
 
-The API also has a lot of features in their beta version which is not included in figure 2.1.
+The API also has a lot of features in their beta version which is not included in~\ref{fig:Google cloud API prices}
 \clearpage
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/googleAPI_prices}}
-    \caption{Overview of prices (list from ~\cite{GoogleCloudPricing})}
-    \label{fig:figure2.2}
+    \caption{Overview of prices (list from~\cite{GoogleCloudPricing})}
+    \label{fig:Amazon textract prices}
 
 \end{figure}
 
@@ -60,7 +59,7 @@ Google is the best in the field, but they are also the most expensive API to use
 The prices are calculated for every 1000th request
 This means that you are getting the first 1000-requests free and then you will need to play 1.5\$ for each 1000-request you do on for example text detection.
 If you have a request size of 50.000-requests this will be 49*1.5\$ = 73,5 dollars (620 NOK).
-This will reset every month.
+This will reset every month.~\ref{fig:Amazon textract prices}
 
 \subsubsection{Amazon Textract}\label{subsubsec:API_Amazon}
 
@@ -99,7 +98,7 @@ Note that Amazon changes their pricing on the region you are in (you might want 
 Tesseract is an open-source OCR engine that supports over 100 different languages.
 It has the reputation of being one of the best open-source OCR engines.
 It was created by HP in the 80's and later made open-source in 2005 and funded by google since 2006.
-Most other OCR APIs today are build on top of this, like Google Cloud Vision API\@.
+Most other OCR APIs today are build on top of this, like Google Cloud Vision API.
 
 If this engine is used, code that takes advantage of the engine's built-in methods must be written.
 When dealing with high-quality images and computer generated pdf receipts, writing code to extract the text is relatively simple.
@@ -171,30 +170,31 @@ Spacy is a program that gives context and relations to sentences and words.
 With a foundation of machine learning.
 This becomes a great tool for data extraction.
 Spacy includes some great features that can make the production quick and easy.
+You can see these features in figure~\ref{fig:features}
+\clearpage
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.5\textwidth]{Images/spacy-features}}
-    \caption{Overview of spacy features\cite{spaCy101}}.
-    \label{fig:figure2.5}
+    \caption{Overview of spacy features.~\cite{spaCy101}}
+    \label{fig:features}
 \end{figure}
-
-
 
 
 \subsection{Arcitecture}\label{subsec:architecture}
 
-
 Spacy is structured around three main modules.
 The language class, the vocab and Doc objects.
 The language class is mainly focused on turning the data into doc objects.
-Docs contains a sequence of tokens and their annotations and the vocab contains word vectors and lexical attributes.
+Docs contain sequences of tokens and their annotations and the vocab contains word vectors and lexical attributes.
 With these spacy can centralize the strings and save memory~\cite{spaCy101}.
-The product of these three central parts of the architecture and other sub classes will provide the architecture that is shown under. (KAN MAN POENGTERE TIL BILDER PÅ DENNE MÅTEN?)
+The product of these three central parts of the architecture and other sub classes will provide the
+architecture~\ref{fig:architecture}.
+
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.5\textwidth]{Images/Spacy-architecture}}
     \caption{Overview of spacy architecture~\cite{spaCy101}.}
-    \label{fig:figure2.6}
+    \label{fig:architecture}
 \end{figure}
 
 Spacy is filled with features, but we will focus on Named Entities.
@@ -207,12 +207,12 @@ They got a simple string: Apple is looking at buying U.K.\ startup for \$1 billi
 This will result with these labels~\cite{spaCy101}.
 
 \begin{figure}[h]
-    \center{\includegraphics[width=0.5\textwidth]{Images/Spacy-ex}}
+    \center{\includegraphics[width=0.8\textwidth]{Images/Spacy-ex}}
     \caption{Overview of spacy architecture~\cite{spaCy101}.}
-    \label{fig:figure2.6}
+    \label{fig:label image}
 \end{figure}
 
-As you can see, you will get labels that describes the words.
+As you can see, you will get labels that describes the words~\ref{fig:label image}.
 This combined with spacy's functionality to add relation to the words makes it easy to extract words or values you want.
 When you got the label of the words, you can ask for a relation overview.
 This will give you all the relations for your text.

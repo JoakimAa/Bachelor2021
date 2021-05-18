@@ -14,8 +14,8 @@
 \contentsline {chapter}{\numberline {2}Analysis}{4}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Research topic}{4}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Tools}{4}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}OCR engines}{4}{subsection.2.2.1}%
-\contentsline {subsubsection}{Google Cloud Vision API}{4}{section*.3}%
+\contentsline {subsection}{\numberline {2.2.1}OCR engines}{5}{subsection.2.2.1}%
+\contentsline {subsubsection}{Google Cloud Vision API}{5}{section*.3}%
 \contentsline {subsubsection}{Amazon Textract}{6}{section*.4}%
 \contentsline {subsubsection}{Tesseract}{7}{section*.5}%
 \contentsline {section}{\numberline {2.3}Preprocessing}{7}{section.2.3}%
@@ -25,7 +25,7 @@
 \contentsline {subsection}{\numberline {2.3.4}Binarization}{8}{subsection.2.3.4}%
 \contentsline {section}{\numberline {2.4}Neural Networks}{8}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Spacy}{9}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Arcitecture}{9}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.1}Arcitecture}{10}{subsection.2.5.1}%
 \contentsline {chapter}{\numberline {3}Design}{12}{chapter.3}%
 \contentsline {section}{\numberline {3.1}React website}{13}{section.3.1}%
 \contentsline {section}{\numberline {3.2}.NET API}{13}{section.3.2}%

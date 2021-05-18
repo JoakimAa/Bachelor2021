@@ -90,7 +90,7 @@ It then calculates how much it needs to skew the image in a given direction, to 
     \label{fig:OCR matching}
 \end{figure}
 
-In image~\ref{OCR matching} you can see the algorithm finding matches between a Trøndertaxi receipt from two
+In image~\ref{fig:OCR matching} you can see the algorithm finding matches between a Trøndertaxi receipt from two
 different years.
 Yes, these recipes is almost identical.
 Making this functionality dynamic for almost all receipts should be possible, (no evidence for this) by having a pool of template receipts.
@@ -126,7 +126,7 @@ The second hidden layer, and the output layer are dense layers, where the hidden
 The activation function of the first three layers is Rectified Linear Unit (ReLU), while the output layer uses the sigmoid function.
 Maxpooling2D is used to define a stride of 2.
 This means that we take the biggest number with something that is called a max operation.
-We combine the results to get a 2x2 max pool output, down from a 4x4 format.\ref{Max pooling}
+We combine the results to get a 2x2 max pool output, down from a 4x4 format.\ref{fig:Max pooling}
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/maxpooling2D}}
@@ -147,7 +147,6 @@ Therefore, it will end up with a more generic understanding of the data and avoi
     \center{\includegraphics[width=0.8 \textwidth]{Images/CNN_model}}
     \caption{CNN model}
     \label{fig:CNN model}
-
 \end{figure}
 
 In the compile function we defined we choose to use cross-entropy as our loss function.
@@ -160,7 +159,6 @@ The optimizer is the standard adam optimizer.
     \label{fig:CNN compile}
 
 \end{figure}
-
 
 \section{OCR}\label{sec:OCR_implementation}
 
@@ -191,7 +189,7 @@ The OCR extraction model is based on code from Murtaza's workshop~\cite{TextDete
 We wrapped the whole code in a function and made it take an image from the alignment model.
 The image goes through more resizing, and the thresholding process starts.
 We decided to go with a combination of adaptive gaussian\_c and binary thresholding.
-As ilustrated in
+As illustrated in~\ref{fig:OCR config/thresholding}
 
 
 \begin{figure}[h]
@@ -202,7 +200,7 @@ As ilustrated in
 
 This is the part of the model that extracts the text.
 The important things to note here is that we are casting b[6-9] to ints.
-These are strings, and we cannot use strings to determined height and width of the textboxes's.
+These are strings, and we cannot use strings to determined height and width of the textboxes.
 We also add b[11] to an array, because these are the words that the OCR finds.
 
 \clearpage

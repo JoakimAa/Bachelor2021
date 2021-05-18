@@ -502,3 +502,12 @@ crashlytics-build.properties
 fabric.properties
 
 /Report/out/
+report\main.toc
+report\main.ist
+report\main.glo
+report\main.aux
+report\main.lof
+report\main.out
+
+
+

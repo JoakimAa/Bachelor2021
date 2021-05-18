@@ -23,6 +23,9 @@ Now left with the method of supervised learning for our models, our expectations
 This meant we could limit ourselves to a lower number of categories to showcase how the project pipeline would work if given more time to implement.
 Now the process of labeling data was less time-consuming as we decided to only train our models on 3 different categories of receipts.
 
+\section{API discussion}
+
+
 \section{Receipt category extraction with CNN}
 After deciding to use a CNN for image classification to extract the receipt category, we expected the have a working model up and running in a short amount of time.
 Early on we had a lot of issues setting up Tensorflow and CUDA on our machines, and once we got it working on one machine, the same method of installation would not work for another machine.
@@ -65,4 +68,15 @@ One of the issues that led to the bad date extraction of the example in chapter 
     \label{fig:zeroletter}
 \end{figure}
 
+\ref{fig:zeroletter} shows a partition of a Norwegian receipt where all the characters representing the number zero has a dash going through it.
+This is likely being done to avoid confusion between the number zero and the character O.
+However, since the receipt is in Norwegian, it creates a situation where the is confusion between the number zero and the character Ø.
+This is what caused the incorrect date extraction in the example in chapter 5.
+When examining the OCR text output, we could see several of the dates being listed as "Ø7-Ø1-2Ø18".
+This format is not recognized by the Regular Expression for date extraction, as it is not a date format.
+It is possible this issue could be solved by changing the OCR language to english, but it has not been tested so it is unclear how it would impact the overall result of the text extraction.
 
+\section{Price extraction with Spacy}
+
+
+\section{Overall pipeline improvements}

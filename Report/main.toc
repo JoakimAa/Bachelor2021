@@ -27,15 +27,14 @@
 \contentsline {section}{\numberline {2.5}Spacy}{9}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Arcitecture}{9}{subsection.2.5.1}%
 \contentsline {chapter}{\numberline {3}Design}{12}{chapter.3}%
-\contentsline {section}{\numberline {3.1}The pipeline}{13}{section.3.1}%
-\contentsline {section}{\numberline {3.2}React website}{13}{section.3.2}%
-\contentsline {section}{\numberline {3.3}.NET API}{14}{section.3.3}%
-\contentsline {section}{\numberline {3.4}ML API}{14}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Dataset}{14}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Pre-processing}{14}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Convolutional Neural network}{15}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Optical Character Recognition}{16}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Recurrent Neural Network}{16}{section.3.9}%
+\contentsline {section}{\numberline {3.1}React website}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}.NET API}{13}{section.3.2}%
+\contentsline {section}{\numberline {3.3}ML API}{14}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Dataset}{14}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Pre-processing}{15}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Convolutional Neural network}{15}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Optical Character Recognition}{16}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Recurrent Neural Network}{16}{section.3.8}%
 \contentsline {chapter}{\numberline {4}Implementation}{18}{chapter.4}%
 \contentsline {section}{\numberline {4.1}REST API}{18}{section.4.1}%
 \contentsline {section}{\numberline {4.2}ML API}{18}{section.4.2}%
@@ -49,5 +48,11 @@
 \contentsline {section}{\numberline {4.6}Convolutional Neural Network}{21}{section.4.6}%
 \contentsline {section}{\numberline {4.7}OCR}{22}{section.4.7}%
 \contentsline {chapter}{\numberline {5}Evaluation}{24}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Discussion}{25}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusion}{26}{chapter.7}%
+\contentsline {section}{\numberline {5.1}API results}{24}{section.5.1}%
+\contentsline {section}{\numberline {5.2}CNN results}{24}{section.5.2}%
+\contentsline {section}{\numberline {5.3}OCR results}{25}{section.5.3}%
+\contentsline {section}{\numberline {5.4}NER results}{26}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Overall results}{26}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Discussion}{33}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusion}{34}{chapter.7}%
+\contentsline {chapter}{\numberline {}Glossary}{35}{chapter*.8}%

@@ -87,10 +87,11 @@ It is possible this issue could be solved by changing the OCR language to englis
 Much like the date extraction with OCR, price extraction with Spacy was added due to lack of time in order to complete our pipeline.
 The results of our Spacy module was largely unusable.
 Since our Spacy module uses the "MONEY" label to identify what text is currency, when none of these labels are found, only a price of -1 is given back to the API, indicating that a price has not been found.
-All the labels we found using Spacy only were of the type "MISC", which means no price data can be extracted.
-The cause of this is likely that the Spacy pre-trained pipelines are trained on more standard text, and will not make much sense of our extracted receipt text.
-A solution to this problem could be to train our own Spacy pipeline.
-This is not something we have looked much into, so we will not comment on this further.
-Another possible solution is to abandon the Spacy NER altogether, and implement a RNN as was intended initially.
+The labels found where mostly "MISC" and "PER", the rest was empty.
+This combined with very bad relation binding mostly block the possibility to have a solution that extracts the correct values.
+The cause of this is because Spacy only had pre-trained models for norwegian, and not nlp pipelines.
+A solution to this problem could be to train our own Spacy pipeline for norwegian.
+This was however not an option duo to time constraints and lack of training data.
+Another possible solution is to abandon the Spacy NER altogether, and implement an RNN as was intended initially.
 
 \section{Overall pipeline improvements}\label{sec:overall-pipeline-improvements}

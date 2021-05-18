@@ -87,10 +87,10 @@ It then calculates how much it needs to skew the image in a given direction, to 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/match_image.png}}
     \caption{Finding matches between a given image to a template}
-    \label{fig:figure4.2}
+    \label{fig:OCR matching}
 \end{figure}
 
-In the image above you can see the algorithm finding matches between a Trøndertaxi receipt from two different years.
+In image \ref{OCR matching} you can see the algorithm finding matches between a Trøndertaxi receipt from two different years.
 Yes, these recipes is almost identical.
 Making this functionality dynamic for almost all receipts should be possible, (no evidence for this) by having a pool of template receipts.
 Then you can have a CNN check which receipts are the most similar and use the highest scoring receipt as the template image for any given receipt.
@@ -147,7 +147,7 @@ Therefore, it will end up with a more generic understanding of the data and avoi
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/CNN_model}}
     \caption{CNN model}
-    \label{fig:figure4.5}
+    \label{fig:CNN model}
 
 \end{figure}
 
@@ -158,7 +158,7 @@ The optimizer is the standard adam optimizer.
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/CNN_compile}}
     \caption{CNN model compile}
-    \label{fig:figure4.6}
+    \label{fig:CNN compile}
 
 \end{figure}
 
@@ -186,35 +186,34 @@ The OCR extraction model is based on code from Murtaza's workshop (https://www.c
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/OCR}}
     \caption{OCR config and thresholding}
-    \label{fig:figure4.7}
+    \label{fig:OCR config/thresholding}
 \end{figure}
 
 We wrapped the whole code in a function and made it take an image from the alignment model.
 The image goes through more resizing, and the thresholding process starts.
 We decided to go with a combination of adaptive gaussian\_c and binary thresholding.
-As ilustrated in \ref{fig:figure4.7}
+As ilustrated in
 
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/OCR5}}
     \caption{OCR extraction}
-    \label{fig:figure4.8}
+    \label{fig:OCR text extraction}
 \end{figure}
 
 This is the part of the model that extracts the text.
 The important things to note here is that we are casting b[6-9] to ints.
 These are strings, and we cannot use strings to determined height and width of the textboxes's.
 We also add b[11] to an array, because these are the words that the OCR finds.
-\ref{fig:figure4.8}
+
 \clearpage
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/OCR_dato}}
     \caption{OCR text extraction}
-    \label{fig:figure4.9}
+    \label{fig:OCR date extraction}
 \end{figure}
 
 The last thing in the model is the date validation.
 We have made a simple regex that uses the pattern for dates to recognize dates.
 The first match that comes up is the one we use.
-\ref{fig:figure4.9}

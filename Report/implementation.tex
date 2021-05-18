@@ -6,8 +6,8 @@ This includes how the thesis group chose to implement the design discussed in pr
 
 \section{REST API}\label{sec:REST API}
 
-The API is a REST API coded in C\# with .NET.
-REST stands for REpresentational State Transfer and is a software architecture style.
+The API is a REST API coded in C\# with .NET\@.
+REST stands for Representational State Transfer and is a software architecture style.
 For the API to be considered a REST API it has to follow some set guidelines and principles.
 
 The API consists of 4 different modules: The API endpoints, DataAccess,\\
@@ -33,8 +33,8 @@ There is one for receipts and one for image, there is also a data transfer objec
 The DTO is an object that carries data between processes and makes it more efficient by doing it in only one call.
 This is done by aggregating the data instead of sending it one by one.
 
-
 \section{ML API}\label{sec:ML API ch4}
+
 The ML API is created using Flask.
 This has one POST route that takes in an base64 string and converts it to an image and sends it to CNN and OCR for
 processing.

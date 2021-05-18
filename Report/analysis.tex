@@ -184,7 +184,7 @@ Spacy includes some great features that can make the production quick and easy.
 \subsection{Arcitecture}\label{sec:architecture}
 
 
-Spacy is structured around three main parts.
+Spacy is structured around three main modules.
 The language class, the vocab and Doc objects.
 The language class is mainly focused on turning the data into doc objects.
 Docs contains a sequence of tokens and their annotations and the vocab contains word vectors and lexical attributes.
@@ -197,14 +197,14 @@ The product of these three central parts of the architecture and other sub class
     \label{fig:figure2.6}
 \end{figure}
 
-Spacy got a lot to offer, but we will focus on Named Entities.
-Which is an object that is assigned a name.
+Spacy is filled with features, but we will focus on Named Entities.
+Named entities is objects that is assigned a name.
 Spacy does this by asking the model for a prediction.
-However, the model is reliant on the data sit was trained on, this means that for a costume application.
+However, the model is reliant on the data set it was trained on, this means that for a custom application.
 Dedicated training could be necessary.
 If we take a look at an example from their web page.
 They got a simple string: Apple is looking at buying U.K. startup for \$1 billion
-This will result with these labels
+This will result with these labels. (https://spacy.io/usage/spacy-101)
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.5\textwidth]{Images/Spacy-ex}}

@@ -3,6 +3,16 @@
 This chapter presents the results of the data extraction from receipts, as well as the results of each module.
 
 \section{API results}\label{sec:api-results}
+The implementation of our API is made as a MVP\@.
+This means that there is little to no validation on the input and the output, which means it only really works when
+you send in the correct input.
+
+When the right input is sent in, the API functions as expected.
+The input is an ImageDTO that comes from a POST request sent from the React module.
+The image data from the ImageDTO is then correctly converted to a base64 string, which is then sent to the ML API through a POST request.
+
+The result of the POST requests to the ML API is converted in to a receipt object and returned to the React module
+where it is correctly displayed in their respective fields.
 
 
 \section{CNN results}\label{sec:cnn-results}

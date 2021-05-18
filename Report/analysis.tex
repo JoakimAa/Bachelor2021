@@ -171,15 +171,14 @@ Spacy is a program that gives context and relations to sentences and words.
 With a foundation of machine learning.
 This becomes a great tool for data extraction.
 Spacy includes some great features that can make the production quick and easy.
+These features you can see in figure \ref{fig:features}
+\clearpage
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.5\textwidth]{Images/spacy-features}}
     \caption{Overview of spacy features. https://spacy.io/usage/spacy-101}
-    \label{fig:figure2.5}
+    \label{fig:features}
 \end{figure}
-
-
-
 
 \subsection{Arcitecture}\label{sec:architecture}
 
@@ -187,14 +186,15 @@ Spacy includes some great features that can make the production quick and easy.
 Spacy is structured around three main modules.
 The language class, the vocab and Doc objects.
 The language class is mainly focused on turning the data into doc objects.
-Docs contains a sequence of tokens and their annotations and the vocab contains word vectors and lexical attributes.
+Docs contain sequences of tokens and their annotations and the vocab contains word vectors and lexical attributes.
 With these spacy can centralize the strings and save memory(FOTNOTE: https://spacy.io/usage/spacy-101).
-The product of these three central parts of the architecture and other sub classes will provide the architecture that is shown under. (KAN MAN POENGTERE TIL BILDER PÅ DENNE MÅTEN?)
+The product of these three central parts of the architecture and other sub classes will provide the architecture \ref{fig:architecture}.
+
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.5\textwidth]{Images/Spacy-architecture}}
     \caption{Overview of spacy architecture. https://spacy.io/usage/spacy-101}
-    \label{fig:figure2.6}
+    \label{fig:architecture}
 \end{figure}
 
 Spacy is filled with features, but we will focus on Named Entities.
@@ -207,12 +207,12 @@ They got a simple string: Apple is looking at buying U.K. startup for \$1 billio
 This will result with these labels. (https://spacy.io/usage/spacy-101)
 
 \begin{figure}[h]
-    \center{\includegraphics[width=0.5\textwidth]{Images/Spacy-ex}}
+    \center{\includegraphics[width=0.8\textwidth]{Images/Spacy-ex}}
     \caption{Overview of spacy architecture. https://spacy.io/usage/spacy-101}
-    \label{fig:figure2.6}
+    \label{fig:label image}
 \end{figure}
 
-As you can see, you will get labels that describes the words.
+As you can see, you will get labels that describes the words \ref{fig:label image}.
 This combined with spacy's functionality to add relation to the words makes it easy to extract words or values you want.
 When you got the label of the words, you can ask for a relation overview.
 This will give you all the relations for your text.

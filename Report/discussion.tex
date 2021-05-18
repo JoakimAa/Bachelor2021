@@ -18,7 +18,7 @@ We also knew that Simployer preferred a solution where our model could be used o
 This made us lean towards unsupervised learning, as creating hundreds of categories for different types of receipts would be very time-consuming and likely unmanageable.
 When looking into unsupervised learning for a problem such as this, we got the impression that this would be very difficult.
 One person experienced in the field told us we would get a Nobel Prize if we managed to do this.
-Thought jokingly, this put us off the idea of unsupervised learning as the problem seemed out of scope for this project.
+Though jokingly, this put us off the idea of unsupervised learning as the problem seemed out of scope for this project.
 Now left with the method of supervised learning for our models, our expectations had to be lowered, and we decided to pivot more to a proof-of-concept product.
 This meant we could limit ourselves to a lower number of categories to showcase how the project pipeline would work if given more time to implement.
 Now the process of labeling data was less time-consuming as we decided to only train our models on 3 different categories of receipts.
@@ -50,11 +50,9 @@ In order to finish the pipeline, so it could be demonstrated properly, a Regular
 This solution has some flaws, as there can be many dates found in a receipt, and no validation as to which date is likely the correct one being added.
 
 \subsection{Issues with reliance on CNN prediction}\label{subsec:issues-with-reliance-on-cnn-prediction}
-As mentioned in chapter 5 and seen in~\ref{fig:scuffedmatchresult}, the de-skew being reliant on CNN prediction has
-consequences to the rest of the pipeline.
+As mentioned in chapter 5 and seen in~\ref{fig:scuffedmatchresult}, the de-skew being reliant on CNN prediction has consequences for the rest of the pipeline.
 This means that unless the CNN makes the correct prediction, and the de-skewing manages to properly rotate the image to a horizontal state, no text can be found in the image, as it is rendered unusable by the de-skewing.
-In some cases where the CNN does correctly predict the receipt category, the de-skewing also fails, giving the same
-result as~\ref{fig:scuffedmatchresult}.
+In some cases where the CNN does correctly predict the receipt category, the de-skewing also fails, giving the same result as~\ref{fig:scuffedmatchresult}.
 This is one of the biggest issues with our pipeline, as any further information extraction is no longer possible.
 One way to solve this problem would be to find a way to de-skew images without relying on a template image of a given category.
 This would remove the reliance on the CNN prediction.
@@ -82,6 +80,13 @@ This format is not recognized by the Regular Expression for date extraction, as 
 It is possible this issue could be solved by changing the OCR language to english, but it has not been tested, so it is unclear how it would impact the overall result of the text extraction.
 
 \section{Price extraction with Spacy}\label{sec:price-extraction-with-spacy}
-
+Much like the date extraction with OCR, price extraction with Spacy was added due to lack of time in order to complete our pipeline.
+The results of our Spacy module was largely unusable.
+Since our Spacy module uses the "MONEY" label to identify what text is currency, when none of these labels are found, only a price of -1 is given back to the API, indicating that a price has not been found.
+All the labels we found using Spacy only were of the type "MISC", which means no price data can be extracted.
+The cause of this is likely that the Spacy pre-trained pipelines are trained on more standard text, and will not make much sense of our extracted receipt text.
+A solution to this problem could be to train our own Spacy pipeline.
+This is not something we have looked much into, so we will not comment on this further.
+Another possible solution is to abandon the Spacy NER altogether, and implement a RNN as was intended initially.
 
 \section{Overall pipeline improvements}\label{sec:overall-pipeline-improvements}

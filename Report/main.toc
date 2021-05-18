@@ -54,5 +54,11 @@
 \contentsline {section}{\numberline {5.4}NER results}{26}{section.5.4}%
 \contentsline {section}{\numberline {5.5}Overall results}{26}{section.5.5}%
 \contentsline {chapter}{\numberline {6}Discussion}{33}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusion}{34}{chapter.7}%
-\contentsline {chapter}{\numberline {}Glossary}{35}{chapter*.8}%
+\contentsline {section}{\numberline {6.1}Expectations versus results}{33}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Supervised or unsupervised learning}{33}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}Receipt category extraction with CNN}{34}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Inconsistency between validation accuracy and pipeline testing}{34}{subsection.6.2.1}%
+\contentsline {section}{\numberline {6.3}Receipt date extraction with OCR}{34}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Issues with reliance on CNN prediction}{34}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Issues with receipt character ambiguity}{35}{subsection.6.3.2}%
+\contentsline {chapter}{\numberline {7}Conclusion}{36}{chapter.7}%

@@ -3,9 +3,11 @@
 This chapter presents the results of the data extraction from receipts, as well as the results of each module.
 
 \section{API results}\label{sec:api-results}
-The implementation of our API is made as a MVP\@.
+The implementation of our API's are made as a MVP\@.
 This means that there is little to no validation on the input and the output, which means it only really works when
 you send in the correct input.
+
+\subsection{.NET API}\label{subsec:.net-api}
 
 When the right input is sent in, the API functions as expected.
 The input is an ImageDTO that comes from a POST request sent from the React module.
@@ -14,6 +16,21 @@ The image data from the ImageDTO is then correctly converted to a base64 string,
 The result of the POST requests to the ML API is converted in to a receipt object and returned to the React module
 where it is correctly displayed in their respective fields.
 
+\begin{figure}[h]
+    \center{\includegraphics[width=0.8\textwidth]{Images/MLAPIreturnObject}}
+    \caption{The result from the ML API}
+    \label{fig:MLAPIreturnObject}
+\end{figure}
+
+\subsection{ML API}\label{subsec:ml-api}
+The ML API takes in a base64 string from a POST request originating from the .NET API.
+This string contains the image data, and is correctly converted to an image.
+The image is then sent to the CNN and OCR\@.
+From the CNN we get the company.
+From the OCR we get the date, and a string, which is sent to Spacy and is used to get the price from the receipt.
+
+The result of this is a json object with the corresponding data.
+Shown in figure~\ref{fig:MLAPIreturnObject}
 
 \section{CNN results}\label{sec:cnn-results}
 Many different CNN models with slight variations in their parameters were trained and tested.
@@ -24,7 +41,7 @@ Prediction accuracy then went up to around 95\% for most models.
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/200modelaccuracy}}
     \caption{Training and validation accuracy for a model trained on 200x200 images}
-    \label{fig:figure3.2}
+    \label{fig:200modelaccuracy}
 \end{figure}
 
 Validation accuracy and loss are the two metrics we are using to determine the success of a model.
@@ -34,13 +51,13 @@ A consistent theme when training our models was the validation accuracy and loss
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/200modelloss}}
     \caption{Training and validation loss for a model trained on 200x200 images}
-    \label{fig:figure3.2}
+    \label{fig:200modelloss}
 \end{figure}
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/200confusion}}
     \caption{Confusion matrix for a model trained on 200x200 images}
-    \label{fig:figure3.2}
+    \label{fig:200confusion}
 \end{figure}
 
 A confusion matrix was also used to give some more insight into how the model was performing for each of the different categories it had been trained on.
@@ -136,7 +153,8 @@ Text is being found incorrectly along the edge of the receipt and in empty space
 This is a recurring problem for receipts of this type, and will be discussed more in chapter 6.
 
 \section{NER results}\label{sec:ner-results}
-
+The text output from our OCR module is passed to our Spacy NER module for price extraction.
+We were not able to extract any price information from Spacy's NER.
 
 \section{Overall results}\label{sec:overall-results}
 

@@ -24,9 +24,13 @@ This meant we could limit ourselves to a lower number of categories to showcase 
 Now the process of labeling data was less time-consuming as we decided to only train our models on 3 different categories of receipts.
 
 \section{API discussion}\label{sec:api-discussion}
-\subsection{.NET API}\label{subsec:.net-api2}
 The decisions to utilize a .NET API was made for us by Simployer.
-As explained in~\ref{sec:api-results}, our implementation of the API's
+As explained in chapter~\ref{sec:api-results}, our implementation of the API's are made without much consideration
+for validation and security.
+Our main objective was to make a solution that worked in a best case scenario.
+A perfect solution would have validation on both entry and exit points and should give the user the appropriate
+response.
+There should also be tests for all the endpoints and unit tests to make sure everything functions properly.
 
 \section{Receipt category extraction with CNN}\label{sec:receipt-category-extraction-with-cnn}
 After deciding to use a CNN for image classification to extract the receipt category, we expected the have a working model up and running in a short amount of time.

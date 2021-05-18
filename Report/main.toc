@@ -47,24 +47,26 @@
 \contentsline {subsection}{\numberline {4.5.3}Image preparation}{20}{subsection.4.5.3}%
 \contentsline {section}{\numberline {4.6}Convolutional Neural Network}{21}{section.4.6}%
 \contentsline {section}{\numberline {4.7}OCR}{22}{section.4.7}%
-\contentsline {chapter}{\numberline {5}Evaluation}{24}{chapter.5}%
-\contentsline {section}{\numberline {5.1}API results}{24}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}.NET API}{24}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}ML API}{25}{subsection.5.1.2}%
-\contentsline {section}{\numberline {5.2}CNN results}{25}{section.5.2}%
-\contentsline {section}{\numberline {5.3}OCR results}{27}{section.5.3}%
-\contentsline {section}{\numberline {5.4}NER results}{28}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Overall results}{28}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Discussion}{34}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Expectations versus results}{34}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Supervised or unsupervised learning}{34}{subsection.6.1.1}%
-\contentsline {section}{\numberline {6.2}API discussion}{35}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Receipt category extraction with CNN}{35}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Inconsistency between validation accuracy and pipeline testing}{35}{subsection.6.3.1}%
-\contentsline {section}{\numberline {6.4}Receipt date extraction with OCR}{35}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Issues with reliance on CNN prediction}{35}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Issues with receipt character ambiguity}{36}{subsection.6.4.2}%
-\contentsline {section}{\numberline {6.5}Price extraction with Spacy}{36}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Overall pipeline improvements}{37}{section.6.6}%
-\contentsline {chapter}{\numberline {7}Conclusion}{38}{chapter.7}%
-\contentsline {chapter}{\numberline {}Glossary}{39}{chapter*.8}%
+\contentsline {subsection}{\numberline {4.7.1}OCR alignment}{22}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}OCR extraction}{23}{subsection.4.7.2}%
+\contentsline {chapter}{\numberline {5}Evaluation}{25}{chapter.5}%
+\contentsline {section}{\numberline {5.1}API results}{25}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}.NET API}{25}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}ML API}{26}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}CNN results}{26}{section.5.2}%
+\contentsline {section}{\numberline {5.3}OCR results}{28}{section.5.3}%
+\contentsline {section}{\numberline {5.4}NER results}{29}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Overall results}{29}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Discussion}{35}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Expectations versus results}{35}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Supervised or unsupervised learning}{35}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}API discussion}{36}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Receipt category extraction with CNN}{36}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Inconsistency between validation accuracy and pipeline testing}{36}{subsection.6.3.1}%
+\contentsline {section}{\numberline {6.4}Receipt date extraction with OCR}{36}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Issues with reliance on CNN prediction}{37}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Issues with receipt character ambiguity}{37}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}Price extraction with Spacy}{38}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Overall pipeline improvements}{38}{section.6.6}%
+\contentsline {chapter}{\numberline {7}Conclusion}{39}{chapter.7}%
+\contentsline {chapter}{\numberline {}Glossary}{40}{chapter*.8}%

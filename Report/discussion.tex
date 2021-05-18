@@ -35,7 +35,7 @@ There should also be tests for all the endpoints and unit tests to make sure eve
 \section{Receipt category extraction with CNN}\label{sec:receipt-category-extraction-with-cnn}
 After deciding to use a CNN for image classification to extract the receipt category, we expected the have a working model up and running in a short amount of time.
 Early on we had a lot of issues setting up Tensorflow and CUDA on our machines, and once we got it working on one machine, the same method of installation would not work for another machine.
-Once we got Tensorflow working, we also ran into issues of huge training times as Tensorflow was using the CPU to train our model, instead of the GPU.
+Once we got Tensorflow working, we also ran into issues of huge training times as Tensorflow was using the CPU to train our model, instead of the GPU\@.
 This was fixed simply by enabling the GPU via python code, but took us quite some time and caused us to reinstall both Tensorflow and CUDA several times.
 
 \subsection{Inconsistency between validation accuracy and pipeline testing}\label{subsec:inconsistency-between-validation-accuracy-and-pipeline-testing}
@@ -76,8 +76,8 @@ One of the issues that led to the bad date extraction of the example in chapter 
 
 Figure~\ref{fig:zeroletter} shows a partition of a Norwegian receipt where all the characters representing the number
 zero has a dash going through it.
-This is likely being done to avoid confusion between the number zero and the character O.
-However, since the receipt is in Norwegian, it creates a situation where the is confusion between the number zero and the character Ø.
+This is likely being done to avoid confusion between the number zero and the character O\@.
+However, since the receipt is in Norwegian, it creates a situation where the is confusion between the number zero and the character Ø\@.
 This is what caused the incorrect date extraction in the example in chapter 5.
 When examining the OCR text output, we could see several of the dates being listed as "Ø7-Ø1-2Ø18".
 This format is not recognized by the Regular Expression for date extraction, as it is not a date format.

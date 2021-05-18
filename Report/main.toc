@@ -69,4 +69,5 @@
 \contentsline {section}{\numberline {6.5}Price extraction with Spacy}{38}{section.6.5}%
 \contentsline {section}{\numberline {6.6}Overall pipeline improvements}{38}{section.6.6}%
 \contentsline {chapter}{\numberline {7}Conclusion}{39}{chapter.7}%
-\contentsline {chapter}{\numberline {}Glossary}{40}{chapter*.8}%
+\contentsline {chapter}{\numberline {}Bibliography}{40}{chapter*.7}%
+\contentsline {chapter}{\numberline {}Glossary}{41}{chapter*.9}%

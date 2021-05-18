@@ -6,7 +6,7 @@ This includes how the thesis group chose to implement the design discussed in pr
 
 \section{REST API}\label{sec:REST API}
 
-The API is a REST API coded in C\# with .NET.
+The API is a REST API coded in C\# with .NET\@.
 REST stands for REpresentational State Transfer and is a software architecture style.
 For the API to be considered a REST API it has to follow some set guidelines and principles.
 
@@ -69,9 +69,9 @@ The original dataset of 1194 images has been filtered down to 91 images, split i
     \label{fig:figure4.1}
 \end{figure}
 
-\section{Pre-processing}\label{pre-processing}
+\section{Pre-processing}\label{sec:pre-processing2}
 
-\subsection{Aligning}\label{aligning}
+\subsection{Aligning}\label{subsec:aligning}
 
 The first thing we make sure to do in our OCR is aligning the images.
 This is needed because an OCR can't reed skewed images.
@@ -95,9 +95,9 @@ Yes, these recipes is almost identical.
 Making this functionality dynamic for almost all receipts should be possible, (no evidence for this) by having a pool of template receipts.
 Then you can have a CNN check which receipts are the most similar and use the highest scoring receipt as the template image for any given receipt.
 
-\subsection{Data augmentation}\label{data augmentation}
-Because of the low amount of images in the filtered dataset, data augmentation has to be done in order to give us enough images to be able to effectively train the CNN.
-We used an open source data augmentation tool for images for this task LINK.
+\subsection{Data augmentation}\label{subsec:data-augmentation}
+Because of the low amount of images in the filtered dataset, data augmentation has to be done in order to give us enough images to be able to effectively train the CNN\@.
+We used an open source data augmentation tool for images for this task LINK\@.
 The augmentor takes a directory of images and applies a series of transformations on the images like scaling, skewing and rotating.
 This creates copies of the images with slight differences, increasing the size of our dataset.
 After applying enough transformations, the size of the dataset grew from 91 images to 1500.
@@ -108,11 +108,11 @@ After applying enough transformations, the size of the dataset grew from 91 imag
     \label{fig:figure4.3}
 \end{figure}
 
-\subsection{Image preparation}\label{imgprep}
+\subsection{Image preparation}\label{subsec:imgprep}
 Many of the images in the dataset are taken in different resolutions.
 In order to prepare the images to be passed forward to the CNN model, the images resolution is rescaled to 60x60 pixels.
 This significantly reduces the training time required by the network with minimal to no loss in accuracy.
-The images are also converted to grayscale instead of RGB.
+The images are also converted to grayscale instead of RGB\@.
 This reduces the amount input nodes required by the network, as each pixel will have one value instead of three.
 
 \section{Convolutional Neural Network}\label{sec:cnn}
@@ -130,7 +130,7 @@ As illustrated below.
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/maxpooling2D}}
-    \caption{Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}
+    \caption{Overview for max pooling (Image from~\cite{CNN})}
     \label{fig:figure4.4}
 
 \end{figure}
@@ -165,9 +165,9 @@ The optimizer is the standard adam optimizer.
 
 \section{OCR}\label{sec:OCR_implementation}
 
-\subsection{OCR alignment}
+\subsection{OCR alignment}\label{subsec:ocr-alignment}
 
-The alignment model is made from (https://learnopencv.com/feature-based-image-alignment-using-opencv-c-python/) as a base.
+The alignment model is made from learnopencv.com~\cite{OpenCVAlignment}) as a base.
 We have changed this code base to fit our pipeline.
 We wrapped this base code in two different functions.
 Aligne\_images and return\_data.
@@ -179,9 +179,9 @@ The return\_data function also takes the prediction.
 This decides the template image.
 and it takes the image from the webpage changes the colors and passes it to align\_images
 
-\subsection{OCR extraction}
+\subsection{OCR extraction}\label{subsec:ocr-extraction}
 
-The OCR extraction model is based on code from Murtaza's workshop (https://www.computervision.zone/courses/text-detection/).
+The OCR extraction model is based on code from Murtaza's workshop~\cite{TextDetection}.
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/OCR}}
@@ -192,7 +192,7 @@ The OCR extraction model is based on code from Murtaza's workshop (https://www.c
 We wrapped the whole code in a function and made it take an image from the alignment model.
 The image goes through more resizing, and the thresholding process starts.
 We decided to go with a combination of adaptive gaussian\_c and binary thresholding.
-As ilustrated in \ref{fig:figure4.7}
+As ilustrated in~\ref{fig:figure4.7}
 
 
 \begin{figure}[h]
@@ -204,8 +204,7 @@ As ilustrated in \ref{fig:figure4.7}
 This is the part of the model that extracts the text.
 The important things to note here is that we are casting b[6-9] to ints.
 These are strings, and we cannot use strings to determined height and width of the textboxes's.
-We also add b[11] to an array, because these are the words that the OCR finds.
-\ref{fig:figure4.8}
+We also add b[11] to an array, because these are the words that the OCR finds.\ref{fig:figure4.8}
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/OCR_dato}}
@@ -215,5 +214,4 @@ We also add b[11] to an array, because these are the words that the OCR finds.
 
 The last thing in the model is the date validation.
 We have made a simple regex that uses the pattern for dates to recognize dates.
-The first match that comes up is the one we use.
-\ref{fig:figure4.9}
+The first match that comes up is the one we use.\ref{fig:figure4.9}

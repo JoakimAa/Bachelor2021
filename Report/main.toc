@@ -73,4 +73,5 @@
 \contentsline {subsection}{\numberline {7.1.3}Implementation}{37}{subsection.7.1.3}%
 \contentsline {subsection}{\numberline {7.1.4}Results and discussion}{37}{subsection.7.1.4}%
 \contentsline {section}{\numberline {7.2}Conclusion}{38}{section.7.2}%
-\contentsline {chapter}{\numberline {}Glossary}{39}{chapter*.6}%
+\contentsline {chapter}{\numberline {}Bibliography}{39}{chapter*.5}%
+\contentsline {chapter}{\numberline {}Glossary}{40}{chapter*.7}%

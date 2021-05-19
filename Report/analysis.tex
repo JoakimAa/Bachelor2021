@@ -30,38 +30,38 @@ These are Google Cloud Vision API, Amazon Textract, and Tesseract.
 \subsection{Google Cloud Vision API}\label{subsec:API_Google}
 
 Google Cloud Vision API contains a well optimised OCR and good variety of detection.
-The detection features are listed in~\ref{fig:Google cloud API prices}
+The detection features are listed in~\ref{fig:Google cloud APIfeatures}
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/googleAPI_features}}
     \caption{Overview of features~\cite{GoogleCloudPricing}}
-    \label{fig:Google cloud API prices}
+    \label{fig:Google cloud API features}
 \end{figure}
 
 We can see that Google API offers everything from text recognition, to landmark location and crop Hints.
 The Google API is know to be industry leading in the field, so this comes as no surprise.
 This API will have almost everything you need to develop an application with text recognition.
 
-The API also has a lot of features in their beta version which is not shown in figure~\ref{fig:Google cloud API prices}
+The API also has a lot of features in their beta version which is not shown in figure~\ref{fig:Google cloud API features}
 \clearpage
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/googleAPI_prices}}
     \caption{Overview of prices~\cite{GoogleCloudPricing}}
-    \label{fig:Amazon textract prices}
-
+    \label{fig:Google cloud API prices}
 \end{figure}
 
-Google is the best in the field, but they are also the most expensive API to use.
+Google is one of the industry leaders, but they are also the most expensive API to use.
 The prices are calculated for every 1000th request
 This means that you are getting the first 1000-requests free and then you will need to play 1.5\$ for each 1000-request you do on for example text detection.
 If you have a request size of 50.000-requests this will be 49*1.5\$ = 73,5 dollars (620 NOK).
-This will reset every month.~\ref{fig:Amazon textract prices}
+This will reset every month.~\ref{fig:Google cloud API prices}
 
 \subsubsection{Amazon Textract}\label{subsubsec:API_Amazon}
 
 Amazon's AWS hosts a service called Textract.
 This cloud-based service lets you upload an image to their text recognition software.
+Their features includes:
 
 \textbf{Detect Document Text API}
 This feature is the classic OCR feature that will extract text from a document.
@@ -186,6 +186,7 @@ Docs contain sequences of tokens and their annotations and the vocab contains wo
 With these spacy can centralize the strings and save memory~\cite{spaCy101}.
 The product of these three central parts of the architecture and other sub classes will provide the
 architecture shown in figure~\ref{fig:architecture}.
+\clearpage
 
 
 \begin{figure}[h]
@@ -201,15 +202,15 @@ However, the model is reliant on the data set it was trained on, this means that
 Dedicated training could be necessary.
 If we take a look at an example from their web page.
 They got a simple string: Apple is looking at buying U.K.\ startup for \$1 billion.
-This will result with these labels~\cite{spaCy101}.
+This will result with these labels~\ref{fig:Spacy labels}
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.8\textwidth]{Images/Spacy-ex}}
     \caption{Overview of spacy architecture~\cite{spaCy101}.}
-    \label{fig:label image}
+    \label{fig:Spacy labels}
 \end{figure}
 
-As you can see in figure~\ref{fig:label image}, you will get labels that describes the words.
+As you can see in figure~\ref{fig:Spacy labels}, you will get labels that describes the words.
 This combined with spacy's functionality to add relation to the words makes it easy to extract words or values you want.
 When you got the label of the words, you can ask for a relation overview.
 This will give you all the relations for your text.

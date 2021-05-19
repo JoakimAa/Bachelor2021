@@ -94,4 +94,28 @@ A solution to this problem could be to train our own Spacy pipeline for norwegia
 This was however not an option duo to time constraints and lack of training data.
 Another possible solution is to abandon the Spacy NER altogether, and implement an RNN as was intended initially.
 
-\section{Overall pipeline improvements}\label{sec:overall-pipeline-improvements}
+\section{Objectives}\label{sec:objectives}
+Here we will discuss whether the objectives in \ref{sec:objectives} were achieved.
+\textbf{Objective 1: To create a machine learning model, that can identify desired data in an image of a receipt}
+While the machine learning pipeline is complete, all the desired data is not identifiable.
+The desired data was:
+\begin{compactitem}
+    \item Receipt type in the form of company name
+    \item Total price
+    \item Date the receipt was issued
+\end{compactitem}
+
+The CNN was able to predict the receipt type most of the time, but with some versions of the model being very inaccurate.
+This can be mitigated by retraining the model until a version is achieved where the inaccuracies is smaller.
+Testing whether the inaccuracies were removing is difficult, as the validation accuracy metric proved to be unreliable for our model.
+
+We were not able to extract the total price of the receipt, as the implementation of Spacy did not function as intended.
+
+The date was sometimes able to be extracted, but the method of extraction was unreliable and very prone selecting the wrong date.
+
+Overall, this objective was mostly unachieved, with the extracted data ranging from sometimes getting the type and date right but not the price, to not extracting any data at all.
+
+\textbf{Objective 2: To have the machine learning model be capable of improving it's performance when new data is acquired}
+
+
+\textbf{Objective 3: To develop an API that can deliver data to the machine learning model and fetch the results.}

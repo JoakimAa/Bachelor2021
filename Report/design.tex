@@ -40,7 +40,7 @@ This would assure images that wasn't easily read by the OCR was discarded (the u
 The aligned image is sendt to the second part of our OCR, where we do some simple thresholding and extracting the text from the image.
 The OCR sends the extracted text as a string to the sapcy model and the date to the API\@.
 The Spacy model reads the string, adds relations to the text and evaluates the what's the total price.
-The date could also be evaluated in this model. (With research we have gotten the impression that its more common practise to find the date witn OCR).
+The date could also be evaluated in this model. (With research we have gotten the impression that its more common practise to find the date with OCR).
 
 Finally the data from CNN, OCR and Spacy is provided back to the user.
 This pipeline is illustrated in figure~\ref{fig:pipeline}

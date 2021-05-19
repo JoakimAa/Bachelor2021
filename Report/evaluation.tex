@@ -45,7 +45,7 @@ Prediction accuracy then went up to around 95\% for most models.
 \end{figure}
 \clearpage
 Validation accuracy and loss are the two metrics we are using to determine the success of a model.
-FIGURLINK and FIGURLINK shows how the model accuracy and loss are improving with each epoch of training.
+Figure \ref{fig:200modelaccuracy} and figure \ref{fig:200modelloss} shows how the model accuracy and loss are improving with each epoch of training.
 A consistent theme when training our models was the validation accuracy and loss starting to radically improve between epoch 10 and 15.
 
 \begin{figure}[h]
@@ -62,11 +62,11 @@ A consistent theme when training our models was the validation accuracy and loss
 \end{figure}
 
 A confusion matrix was also used to give some more insight into how the model was performing for each of the different categories it had been trained on.
-FIGURLINK shows the confusion matrix generated from the same model as FIGURLINKACCURACY and FIGURLINKLOSS, using the same validation dataset.
+Figure \ref{fig:200confusion} shows the confusion matrix generated from the same model as figure \ref{fig:200modelaccuracy} and figure \ref{fig:200modelloss}, using the same validation dataset.
 The confusion matrix has three throws, one for each category of receipt the model has been trained to classify.
 The diagonal of the matrix shows how many correct classifications the model made.
 The rest of the fields shows how many incorrect classifications were made.
-In FIGURLINK, we can see that for the second category, all the predictions made were correct.
+In figure \ref{fig:200confusion}, we can see that for the second category, all the predictions made were correct.
 We can also see that most of the incorrect predictions were done on the first category, with 7 of the 8 incorrect predictions taking place here.
 
 When trying to do predictions on a single image, the results were more inconsistent.

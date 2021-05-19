@@ -107,14 +107,6 @@ While the text in the image is now completely unreadable, the CNN will have no i
 
 \section{Convolutional Neural network}\label{sec:CNN}
 As stated previously, we are using a CNN as an image classifier in order to determine which company issued the receipt.
-
-\begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/cnnplaceholder}}
-    \caption{Graphic illustrating the Convolutional Neural Network (PLACEHOLDER)}
-    \label{fig:cnnplaceholder.4}
-\end{figure}
-
-Figure 3.3 illustrates the layout of our CNN.
 The input layer takes the pixel value of the image.
 Because of this, the number of nodes in the input layer has to be equal to the amount of pixels in the image.
 The output layer has three nodes, one for each type of receipt the network is trained to classify.
@@ -130,14 +122,11 @@ Python-tesseract, or Pytesseract for short, utilizes Google's Tesseract-OCR engi
 
 When metadata for a particular image is requested by a user, the API will provide our implementation of Pytesseract with an image.
 Pytesseract will take this image as an input, and can provide outputs in various formats like xml or pdf.
-We will be using the output in string format, as this will serve as the input to our RNN model.
-Once Pytesseract has completed the text extraction, the output string is then fetched by our API to be provided to our RNN model.
+We will be using the output in string format, as this will serve as the input to our NER Spacy module.
+Once Pytesseract has completed the text extraction, the output string is then fetched by our API to be provided to our NER Spacy module.
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/ocr_before_after}}
     \caption{Example output of pytesseract with a test image}
     \label{fig:figure3.5}
 \end{figure}
-
-\section{Recurrent Neural Network}\label{sec:RNN}
-

@@ -32,17 +32,55 @@ This was done by selecting the three most common occurrences of receipts founds 
 Before using the image augmentation software, the newly created subset of the original dataset had only about 100 images.
 After using the image augmentation software, the size of the dataset increased to 1500 images.
 
-OCR GREIER
+The OCR module uses the CNN prediction to select an image template to de-skew the input image to a horizontal state.
+Other pre-processing methods are used described in \ref{sec:pre-processing} is used to prepare the image for text extraction.
+Once the text has been extracted, a Regular Expression is used to check for commonly used date formats found in the text.
+If a date matching the Regular Expression is found, that date is selected as the date for that receipt.
 
-SPACY GREIER
+The text extracted from the OCR module is sent into the NER Spacy module.
+Using Spacy's built-in word labels, all words labeled as money is iterated upon, trying to find the maximum value.
+Once all the words labeled as money have been checked, the maximum value is given back to the flask API as the receipts total price.
+If no word with the label money is found, -1 is given to the flask API indicating that no price was found in the text.
 
 \subsection{Results and discussion}\label{resultsanddiscussion}
+The API was successfully implemented and is able to deliver and fetch the data as it was designed to.
+However, there is little error management and testing being done in the API.
+While not a focus of this project, it can lead to some confusion as to what is causing errors to occur when not familiar with the code.
+
+The CNN model was able to train quite successfully, reaching over 95\% validation accuracy after 15 epochs consistently.
+Despite the high validation accuracy, when testing in practice using images from the same test dataset, we were not able to replicate the high accuracy on most models.
+This meant the model was quite inconsistent, with several models with similar validation accuracy performing very differently.
+We were not able to discover the reason for these inconsistencies.
+
+The OCR software utilizes the pre-processing techniques described in \ref{sec:preprocessing} to prepare the images for text extraction.
+Since it is also reliant on the prediction from our CNN model to do de-skewing, whenever the CNN model would not predict the correct receipt category, the OCR would not extract any text.
+An example of this can be seen in figure \ref{fig:scuffedmatchresult}
+When the CNN made the correct predict however, the OCR software would extract the text adequately enough to detect useful information.
+An exception to this was one of the receipt categories that included a lot of background lines in the receipt, as can be seen in figure \ref{fig:beforeafterflybuss}.
+The reason for this is likely that the OCR software is unable to distinguish between the text in the receipt, and the horizontal background lines that was not removed by the pre-processing methods.
+Attempts were made to address this issue, but none were successful.
+The date extracted from the text output of the OCR software was also unreliable.
+The date that was found might be the correct one, but often it would simply choose the first date that was found, leading to an incorrect date being sent back to the API.
+
+As the Spacy price extraction module was added as a last-minute fix in order to complete the pipeline, it did not function as intended.
+We relied on the built-in Spacy labels to detect which words found in the text had the label of money.
+However, since the pre-trained Spacy model was trained text which had a more normal sentance structure, it was not able to attach the correct label to the receipt text.
+This led to every output of the Spacy module having the value of -1, meaning no price was found.
+In order to address this issue, we could train our own Spacy model, but we did not have a text dataset to use for this purpose.
+
+\section{Conclusion}\label{sec:conclusion}
+While we were not able to achieve all the objectives in \ref{sec:objectives}, the project group learned a lot during the timeline of this project.
+The objective of creating an API capable of delivering and fetching machine learning module results was achieved.
+The objective of training and machine learning model capable of extracting desired data contained in a receipt was partially achieved, but leaves much to be desired as only the receipt type could somewhat reliably be extracted.
+The objective of creating a solution for continued training of the machine learning models using the stored image data was not achieved, although the images uploaded are stored in a database.
+
+A lot of improvements can be made to our solution.
+An improved dataset would help our CNN generalize more and allow us to train it for more receipt types.
+Creating a dataset made up of the text-output of the OCR would also make it possible to train our own models using Spacy or a RNN.
+We were also considering using a CNN for date and price extraction, designing it more for text recognition than image classification.
+The date and price extraction modules as it is now do not function properly, and it implemented as a rule-based approach instead of learning-based.
+Making the date and price extraction learning-based would be the biggest improvement to our solution, aswell as removing the dependency on correct CNN predictions for the other modules to function.
 
 
-Beskrivelse av kapttel
 
-Kort oppsummering
 
-Mål og ble mål nådd
-
-Forbedringer

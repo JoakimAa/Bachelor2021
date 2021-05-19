@@ -20,7 +20,7 @@
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Examples of labeled images}}{19}{figure.4.1}%
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Finding matches between a given image to a template}}{20}{figure.4.2}%
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Original image on the left, along with generated images from blur and rotation transformations}}{21}{figure.4.3}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Overview for max pooling~\cite {CNN})}}{21}{figure.4.4}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Overview for max pooling~\cite {CNN}}}{21}{figure.4.4}%
 \contentsline {figure}{\numberline {4.5}{\ignorespaces CNN model}}{22}{figure.4.5}%
 \contentsline {figure}{\numberline {4.6}{\ignorespaces CNN model compile}}{22}{figure.4.6}%
 \contentsline {figure}{\numberline {4.7}{\ignorespaces OCR config and thresholding}}{23}{figure.4.7}%
@@ -30,14 +30,14 @@
 \contentsline {figure}{\numberline {5.1}{\ignorespaces The result from the ML API}}{25}{figure.5.1}%
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Training and validation accuracy for a model trained on 200x200 images}}{26}{figure.5.2}%
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Training and validation loss for a model trained on 200x200 images}}{27}{figure.5.3}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Confusion matrix for a model trained on 200x200 images}}{28}{figure.5.4}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Input image (left) trying to match its content to the wrong image template (right)}}{29}{figure.5.5}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Result of de-skewing when using the wrong image template}}{30}{figure.5.6}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Before and after pre-processing}}{31}{figure.5.7}%
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Extracted text in red, appearing over the place it has been extracted from}}{32}{figure.5.8}%
-\contentsline {figure}{\numberline {5.9}{\ignorespaces The date extracted from OCR output}}{32}{figure.5.9}%
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Before and after pre-processing}}{33}{figure.5.10}%
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Extracted text in red, appearing over the place it has been extracted from}}{34}{figure.5.11}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Confusion matrix for a model trained on 200x200 images}}{27}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Input image (left) trying to match its content to the wrong image template (right)}}{28}{figure.5.5}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Result of de-skewing when using the wrong image template}}{28}{figure.5.6}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Before and after pre-processing}}{29}{figure.5.7}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Extracted text in red, appearing over the place it has been extracted from}}{29}{figure.5.8}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces The date extracted from OCR output}}{30}{figure.5.9}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Before and after pre-processing}}{30}{figure.5.10}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Extracted text in red, appearing over the place it has been extracted from}}{31}{figure.5.11}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Character ambiguity in dates}}{37}{figure.6.1}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Character ambiguity in dates}}{34}{figure.6.1}%
 \addvspace {10\p@ }

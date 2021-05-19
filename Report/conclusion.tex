@@ -25,7 +25,18 @@ A python API implemented with the Flask framework is used to pass data between t
 
 \subsection{Implementation}\label{implementation}
 The .NET REST API is implemented with the MVP principle and is written in C\#.
-The CNN model is created using Tensorflow and Keras, and is trained using a dataset of
+The CNN model is created using Tensorflow and Keras, and is trained using a dataset of 1500 images.
+The dataset originally provided to us by Simployer had a large variety of different receipts, with very few receipts of the same type.
+In order to allow us to train our CNN to recognize a smaller amount of receipts, we had to cut down on the dataset variety.
+This was done by selecting the three most common occurrences of receipts founds when going through the dataset, and using image augmentation software to generate new images of those receipts.
+Before using the image augmentation software, the newly created subset of the original dataset had only about 100 images.
+After using the image augmentation software, the size of the dataset increased to 1500 images.
+
+OCR GREIER
+
+SPACY GREIER
+
+\subsection{Results and discussion}\label{resultsanddiscussion}
 
 
 Beskrivelse av kapttel

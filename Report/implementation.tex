@@ -93,13 +93,14 @@ It then calculates how much it needs to skew the image in a given direction, to 
 In image~\ref{fig:OCR matching} you can see the algorithm finding matches between a Trøndertaxi receipt from two
 different years.
 Yes, these recipes is almost identical.
-Making this functionality dynamic for almost all receipts should be possible, (no evidence for this) by having a pool of template receipts.
+Making this functionality dynamic for almost all receipts should be possible.
+We have implemented a light-weight function of this by having a pool of template receipts.
 Then you can have a CNN check which receipts are the most similar and use the highest scoring receipt as the template image for any given receipt.
 
 \subsection{Data augmentation}\label{subsec:data-augmentation}
 Because of the low amount of images in the filtered dataset, data augmentation has to be done in order to give us enough images to be able to effectively train the CNN\@.
 We used an open source data augmentation tool for images for this task LINK\@.
-The augmentor takes a directory of images and applies a series of transformations on the images like scaling, skewing and rotating.
+The augmenter takes a directory of images and applies a series of transformations on the images like scaling, skewing and rotating.
 This creates copies of the images with slight differences, increasing the size of our dataset.
 After applying enough transformations, the size of the dataset grew from 91 images to 1500.
 
@@ -126,11 +127,12 @@ The second hidden layer, and the output layer are dense layers, where the hidden
 The activation function of the first three layers is Rectified Linear Unit (ReLU), while the output layer uses the sigmoid function.
 Maxpooling2D is used to define a stride of 2.
 This means that we take the biggest number with something that is called a max operation.
-We combine the results to get a 2x2 max pool output, down from a 4x4 format.\ref{fig:Max pooling}
+We combine the results to get a 2x2 max pool output, down from a 4x4 format.
+Figure~\ref{fig:Max pooling}
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/maxpooling2D}}
-    \caption{Overview for max pooling (Image from~\cite{CNN})}
+    \caption{Overview for max pooling~\cite{CNN}}
     \label{fig:Max pooling}
 \end{figure}
 
@@ -164,11 +166,11 @@ The optimizer is the standard adam optimizer.
 
 \subsection{OCR alignment}\label{subsec:ocr-alignment}
 
-The alignment model is made from learnopencv.com~\cite{OpenCVAlignment}) as a base.
+The alignment model is made from learnopencv.com\cite{OpenCVAlignment} as a base.
 We have changed this code base to fit our pipeline.
 We wrapped this base code in two different functions.
-Aligne\_images and return\_data.
-Aligne\_images takes three parameters.
+align\_images and return\_data.
+align\_images takes three parameters.
 It takes the prediction form the CNN to see if it need to scale the image and it takes two images.
 One of these images is the image that the user sendt in via the webpage.
 The other image is the template image that the OCR is going to use to aligne the image.

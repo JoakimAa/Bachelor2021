@@ -54,13 +54,16 @@ In order to finish the pipeline, so it could be demonstrated properly, a Regular
 This solution has some flaws, as there can be many dates found in a receipt, and no validation as to which date is likely the correct one being added.
 
 \subsection{Issues with reliance on CNN prediction}\label{subsec:issues-with-reliance-on-cnn-prediction}
-As mentioned in chapter 5 and seen in~\ref{fig:scuffedmatchresult}, the de-skew being reliant on CNN prediction has consequences for the rest of the pipeline.
+As mentioned in chapter 5 and seen in figure~\ref{fig:scuffedmatchresult}, the de-skew being reliant on CNN prediction
+has consequences for the rest of the pipeline.
 This means that unless the CNN makes the correct prediction, and the de-skewing manages to properly rotate the image to a horizontal state, no text can be found in the image, as it is rendered unusable by the de-skewing.
-In some cases where the CNN does correctly predict the receipt category, the de-skewing also fails, giving the same result as~\ref{fig:scuffedmatchresult}.
+In some cases where the CNN does correctly predict the receipt category, the de-skewing also fails, giving the same
+result as shown in figure~\ref{fig:scuffedmatchresult}.
 This is one of the biggest issues with our pipeline, as any further information extraction is no longer possible.
 One way to solve this problem would be to find a way to de-skew images without relying on a template image of a given category.
 This would remove the reliance on the CNN prediction.
-A big benefit to this that we would be able to extract date and price information from the images even if the CNN prediction fails.
+A big benefit to this is that we would be able to extract date and price information from the images even if the CNN
+prediction fails.
 Another possible solution would be to only accept images that are taken horizontally, meaning no de-skewing would be required for the OCR to properly identify text in an image.
 This solution would require the user to only submit images where the text is horizontally aligned.
 In this case the CNN would probably need to be retrained as well, as much of the training data is rotated in order to account for images taken at a bad angle.

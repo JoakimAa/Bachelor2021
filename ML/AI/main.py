@@ -5,7 +5,7 @@ import numpy as np
 
 # (https://learnopencv.com/feature-based-image-alignment-using-opencv-c-python/)
 
-pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+#pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
 MAX_FEATURES = 500
 GOOD_MATCH_PERCENT = 0.15
@@ -46,7 +46,7 @@ def align_images(img1, img2, prediction):
 
     imMatches = cv2.drawMatches(im1, keypoints1, im2, keypoints2, matches, None)
 
-    cv2.imwrite("../AI/out/matches.jpg", imMatches)
+    cv2.imwrite("out/matches.jpg", imMatches)
 
     # Extract location of good matches
 
@@ -88,11 +88,11 @@ def return_data(img1, prediction):
     # Write aligned image to disk.
     outFilename = "aligned.jpg"
     print("Saving aligned image : ", outFilename);
-    cv2.imwrite("../AI/out/" + outFilename, imReg)
+    cv2.imwrite("out/" + outFilename, imReg)
 
     template = "template.jpg"
     print("default image")
-    cv2.imwrite("../AI/out/" + template, im2)
+    cv2.imwrite("out/" + template, im2)
 
     # Print estimated homography
     print("Estimated homography : \n", h)

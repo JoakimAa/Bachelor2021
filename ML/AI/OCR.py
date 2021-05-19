@@ -5,7 +5,7 @@ import numpy as np
 
 
 def run_ocr(img):
-    pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+    #pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
     img_S = cv2.resize(img, None, fx=1, fy=0.8, interpolation=cv2.INTER_AREA)
     grayImg = cv2.cvtColor(img_S, cv2.COLOR_BGR2GRAY)
@@ -47,5 +47,6 @@ def run_ocr(img):
     # cv2.imshow('result', img_S)
     # cv2.imshow("template", img_T)
     # cv2.waitKey(0)
+    cv2.imwrite("resultflybuss.jpg", img_S)
 
     return date, ", ".join(detectedWords)

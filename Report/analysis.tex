@@ -20,16 +20,14 @@ This means the API will be more bare-bones, focused more on being able to provid
 The app will consist of two main parts: The API and the machine learning modules.
 We are going to use one of the OCR tools described in~\ref{sec:ocr-engines}
 The OCR software is used to extract text from images, and will function as an input converter for our machine learning models that cannot work directly on images as an input.
-A CNN will be used for image classification and a NER software named Spacy will be used to detect relevant data in text.
+A CNN will be used for image classification, and a NER software named Spacy will be used to detect relevant data in text.
 We considered using a RNN to detect relevant data in text, but decided against it due to time constraints.
 
-\section{Tools}\label{sec:tools}
-This section details the different tools that have been considered for use in the thesis.
-\subsection{OCR engines}\label{subsec:ocr-engines}
+\section{OCR engines}\label{sec:ocr-engines}
 There are many OCR engines that could be used for this thesis.
 Three main ones have been selected for consideration.
 These are Google Cloud Vision API, Amazon Textract, and Tesseract.
-\subsubsection{Google Cloud Vision API}\label{subsubsec:API_Google}
+\subsection{Google Cloud Vision API}\label{subsec:API_Google}
 
 Google Cloud Vision API contains a well optimised OCR and good variety of detection.
 The detection features are listed in~\ref{fig:Google cloud API prices}
@@ -94,7 +92,7 @@ Amazon will charge you 0.065\$ per page (65\$ per 1000) for the first million pa
 
 Note that Amazon changes their pricing on the region you are in (you might want to check the price for your region), they also do not include a free 1000 scans per a month.
 
-\subsubsection{Tesseract}\label{subsubsec:Tesseract}
+\subsection{Tesseract}\label{subsec:Tesseract}
 Tesseract is an open-source OCR engine that supports over 100 different languages.
 It has the reputation of being one of the best open-source OCR engines.
 It was created by HP in the 80's and later made open-source in 2005 and funded by google since 2006.

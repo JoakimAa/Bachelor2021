@@ -131,7 +131,7 @@ We combine the results to get a 2x2 max pool output, down from a 4x4 format.\ref
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/maxpooling2D}}
-    \caption{Overview for max pooling (Image from~\cite{CNN})}
+    \caption{Overview for max pooling~\cite{CNN})}
     \label{fig:Max pooling}
 \end{figure}
 
@@ -165,11 +165,11 @@ The optimizer is the standard adam optimizer.
 
 \subsection{OCR alignment}\label{subsec:ocr-alignment}
 
-The alignment model is made from learnopencv.com~\cite{OpenCVAlignment}) as a base.
+The alignment model is made from learnopencv.com\cite{OpenCVAlignment} as a base.
 We have changed this code base to fit our pipeline.
 We wrapped this base code in two different functions.
-Aligne\_images and return\_data.
-Aligne\_images takes three parameters.
+align\_images and return\_data.
+align\_images takes three parameters.
 It takes the prediction form the CNN to see if it need to scale the image and it takes two images.
 One of these images is the image that the user sendt in via the webpage.
 The other image is the template image that the OCR is going to use to aligne the image.

@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-
 import styled from 'styled-components';
 /* import Form from './Form';
  */
+import {
+  Alert,
+  AlertIcon,
+  Button,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Input,
+} from '@chakra-ui/core';
 import { create } from '../utils/receiptService';
 import { upload } from '../utils/imageService';
 import { sendImage } from '../utils/machineLearningService';
@@ -11,52 +19,80 @@ import { sendImage } from '../utils/machineLearningService';
 const Upload = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
+  const [pictureIsSentError, setPictureIsSentError] = useState(false);
+  const [pictureIsUploadedError, setPictureIsUploadedError] = useState(false);
+  const [receiptError, setReceiptError] = useState(false);
   const [receiptSuccess, setReceiptSuccess] = useState(false);
   const [imageId, setImageId] = useState(null);
   const [receiptValue, setReceiptValue] = useState(null);
   const [src, setSrc] = useState(null);
-  const [pictureIsUploaded, setPictureIsUploaded] = useState(false);
+  const [pictureIsSent, setPictureIsSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { register, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, formState, reset, errors } = useForm({
     mode: 'onBlur',
   });
 
+  const onSubmit = async (formData) => {
+    setIsLoading(true);
+    console.log('Lagrer receipt');
+    const data = await create(formData, imageId);
+    console.log(data);
+    if (data?.status === 201) {
+      setReceiptSuccess(true);
+      setIsLoading(false);
+      setReceiptError(false);
+    } else {
+      setReceiptSuccess(false);
+      setReceiptError(true);
+      setIsLoading(false);
+      setError(data?.error);
+    }
+  };
+
+  useEffect(() => {
+    if (pictureIsSent) {
+      const fetchData = async () => {
+        setIsLoading(true);
+        console.log('Laster opp bilde');
+        const data = await upload(file);
+        console.log(data);
+        if (data?.status === 201) {
+          setImageId(data.data.imageId);
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
+          setPictureIsUploadedError(false);
+        }
+      };
+      fetchData();
+    }
+  }, [reset, pictureIsSent, file]);
+
+  const handleImageSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Sender inn bilde');
+    setIsLoading(true);
+    const data = await sendImage(file);
+    console.log(data);
+    if (data?.status === 200) {
+      reset(data.data);
+      setReceiptValue(data?.data);
+      setPictureIsSent(true);
+      setPictureIsSentError(false);
+      setIsLoading(false);
+    } else {
+      setPictureIsSent(false);
+      setPictureIsSentError(true);
+      setIsLoading(false);
+    }
+  };
   function arrayBufferToBase64(buffer) {
     let binary = '';
     const bytes = [].slice.call(new Uint8Array(buffer));
     bytes.forEach((b) => (binary += String.fromCharCode(b)));
     return window.btoa(binary);
   }
-
-  const onSubmit = async (formData) => {
-    const { data } = await create(formData, imageId);
-    console.log(data);
-    setReceiptSuccess(true);
-    setError(null);
-  };
-
-  useEffect(() => {
-    if (pictureIsUploaded) {
-      const fetchData = async () => {
-        const data = await sendImage(file);
-        reset(data.data);
-        setReceiptValue(data?.data);
-      };
-      fetchData();
-    }
-  }, [reset, pictureIsUploaded, file]);
-
-  const handleImageSubmit = async (e) => {
-    e.preventDefault();
-    console.log('Laster opp bilde');
-    const { data } = await upload(file);
-    setPictureIsUploaded(true);
-    setImageId(data.imageId);
-    setSuccess(true);
-    setError(null);
-    console.log(await data);
-  };
 
   useEffect(() => {
     if (file) {
@@ -74,79 +110,91 @@ const Upload = () => {
 
   return (
     <>
-      {error && <p>Noe gikk galt med opplastingen</p>}
-      {success && (
-        <SuccessMessage>Laster opp bilde med id: {imageId}</SuccessMessage>
-      )}
       {receiptSuccess && (
-        <SuccessMessage>Kvitteringen har blitt lastet opp</SuccessMessage>
+        <Alert status="success">
+          <AlertIcon />
+          {receiptValue.type}en har blitt lastet opp
+        </Alert>
+      )}
+      {isLoading && <div>Laster opp...</div>}
+      {(pictureIsUploadedError || pictureIsSentError || receiptError) && (
+        <Alert status="error">
+          <AlertIcon />
+          Det har oppstått en feil, prøv igjen senere.
+        </Alert>
       )}
       <FlexBox>
         <FlexStart>
-          {receiptValue && (
-            <FormGroup>
-              <StyledForm onSubmit={handleSubmit(onSubmit)}>
-                <FormGroup>
-                  <InputLabel htmlFor="inpType">Type</InputLabel>
-                  <Input
-                    type="text"
-                    name="type"
-                    id="inpType"
-                    placeholder="Type"
-                    ref={register({
-                      required: true,
-                    })}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <InputLabel htmlFor="inpAmount">Price</InputLabel>
-                  <Input
-                    type="text"
-                    name="amount"
-                    id="inpAmount"
-                    placeholder="Price"
-                    ref={register({
-                      required: true,
-                    })}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <InputLabel htmlFor="inpCompany">Company</InputLabel>
-                  <Input
-                    type="text"
-                    name="company"
-                    id="inpCompany"
-                    placeholder="Company"
-                    ref={register({
-                      required: true,
-                    })}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <InputLabel htmlFor="inpDate">Date</InputLabel>
-                  <Input
-                    type="text"
-                    name="date"
-                    id="inpDate"
-                    placeholder="Date"
-                    ref={register({
-                      required: true,
-                    })}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <StyledButton
-                    type="submit"
-                    isLoading={formState.isSubmitting}
-                  >
-                    Send inn
-                  </StyledButton>
-                  {error && <p>{error.message}</p>}
-                </FormGroup>
-              </StyledForm>
-            </FormGroup>
-          )}
-
+          <FormGroup>
+            <StyledForm onSubmit={handleSubmit(onSubmit)}>
+              <FormControl isInvalid={errors.type}>
+                <FormLabel htmlFor="inpType">Type</FormLabel>
+                <Input
+                  type="text"
+                  name="type"
+                  id="inpType"
+                  placeholder="Type"
+                  ref={register({
+                    required: true,
+                  })}
+                />
+                <FormErrorMessage valid={!errors.type}>
+                  Fyll ut type
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl name="amount" isInvalid={errors.amount}>
+                <InputLabel htmlFor="inpAmount">Pris</InputLabel>
+                <Input
+                  type="text"
+                  name="amount"
+                  id="inpAmount"
+                  placeholder="Pris"
+                  ref={register({
+                    required: true,
+                  })}
+                />
+                <FormErrorMessage valid={!errors.amount}>
+                  Fyll ut pris
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl isInvalid={errors.company}>
+                <InputLabel htmlFor="inpCompany">Selskap</InputLabel>
+                <Input
+                  type="text"
+                  name="company"
+                  id="inpCompany"
+                  placeholder="Selskap"
+                  ref={register({
+                    required: true,
+                  })}
+                />
+                <FormErrorMessage valid={!errors.company}>
+                  Fyll ut selskap
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl isInvalid={errors.date}>
+                <InputLabel htmlFor="inpDate">Dato</InputLabel>
+                <Input
+                  type="text"
+                  name="date"
+                  id="inpDate"
+                  placeholder="Date"
+                  ref={register({
+                    required: true,
+                  })}
+                />
+                <FormErrorMessage valid={!errors.date}>
+                  Fyll ut dato
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl>
+                <Button type="submit" isLoading={formState.isSubmitting}>
+                  Send inn
+                </Button>
+                {error && <p>{error.message}</p>}
+              </FormControl>
+            </StyledForm>
+          </FormGroup>
           <StyledForm
             encType="multipart/form-data"
             method="post"
@@ -197,10 +245,10 @@ const FlexBoxImage = styled.div`
   margin: auto;
 `;
 
-const SuccessMessage = styled.p`
+/* const SuccessMessage = styled.p`
   margin: 0;
   align-items: left;
-`;
+`; */
 
 const Label = styled.label``;
 
@@ -223,10 +271,10 @@ const Img = styled.img`
   margin: auto;
 `;
 
-const Input = styled.input`
+/* const Input = styled.input`
   border-bottom: solid 0.1rem black;
   margin: 0.2rem 0rem;
-`;
+`; */
 
 const StyledButton = styled.button`
   padding: 0.1rem 0.65rem;

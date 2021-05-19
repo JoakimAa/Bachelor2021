@@ -6,7 +6,7 @@ This includes how the thesis group chose to implement the design discussed in pr
 
 \section{REST API}\label{sec:REST API}
 
-The API is a REST API coded in C\# with .NET.
+The API is a REST API coded in C\# with .NET\@.
 REST stands for REpresentational State Transfer and is a software architecture style.
 For the API to be considered a REST API it has to follow some set guidelines and principles.
 
@@ -14,8 +14,9 @@ The API consists of 4 different modules: The API endpoints, DataAccess,\\
 DataAccess.Maintenance and Model.
 
 \textbf{API endpoints} contains the controllers which handles the routing and requests.
-There are two controllers, one for receipt and one for image.
-They both contain the methods GET, POST, PUT, and DELETE\@.
+There are three controllers, one for receipt, one for image and one for connecting to the machine learning API\@.
+They receipt and image contain the methods GET, POST, PUT, and DELETE\@.
+While the machine learning only contains on  for posting a picture.
 
 In ImagesController the POST method uses the ImageDTO object.
 It initializes a new Image object, and populates the corresponding data.
@@ -31,6 +32,13 @@ The \textbf{Model} module contains the different models we use.
 There is one for receipts and one for image, there is also a data transfer object for image.
 The DTO is an object that carries data between processes and makes it more efficient by doing it in only one call.
 This is done by aggregating the data instead of sending it one by one.
+
+
+\section{ML API}\label{sec:ML API ch4}
+The ML API is created using Flask.
+This has one POST route that takes in an base64 string and converts it to an image and sends it to CNN and OCR for
+processing.
+The data is then returned to the .NET API
 
 \section{Web solution}\label{sec:Web solution}
 
@@ -61,26 +69,52 @@ The original dataset of 1194 images has been filtered down to 91 images, split i
     \label{fig:figure4.1}
 \end{figure}
 
-\section{Pre-processing}\label{pre-processing}
+\section{Pre-processing}\label{sec:pre-processing2}
 
-\subsection{Data augmentation}\label{data augmentation}
-Because of the low amount of images in the filtered dataset, data augmentation has to be done in order to give us enough images to be able to effectively train the CNN.
-We used an open source data augmentation tool for images for this task LINK.
-The augmentor takes a directory of images and applies a series of transformations on the images like scaling, skewing and rotating.
+\subsection{Aligning}\label{subsec:aligning}
+
+The first thing we make sure to do in our OCR is aligning the images.
+This is needed because an OCR can't reed skewed images.
+This means that we need to horizontal align the text as well as possible.
+
+\subsubsection[aligning]{Matching}
+
+Matching is a good way of having a dynamic aligning algorithm.
+We have template images for all the different receipts types (in this case 3 images).
+What the matching algorithm does is to look through the receipt you feed it and see if it has any "mathces" with the template one.
+It then calculates how much it needs to skew the image in a given direction, to make it aligned with the template version.
+
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/match_image.png}}
+    \caption{Finding matches between a given image to a template}
+    \label{fig:OCR matching}
+\end{figure}
+
+In image~\ref{fig:OCR matching} you can see the algorithm finding matches between a Trøndertaxi receipt from two
+different years.
+Yes, these recipes is almost identical.
+Making this functionality dynamic for almost all receipts should be possible.
+We have implemented a light-weight function of this by having a pool of template receipts.
+Then you can have a CNN check which receipts are the most similar and use the highest scoring receipt as the template image for any given receipt.
+
+\subsection{Data augmentation}\label{subsec:data-augmentation}
+Because of the low amount of images in the filtered dataset, data augmentation has to be done in order to give us enough images to be able to effectively train the CNN\@.
+We used an open source data augmentation tool for images for this task LINK\@.
+The augmenter takes a directory of images and applies a series of transformations on the images like scaling, skewing and rotating.
 This creates copies of the images with slight differences, increasing the size of our dataset.
 After applying enough transformations, the size of the dataset grew from 91 images to 1500.
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/example_augmented}}
     \caption{Original image on the left, along with generated images from blur and rotation transformations}
-    \label{fig:figure4.2}
+    \label{fig:figure4.3}
 \end{figure}
 
-\subsection{Image preparation}\label{imgprep}
+\subsection{Image preparation}\label{subsec:imgprep}
 Many of the images in the dataset are taken in different resolutions.
 In order to prepare the images to be passed forward to the CNN model, the images resolution is rescaled to 60x60 pixels.
 This significantly reduces the training time required by the network with minimal to no loss in accuracy.
-The images are also converted to grayscale instead of RGB.
+The images are also converted to grayscale instead of RGB\@.
 This reduces the amount input nodes required by the network, as each pixel will have one value instead of three.
 
 \section{Convolutional Neural Network}\label{sec:cnn}
@@ -92,20 +126,19 @@ The input layer and first hidden layer are 2D convolutional layers with 32 and 6
 The second hidden layer, and the output layer are dense layers, where the hidden layer has 64 filters and the output layer has 3 filters.
 The activation function of the first three layers is Rectified Linear Unit (ReLU), while the output layer uses the sigmoid function.
 Maxpooling2D is used to define a stride of 2.
-This means that we take the biggest number with something thats called a max operation.
+This means that we take the biggest number with something that is called a max operation.
 We combine the results to get a 2x2 max pool output, down from a 4x4 format.
-As illustrated below.
+Figure~\ref{fig:Max pooling}
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/maxpooling2D}}
-    \caption{Overview for max pooling (Image from https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks)}
-    \label{fig:figure6}
-
+    \caption{Overview for max pooling~\cite{CNN}}
+    \label{fig:Max pooling}
 \end{figure}
 
-We have also used batchnormalixation with the default settings in the input and hidden layers of out model.
+We have also used batch normalisation with the default settings in the input and hidden layers of out model.
 This means that the model is sharding the data in batches.
-This in turn lets us train the model with a lot less trainingsteps, and it gives us even better accuracy.
+This in turn lets us train the model with a lot less training steps, and it gives us even better accuracy.
 The last function we will talk about in the input and hidden layers are the dropout function.
 This function will force the model to drop random filters during the training.
 This will force an adaption in the model that makes it more versatile.
@@ -115,52 +148,71 @@ Therefore, it will end up with a more generic understanding of the data and avoi
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/CNN_model}}
     \caption{CNN model}
-    \label{fig:figure4}
-
+    \label{fig:CNN model}
 \end{figure}
 
 In the compile function we defined we choose to use cross-entropy as our loss function.
 Because this is the best for multiclass classification.
 The optimizer is the standard adam optimizer.
 
-
-
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/CNN_compile}}
     \caption{CNN model compile}
-    \label{fig:figure5}
+    \label{fig:CNN compile}
 
 \end{figure}
-
 
 \section{OCR}\label{sec:OCR_implementation}
 
-The first thing we did in the OCR was
+\subsection{OCR alignment}\label{subsec:ocr-alignment}
+
+The alignment model is made from learnopencv.com\cite{OpenCVAlignment} as a base.
+We have changed this code base to fit our pipeline.
+We wrapped this base code in two different functions.
+align\_images and return\_data.
+align\_images takes three parameters.
+It takes the prediction form the CNN to see if it need to scale the image and it takes two images.
+One of these images is the image that the user sendt in via the webpage.
+The other image is the template image that the OCR is going to use to aligne the image.
+The return\_data function also takes the prediction.
+This decides the template image.
+and it takes the image from the webpage changes the colors and passes it to align\_images
+
+\subsection{OCR extraction}\label{subsec:ocr-extraction}
+
+The OCR extraction model is based on code from Murtaza's workshop~\cite{TextDetection}.
 
 \begin{figure}[h]
-    \center{\includegraphics[width=0.8 \textwidth]{Images/OCR1}}
-    \caption{CNN model compile}
-    \label{fig:figure7}
-
+    \center{\includegraphics[width=0.8 \textwidth]{Images/OCR}}
+    \caption{OCR config and thresholding}
+    \label{fig:OCR config/thresholding}
 \end{figure}
 
-\begin{figure}[h]
-    \center{\includegraphics[width=0.8 \textwidth]{Images/OCR2}}
-    \caption{CNN model compile}
-    \label{fig:figure8}
+We wrapped the whole code in a function and made it take an image from the alignment model.
+The image goes through more resizing, and the thresholding process starts.
+We decided to go with a combination of adaptive gaussian\_c and binary thresholding.
+As illustrated in~\ref{fig:OCR config/thresholding}
 
-\end{figure}
-
-\begin{figure}[h]
-    \center{\includegraphics[width=0.8 \textwidth]{Images/OCR4}}
-    \caption{CNN model compile}
-    \label{fig:figure9}
-
-\end{figure}
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.8 \textwidth]{Images/OCR5}}
-    \caption{CNN model compile}
-    \label{fig:figure10}
+    \caption{OCR extraction}
+    \label{fig:OCR text extraction}
 \end{figure}
 
+This is the part of the model that extracts the text.
+The important things to note here is that we are casting b[6-9] to ints.
+These are strings, and we cannot use strings to determined height and width of the textboxes.
+We also add b[11] to an array, because these are the words that the OCR finds.
+
+\clearpage
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.8 \textwidth]{Images/OCR_dato}}
+    \caption{OCR text extraction}
+    \label{fig:OCR date extraction}
+\end{figure}
+
+The last thing in the model is the date validation.
+We have made a simple regex that uses the pattern for dates to recognize dates.
+The first match that comes up is the one we use.

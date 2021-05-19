@@ -1,35 +1,81 @@
 \chapter{Design}
 \label{ch:design}
 
-\begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/pipeline}}
-    \caption{Graphic illustrating the project pipeline (PLACEHOLDER)}
-    \label{fig:figure3}
-\end{figure}
-The project is designed to be able to take an input image of a receipt sent over http, and provide metadata to that image based on its contents.
+The pipeline is designed to be able to take an image of a receipt sent over http as an input.
+It is going to provide metadata to that image based on its contents.
 This metadata includes the company name that issued the receipt, the date the receipt was made, and the price of the purchase.
 In order to transfer the image to our machine learning models, a .NET API is used.
 
-The API exposes several endpoints that allows for saving an image and a receipt to a database.
-The API is also connected to the CNN and OCR module.
+The pipeline consists of a website, .NET API, database, ML API, CNN, OCR and Spacy.
 
-We have decided to split up the metadata extraction into two separate parts;
-a Convolutional Neural Network for image classification and a Recurrent Neural Network for natural language processing.
+The webpage will take an image input from the user.
+The webpage is connected with the .NET API and database.
+From the .NET API the image is forwarded to the machine learning API\@.
+This is written in java, we use it because we can't communicate directly to our python program with the .NET API(C#)\@.
+The ML API is made by using a framework called Flask, this is used to convert the information to python and from flask API the image is sent to the CNN\@.
 
-The CNN will take an image as input, and decide which company issued that receipt based on previous training data.
+The CNN does a prediction on the category of the image.
+The category is directly tied to the company.
+This means by categorising the images, you will get the company that issued the receipt.
+this information is returned to the API and forwarded to the OCR\@.
 
-The RNN will take text as input.
-In order to extract the text from the images, an open-source OCR is used.
+For extracting the metadata of the companies we had one other solution that was heavily considered.
+That was to not use a CNN at all, but rather have an RNN do all the predictions.
+This would force us to change the alignment functionality of our pipeline.
 
-Finally, the outputs of the CNN and RNN and combined and provided back to the user.
-This pipeline is illustrated in figure 3.1
+While the CNN makes its prediction and forwards it to the OCR, the API sends the image directly to the OCR\@.
+The prediction from the CNN will be used in the OCR to choose the right template for the image.
+The template is an aligned image that we have pre-loaded into the OCR model.
+This means that the OCR is holding one image of all the categorise we have and using this as a reference to skew the images horizontally (We need to do this because an OCR can't read skewed text).
 
-\section{API}\label{sec:API}
-The API is used as the connection point between the different modules, it sends and receives data through the pipeline.
-The user sends in an image via a website and the API handles the request and sends the data to the CNN and the OCR\@.
+The skewing method is using something called matching, this finds similarities in the images and aligns the images
+based on these similarities. (You can read more about matching under implementation in section ~\ref{sec:pre-processing2})
+We ended up implementing this functionality because sample size is way too small.
+This forced us to create "fake" data by skewing images.
+This is a feature that is great to have, but in reality, not needed.
+This is because it is way better solutions for this.
+We would add a check for the image before accepting it.
+This would assure images that wasn't easily read by the OCR was discarded (the user would have to take another picture).
 
-When the data has been processed through the CNN and OCR/RNN, the API sends the data back to the
-user.
+The aligned image is sendt to the second part of our OCR, where we do some simple thresholding and extracting the text from the image.
+The OCR sends the extracted text as a string to the sapcy model and the date to the API\@.
+The Spacy model reads the string, adds relations to the text and evaluates the what's the total price.
+The date could also be evaluated in this model. (With research we have gotten the impression that its more common practise to find the date with OCR).
+
+Finally the data from CNN, OCR and Spacy is provided back to the user.
+This pipeline is illustrated in figure~\ref{fig:pipeline}
+
+\begin{figure}[h]
+    \center{\includegraphics[width=1\textwidth]{Images/PipelineLess}}
+    \caption{Graphic illustrating the project pipeline}
+    \label{fig:pipeline}
+\end{figure}
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.5\textwidth]{Images/PipelineMLAPI.png}}
+    \caption{ML API pipeline}
+    \label{fig:ML API}
+\end{figure}
+
+\begin{figure}[h]
+    \center{\includegraphics[width=0.5\textwidth]{Images/ReactWebsite.png}}
+    \caption{React website}
+    \label{fig:reactWebsite}
+\end{figure}
+
+
+\section{React website}\label{sec:reactWebsite}
+The website is the first point in the pipeline and gives the user a way to interact with the pipeline.
+The website allows the user to upload the picture which is sent through the pipeline, and consecutively the receipt (figure~\ref{fig:reactWebsite}).
+
+\section{.NET API}\label{sec:.NET API}
+The .NET API exposes several endpoints that allows for sending an image to the ML API, and save an image and a receipt to a database.
+
+\section{ML API}\label{sec:ML API}
+The ML API works as an endpoint for the machine learning model, it utilizes the CNN, OCR and Spacy to get data from
+the image the user sends in, and then sends the data back to the .NET API\@.
+The pipeline is explained in figure~\ref{fig:ML API}
+
 
 \section{Dataset}\label{sec:dataset}
 In order to train our neural network models, Simployer provided us with a sample of images from their database.
@@ -62,14 +108,6 @@ While the text in the image is now completely unreadable, the CNN will have no i
 
 \section{Convolutional Neural network}\label{sec:CNN}
 As stated previously, we are using a CNN as an image classifier in order to determine which company issued the receipt.
-
-\begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/cnnplaceholder}}
-    \caption{Graphic illustrating the Convolutional Neural Network (PLACEHOLDER)}
-    \label{fig:figure3.4}
-\end{figure}
-
-Figure 3.3 illustrates the layout of our CNN.
 The input layer takes the pixel value of the image.
 Because of this, the number of nodes in the input layer has to be equal to the amount of pixels in the image.
 The output layer has three nodes, one for each type of receipt the network is trained to classify.
@@ -85,14 +123,11 @@ Python-tesseract, or Pytesseract for short, utilizes Google's Tesseract-OCR engi
 
 When metadata for a particular image is requested by a user, the API will provide our implementation of Pytesseract with an image.
 Pytesseract will take this image as an input, and can provide outputs in various formats like xml or pdf.
-We will be using the output in string format, as this will serve as the input to our RNN model.
-Once Pytesseract has completed the text extraction, the output string is then fetched by our API to be provided to our RNN model.
+We will be using the output in string format, as this will serve as the input to our NER Spacy module.
+Once Pytesseract has completed the text extraction, the output string is then fetched by our API to be provided to our NER Spacy module.
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/ocr_before_after}}
     \caption{Example output of pytesseract with a test image}
     \label{fig:figure3.5}
 \end{figure}
-
-\section{Recurrent Neural Network}\label{sec:RNN}
-

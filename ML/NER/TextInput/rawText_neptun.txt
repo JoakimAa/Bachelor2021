@@ -1,0 +1,41 @@
+
+196.86
+TAXI
+05/12/2017 18:21
+NEPTUN TAXI BASIUKIEWICZ
+WYZWOLENIA 9
+80-537 GDANSK
+SALE:
+PLN 42.25
+Exchange Rate:
+1 PLN = 2.515188 NOK
+COMMISSION:
+no commission
+FEE/MARK-UP: 3.50%
+TRANSACTION CURRENCY:
+NOK 106,27
+MID: 421610141038
+POS ID: 84818202
+Eurocard (05)/(1)
+1172 (16)
+RECEIPT NO: 0354
+AUTHORISATION: 073731 (1) STAN: 000782
+AID: A0000000041010
+TC: 4D000F36A705E166
+v.10.60
+I accept the conversion rate & Final
+amount & that the final selected
+transaction currency is NOK. I have
+chosen not to use the MasterCard
+conversion process and I will
+have no recourse against
+MasterCard concerning the currency
+conversion or its disclosure.
+The Currency Conversion service is
+provided by PEKAO SA
+Exchange Rate provided by PEKAO SA
+05/12/2017
+PIN ACCEPTED
+CUSTOMER S COPY
+PLEASE RETAIN THIS RECEIPT
+5ml | Bank Pekao

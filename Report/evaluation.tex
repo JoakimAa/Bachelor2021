@@ -76,7 +76,7 @@ When tested on single images model A would always predict that category 1 was ca
 \section{OCR results}\label{sec:ocr-results}
 Since our OCR implementation uses pre-defined templates to de-skew images, the output of our CNN plays a big part in whether the OCR will be able to extract text from the images.
 When the CNN does not accurately predict the correct category for an image, the OCR de-skew will use the wrong image template, and the result of this de-skew becomes an image that is unusable.
-This can be seen in~\ref{fig:scuffedmatch2} and~\ref{fig:scuffedmatchresult}
+This can be seen in figures~\ref{fig:scuffedmatch2} and~\ref{fig:scuffedmatchresult}
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/matchesscuffed2}}
@@ -113,7 +113,7 @@ An attempt to extract the text from the right-hand image is then being done.
     \label{fig:ocrtextboxes}
 \end{figure}
 
-Looking at~\ref{fig:ocrtextboxes}, the text seems to have been reasonably accurately extracted.
+Looking at figure~\ref{fig:ocrtextboxes}, the text seems to have been reasonably accurately extracted.
 A date is then found using our regular expression for commonly used date formats.
 
 \begin{figure}[h]
@@ -122,7 +122,7 @@ A date is then found using our regular expression for commonly used date formats
     \label{fig:dateocr}
 \end{figure}
 
-On further inspection, we can see that the date found in \figurename{~\ref{fig:dateocr}} does not match the date in
+On further inspection, we can see that the date found in figure~\ref{fig:dateocr} does not match the date in
 the image.
 The date extracted from the OCR is from 2019, while the actual date should be 2018.
 This means that the date that is given back to the API and back to the user, is not correct.
@@ -147,7 +147,7 @@ The CNN made the correct prediction, as can be seen by the image not being rende
     \label{fig:resultflybuss}
 \end{figure}
 
-Looking at the extracted text in figure \figurename{~\ref{fig:resultflybuss}}, it is apparent that the OCR did not
+Looking at the extracted text in figure~\ref{fig:resultflybuss}, it is apparent that the OCR did not
 extract much useful information from the image.
 Text is being found incorrectly along the edge of the receipt and in empty spaces in the receipt.
 This is a recurring problem for receipts of this type, and will be discussed more in chapter 6.

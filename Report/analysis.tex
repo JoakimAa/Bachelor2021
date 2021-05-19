@@ -18,7 +18,7 @@ As the project went on, we shifted our focus from the API to the machine learnin
 This means the API will be more bare-bones, focused more on being able to provide the features necessary for the machine learning module to function.
 
 The app will consist of two main parts: The API and the machine learning modules.
-We are going to use one of the OCR tools described in~\ref{sec:ocr-engines}
+We are going to use one of the OCR tools described in~\ref{sec:ocr-engines}.
 The OCR software is used to extract text from images, and will function as an input converter for our machine learning models that cannot work directly on images as an input.
 A CNN will be used for image classification, and a NER software named Spacy will be used to detect relevant data in text.
 We considered using a RNN to detect relevant data in text, but decided against it due to time constraints.
@@ -34,21 +34,20 @@ The detection features are listed in~\ref{fig:Google cloud API prices}
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/googleAPI_features}}
-    \caption{Overview of features (list from ~\cite{GoogleCloudPricing})}
+    \caption{Overview of features~\cite{GoogleCloudPricing}}
     \label{fig:Google cloud API prices}
-
 \end{figure}
 
 We can see that Google API offers everything from text recognition, to landmark location and crop Hints.
 The Google API is know to be industry leading in the field, so this comes as no surprise.
 This API will have almost everything you need to develop an application with text recognition.
 
-The API also has a lot of features in their beta version which is not included in~\ref{fig:Google cloud API prices}
+The API also has a lot of features in their beta version which is not shown in figure~\ref{fig:Google cloud API prices}
 \clearpage
 
 \begin{figure}[h]
     \center{\includegraphics[width=1\textwidth]{Images/googleAPI_prices}}
-    \caption{Overview of prices (list from~\cite{GoogleCloudPricing})}
+    \caption{Overview of prices~\cite{GoogleCloudPricing}}
     \label{fig:Amazon textract prices}
 
 \end{figure}
@@ -173,7 +172,7 @@ You can see these features in figure~\ref{fig:features}
 
 \begin{figure}[h]
     \center{\includegraphics[width=0.5\textwidth]{Images/spacy-features}}
-    \caption{Overview of spacy features.~\cite{spaCy101}}
+    \caption{Overview of spacy features~\cite{spaCy101}.}
     \label{fig:features}
 \end{figure}
 
@@ -186,7 +185,7 @@ The language class is mainly focused on turning the data into doc objects.
 Docs contain sequences of tokens and their annotations and the vocab contains word vectors and lexical attributes.
 With these spacy can centralize the strings and save memory~\cite{spaCy101}.
 The product of these three central parts of the architecture and other sub classes will provide the
-architecture~\ref{fig:architecture}.
+architecture shown in figure~\ref{fig:architecture}.
 
 
 \begin{figure}[h]
@@ -201,7 +200,7 @@ Spacy does this by asking the model for a prediction.
 However, the model is reliant on the data set it was trained on, this means that for a custom application.
 Dedicated training could be necessary.
 If we take a look at an example from their web page.
-They got a simple string: Apple is looking at buying U.K.\ startup for \$1 billion
+They got a simple string: Apple is looking at buying U.K.\ startup for \$1 billion.
 This will result with these labels~\cite{spaCy101}.
 
 \begin{figure}[h]
@@ -210,11 +209,12 @@ This will result with these labels~\cite{spaCy101}.
     \label{fig:label image}
 \end{figure}
 
-As you can see, you will get labels that describes the words~\ref{fig:label image}.
+As you can see in figure~\ref{fig:label image}, you will get labels that describes the words.
 This combined with spacy's functionality to add relation to the words makes it easy to extract words or values you want.
 When you got the label of the words, you can ask for a relation overview.
 This will give you all the relations for your text.
-Then you can write a simple script that loops through all the words and select the once labeled as ORG. Uou can then extract all the substrings that is labeled as money.
+Then you can write a simple script that loops through all the words and select the once labeled as ORG. You can then
+extract all the substrings that is labeled as money.
 Then you would get out all the sentences that has and organisation talking about money in some form. 
 
 

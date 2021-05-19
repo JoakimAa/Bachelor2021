@@ -1,5 +1,33 @@
-\chapter{Conclusion}
-\label{ch:conclusion}
+\chapter{Summary and conclusion}
+\label{ch:summaryandconclusion}
+This chapter provides a brief summary of the entire report, so that someone who has not read the entirety of the report will still be able to catch the main points.
+In addition, the chapter will include a conclusion on the state of the software created for this project, and whether the desired goals were met.
+
+\section{Summary}\label{summary}
+\subsection{Overview}\label{overview}
+The goal of this project was to create machine learning software capable of extracting key data from images of receipts.
+This key data is in the form of the receipts date, total price and type in the form of company name.
+The images are delivered to the machine learning models via a .NET REST API, through a web client.
+The web client receives the extracted data from the machine learning models via the same API.
+A secondary goal of the project was to store the images uploaded via the API in a database, so it can be used to further improve the machine learning models.
+
+\subsection{Design}\label{design}
+The figures \ref{fig:pipeline} and \ref{fig:ML API} provide a visual overview of the software pipeline created for the project.
+The design of the software pipeline is split into two main parts, the API and the data extraction modules.
+Once the user has requested data extraction by uploading an image via the web client, the API stores the image in a database, so it can potentially be used for further training of the models.
+The data extraction modules are made up of three machine learning models.
+These three models include a CNN trained by the project group, an OCR used for image-to-text conversion, and NER software implemented using Spacy.
+The CNN is used as an image classifier to determine the company that issues the receipt.
+This CNN is trained using a dataset of receipts provided by the project employer.
+The OCR software is used to convert the receipt image into text, in order to extract the date and to allow the NER software to work on a text input.
+The NER software is used to determine the total price in the receipt, by checking words labeled as money by Spacy.
+A python API implemented with the Flask framework is used to pass data between the models, and to communicate with the .NET API.
+
+\subsection{Implementation}\label{implementation}
+The .NET REST API is implemented with the MVP principle and is written in C\#.
+The CNN model is created using Tensorflow and Keras, and is trained using a dataset of
+
+
 Beskrivelse av kapttel
 
 Kort oppsummering

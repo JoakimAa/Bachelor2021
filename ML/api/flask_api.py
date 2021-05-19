@@ -4,13 +4,13 @@ import cv2
 import base64
 import numpy as np
 import io
-from AI.main import return_data
-from Cnn import cnn_predict
+from ML.AI.main import return_data
+from ML.Cnn import cnn_predict
 import os
 from dotenv import load_dotenv
-from NER import ner_spacy_temp
-from NER.ner_spacy_temp import run_spacy
-from AI import OCR
+from ML.NER import ner_spacy_temp
+from ML.NER.ner_spacy_temp import run_spacy
+from ML.AI import OCR
 
 load_dotenv()
 

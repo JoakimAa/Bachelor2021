@@ -17,11 +17,11 @@ The result of the POST requests to the ML API is converted in to a receipt objec
 where it is correctly displayed in their respective fields.
 
 \begin{figure}[h]
-    \center{\includegraphics[width=0.8\textwidth]{Images/MLAPIreturnObject}}
+    \center{\includegraphics[width=0.5\textwidth]{Images/MLAPIreturnObject}}
     \caption{The result from the ML API}
     \label{fig:MLAPIreturnObject}
 \end{figure}
-
+\clearpage
 \subsection{ML API}\label{subsec:ml-api}
 The ML API takes in a base64 string from a POST request originating from the .NET API\@.
 This string contains the image data, and is correctly converted to an image.
@@ -39,23 +39,24 @@ Tweaking was done to the model by adding dropout, data normalization and max poo
 Prediction accuracy then went up to around 95\% for most models.
 
 \begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/200modelaccuracy}}
+    \center{\includegraphics[width=0.8\textwidth]{Images/200modelaccuracy}}
     \caption{Training and validation accuracy for a model trained on 200x200 images}
     \label{fig:200modelaccuracy}
 \end{figure}
-
+\clearpage
 Validation accuracy and loss are the two metrics we are using to determine the success of a model.
 FIGURLINK and FIGURLINK shows how the model accuracy and loss are improving with each epoch of training.
 A consistent theme when training our models was the validation accuracy and loss starting to radically improve between epoch 10 and 15.
 
 \begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/200modelloss}}
+    \center{\includegraphics[width=0.8\textwidth]{Images/200modelloss}}
     \caption{Training and validation loss for a model trained on 200x200 images}
     \label{fig:200modelloss}
 \end{figure}
 
+
 \begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/200confusion}}
+    \center{\includegraphics[width=0.3\textwidth]{Images/200confusion}}
     \caption{Confusion matrix for a model trained on 200x200 images}
     \label{fig:200confusion}
 \end{figure}
@@ -76,16 +77,16 @@ When tested on single images model A would always predict that category 1 was ca
 \section{OCR results}\label{sec:ocr-results}
 Since our OCR implementation uses pre-defined templates to de-skew images, the output of our CNN plays a big part in whether the OCR will be able to extract text from the images.
 When the CNN does not accurately predict the correct category for an image, the OCR de-skew will use the wrong image template, and the result of this de-skew becomes an image that is unusable.
-This can be seen in figures~\ref{fig:scuffedmatch2} and~\ref{fig:scuffedmatchresult}
+This can be seen in~\ref{fig:scuffedmatch2} and~\ref{fig:scuffedmatchresult}
 
 \begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/matchesscuffed2}}
+    \center{\includegraphics[width=0.85\textwidth]{Images/matchesscuffed2}}
     \caption{Input image (left) trying to match its content to the wrong image template (right)}
     \label{fig:scuffedmatch2}
 \end{figure}
 
 \begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/alignedscuffed}}
+    \center{\includegraphics[width=0.3\textwidth]{Images/alignedscuffed}}
     \caption{Result of de-skewing when using the wrong image template}
     \label{fig:scuffedmatchresult}
 \end{figure}
@@ -95,7 +96,7 @@ When isolating the OCR module from the other modules, or when the CNN predicts t
 However, small mistakes in the text extraction can lead to the wrong piece of data being extracted or not found at all.
 
 \begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/beforeafterpreprocess}}
+    \center{\includegraphics[width=0.6\textwidth]{Images/beforeafterpreprocess}}
     \caption{Before and after pre-processing}
     \label{fig:beforeaftepreprocess}
 \end{figure}
@@ -108,21 +109,21 @@ The figure also illustrates the binarization of the image, making the text easie
 An attempt to extract the text from the right-hand image is then being done.
 
 \begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/ocrtextboxes}}
+    \center{\includegraphics[width=0.6\textwidth]{Images/ocrtextboxes}}
     \caption{Extracted text in red, appearing over the place it has been extracted from}
     \label{fig:ocrtextboxes}
 \end{figure}
-
-Looking at figure~\ref{fig:ocrtextboxes}, the text seems to have been reasonably accurately extracted.
+\clearpage
+Looking at~\ref{fig:ocrtextboxes}, the text seems to have been reasonably accurately extracted.
 A date is then found using our regular expression for commonly used date formats.
 
 \begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/dateocr}}
+    \center{\includegraphics[width=0.5\textwidth]{Images/dateocr}}
     \caption{The date extracted from OCR output}
     \label{fig:dateocr}
 \end{figure}
 
-On further inspection, we can see that the date found in figure~\ref{fig:dateocr} does not match the date in
+On further inspection, we can see that the date found in \figurename{~\ref{fig:dateocr}} does not match the date in
 the image.
 The date extracted from the OCR is from 2019, while the actual date should be 2018.
 This means that the date that is given back to the API and back to the user, is not correct.
@@ -137,17 +138,20 @@ One of our categories of images were never readable by the OCR however.
     \label{fig:beforeafterflybuss}
 \end{figure}
 
+\clearpage
+
 \figurename{~\ref{fig:beforeafterflybuss}} shows the image as it is being sent from the user into our pipeline, and
 after the OCR pre-processing.
 The CNN made the correct prediction, as can be seen by the image not being rendered unusable by the de-skewing.
 
+
 \begin{figure}[h]
-    \center{\includegraphics[width=1\textwidth]{Images/resultflybuss}}
+    \center{\includegraphics[width=0.7\textwidth]{Images/resultflybuss}}
     \caption{Extracted text in red, appearing over the place it has been extracted from}
     \label{fig:resultflybuss}
 \end{figure}
 
-Looking at the extracted text in figure~\ref{fig:resultflybuss}, it is apparent that the OCR did not
+Looking at the extracted text in figure \figurename{~\ref{fig:resultflybuss}}, it is apparent that the OCR did not
 extract much useful information from the image.
 Text is being found incorrectly along the edge of the receipt and in empty spaces in the receipt.
 This is a recurring problem for receipts of this type, and will be discussed more in chapter 6.
@@ -155,6 +159,8 @@ This is a recurring problem for receipts of this type, and will be discussed mor
 \section{NER results}\label{sec:ner-results}
 The text output from our OCR module is passed to our Spacy NER module for price extraction.
 We were not able to extract any price information from Spacy's NER\@.
+We will talk in debt about the price extraction in \ref{sec:price-extraction-with-spacy}.
 
-\section{Overall results}\label{sec:overall-results}
+
+
 

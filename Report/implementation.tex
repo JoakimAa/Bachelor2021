@@ -93,13 +93,14 @@ It then calculates how much it needs to skew the image in a given direction, to 
 In image~\ref{fig:OCR matching} you can see the algorithm finding matches between a Trøndertaxi receipt from two
 different years.
 Yes, these recipes is almost identical.
-Making this functionality dynamic for almost all receipts should be possible, (no evidence for this) by having a pool of template receipts.
+Making this functionality dynamic for almost all receipts should be possible.
+We have implemented a light-weight function of this by having a pool of template receipts.
 Then you can have a CNN check which receipts are the most similar and use the highest scoring receipt as the template image for any given receipt.
 
 \subsection{Data augmentation}\label{subsec:data-augmentation}
 Because of the low amount of images in the filtered dataset, data augmentation has to be done in order to give us enough images to be able to effectively train the CNN\@.
 We used an open source data augmentation tool for images for this task LINK\@.
-The augmentor takes a directory of images and applies a series of transformations on the images like scaling, skewing and rotating.
+The augmenter takes a directory of images and applies a series of transformations on the images like scaling, skewing and rotating.
 This creates copies of the images with slight differences, increasing the size of our dataset.
 After applying enough transformations, the size of the dataset grew from 91 images to 1500.
 
